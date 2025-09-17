@@ -13,6 +13,7 @@ document.addEventListener('DOMContentLoaded', function() {
     initThemeToggler();
     initCounterAnimation();
     initHeaderScrollBehavior();
+     initProjectModal()
 });
 
 // ==========================================================================
@@ -345,7 +346,7 @@ function initCounterAnimation() {
             
             counterElements.forEach(counter => {
                 const target = parseInt(counter.getAttribute('data-count'));
-                const duration = 2000; // 2 seconds
+                const duration = 3000; // 3 seconds
                 const increment = target / (duration / 16); // 60fps
                 let current = 0;
                 
@@ -505,4 +506,192 @@ function initHeaderScrollBehavior() {
     
     // Initial check
     handleScroll();
+}
+// ==========================================================================
+// Project Modal Functionality
+// ==========================================================================
+function initProjectModal() {
+    const modal = document.getElementById('projectModal');
+    const closeBtn = document.querySelector('.project-modal__close');
+    const projectCards = document.querySelectorAll('.project-card');
+    
+    if (!modal) return;
+    
+    // Project data
+    const projects = {
+        1: {
+            title: "Tech Blog Series",
+            category: "Blog Writing • SEO",
+            image: "images/project1.jpg",
+            description: "Developed a comprehensive blog series for a leading tech company, focusing on emerging technologies and industry trends. The content was optimized for SEO and designed to position the company as a thought leader in their niche.",
+            features: [
+                "15+ in-depth articles on emerging technologies",
+                "SEO optimization with targeted keywords",
+                "Engaging visuals and infographics",
+                "Social media promotion strategy"
+            ],
+            results: [
+                "45% increase in organic traffic",
+                "28% higher engagement rate compared to previous content",
+                "Generated 120+ qualified leads",
+                "Improved domain authority by 15 points"
+            ]
+        },
+        2: {
+            title: "E-commerce Website Content",
+            category: "Web Content • Product Descriptions",
+            image: "images/project2.jpg",
+            description: "Created compelling product descriptions and website copy for an e-commerce platform specializing in sustainable products. Focused on conveying brand values while driving conversions.",
+            features: [
+                "200+ product descriptions optimized for conversions",
+                "Brand storytelling throughout the website",
+                "SEO-optimized category pages",
+                "Consistent brand voice across all content"
+            ],
+            results: [
+                "32% increase in conversion rate",
+                "Reduced bounce rate by 25%",
+                "Improved average time on site by 40%",
+                "25% growth in returning customers"
+            ]
+        },
+        3: {
+            title: "Brand Storytelling Campaign",
+            category: "Brand Strategy • Content",
+            image: "images/project3.jpg",
+            description: "Developed a comprehensive brand storytelling campaign for a startup, creating narratives that connected with their target audience and differentiated them from competitors.",
+            features: [
+                "Company origin story and mission articulation",
+                "Customer success case studies",
+                "Employee spotlight features",
+                "Multi-channel content distribution"
+            ],
+            results: [
+                "68% increase in brand awareness",
+                "40% higher engagement on social media",
+                "Generated media coverage in 3 industry publications",
+                "Improved customer loyalty metrics by 35%"
+            ]
+        },
+        4: {
+            title: "Social Media Campaign",
+            category: "Social Media • Engagement",
+            image: "images/project4.jpg",
+            description: "Designed and executed a social media content strategy that increased engagement and built community around a lifestyle brand.",
+            features: [
+                "Daily content calendar across 4 platforms",
+                "User-generated content campaigns",
+                "Interactive stories and polls",
+                "Influencer collaboration content"
+            ],
+            results: [
+                "Tripled follower growth in 3 months",
+                "Engagement rate increased from 2% to 6.5%",
+                "Generated 500+ user-generated content submissions",
+                "Drove 25% of total website traffic from social media"
+            ]
+        },
+        5: {
+            title: "Technical Whitepaper",
+            category: "Technical Writing • Research",
+            image: "images/project5.jpg",
+            description: "Researched and wrote a comprehensive technical whitepaper on AI implementation in healthcare, making complex technical concepts accessible to non-technical stakeholders.",
+            features: [
+                "30-page in-depth research document",
+                "Case studies and data analysis",
+                "Executive summary for quick consumption",
+                "Technical appendix for specialists"
+            ],
+            results: [
+                "Downloaded 2,500+ times in first month",
+                "Cited in 3 industry publications",
+                "Generated 350+ qualified leads",
+                "Used as sales enablement material by client's team"
+            ]
+        },
+        6: {
+            title: "Email Marketing Campaign",
+            category: "Email Marketing • Copywriting",
+            image: "images/project6.jpg",
+            description: "Developed a multi-email nurture sequence for a SaaS company, guiding prospects through the customer journey from awareness to conversion.",
+            features: [
+                "7-email automated sequence",
+                "Personalized content based on user behavior",
+                "A/B tested subject lines and CTAs",
+                "Mobile-optimized templates"
+            ],
+            results: [
+                "22% open rate (industry average: 18%)",
+                "8% click-through rate (industry average: 3%)",
+                "15% conversion rate from lead to customer",
+                "Generated $125K in revenue in first quarter"
+            ]
+        }
+    };
+
+    // Open modal when clicking on project card
+    projectCards.forEach(card => {
+        card.addEventListener('click', function() {
+            const projectId = this.getAttribute('data-project');
+            const project = projects[projectId];
+            
+            if (project) {
+                // Populate modal with project data
+                document.getElementById('modalImage').src = project.image;
+                document.getElementById('modalImage').alt = project.title;
+                document.getElementById('modalTitle').textContent = project.title;
+                document.getElementById('modalCategory').textContent = project.category;
+                document.getElementById('modalDescription').textContent = project.description;
+                
+                // Populate features
+                const featuresList = document.getElementById('modalFeatures');
+                featuresList.innerHTML = '';
+                project.features.forEach(feature => {
+                    const li = document.createElement('li');
+                    li.textContent = feature;
+                    featuresList.appendChild(li);
+                });
+                
+                // Populate results
+                const resultsList = document.getElementById('modalResults');
+                resultsList.innerHTML = '';
+                project.results.forEach(result => {
+                    const li = document.createElement('li');
+                    li.textContent = result;
+                    resultsList.appendChild(li);
+                });
+                
+                // Show modal
+                modal.classList.add('project-modal--active');
+                document.body.style.overflow = 'hidden';
+            }
+        });
+    });
+
+    // Close modal functions
+    function closeModal() {
+        modal.classList.remove('project-modal--active');
+        setTimeout(() => {
+            document.body.style.overflow = 'auto';
+        }, 300);
+    }
+
+    // Close when clicking close button
+    if (closeBtn) {
+        closeBtn.addEventListener('click', closeModal);
+    }
+
+    // Close when clicking outside content (on the overlay)
+    modal.addEventListener('click', function(e) {
+        if (e.target === modal || e.target.classList.contains('project-modal__overlay')) {
+            closeModal();
+        }
+    });
+
+    // Close with Escape key
+    document.addEventListener('keydown', function(e) {
+        if (e.key === 'Escape' && modal.classList.contains('project-modal--active')) {
+            closeModal();
+        }
+    });
 }
