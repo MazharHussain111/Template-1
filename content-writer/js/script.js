@@ -345,7 +345,7 @@ function initProjectLightbox() {
 }
 
 // ==========================================================================
-// Counter Animation for Statistics
+// Counter Animation for Statistics (Updated)
 // ==========================================================================
 function initCounterAnimation() {
     const counterElements = document.querySelectorAll('.stat__number');
@@ -356,29 +356,39 @@ function initCounterAnimation() {
     function animateCounters() {
         if (hasCounted) return;
         
-        const aboutSection = document.querySelector('.about');
+        const aboutSection = document.querySelector('.about__stats');
         if (!aboutSection) return;
         
         const sectionPosition = aboutSection.getBoundingClientRect().top;
-        const screenPosition = window.innerHeight / 1.3;
+        const screenPosition = window.innerHeight / 1.5; // Changed to 1.5 for earlier trigger
         
         if (sectionPosition < screenPosition) {
             hasCounted = true;
             
-            counterElements.forEach(counter => {
+            counterElements.forEach((counter, index) => {
                 const target = parseInt(counter.getAttribute('data-count'));
-                const duration = 3000; // 3 seconds
+                const duration = 2000; // 2 seconds
                 const increment = target / (duration / 16); // 60fps
                 let current = 0;
                 
-                const timer = setInterval(() => {
-                    current += increment;
-                    if (current >= target) {
-                        clearInterval(timer);
-                        current = target;
-                    }
-                    counter.textContent = Math.floor(current);
-                }, 16);
+                // Add animation class to number and label
+                counter.classList.add('animate');
+                const label = counter.nextElementSibling;
+                if (label && label.classList.contains('stat__label')) {
+                    label.classList.add('animate');
+                }
+                
+                // Start counting animation with delay based on index
+                setTimeout(() => {
+                    const timer = setInterval(() => {
+                        current += increment;
+                        if (current >= target) {
+                            clearInterval(timer);
+                            current = target;
+                        }
+                        counter.textContent = Math.floor(current);
+                    }, 16);
+                }, index * 300); // Stagger the animations
             });
         }
     }
@@ -386,6 +396,8 @@ function initCounterAnimation() {
     // Run on scroll and on load
     window.addEventListener('scroll', animateCounters);
     window.addEventListener('load', animateCounters);
+    
+
 }
 
 // ==========================================================================
@@ -731,33 +743,59 @@ function initProjectModal() {
     });
 }
 
-// ==========================================================================
-// Testimonials Auto-Scroll Functionality
-// ==========================================================================
-function initTestimonialsScroll() {
-    const testimonialsTrack = document.querySelector('.testimonials__track');
-    
-    if (!testimonialsTrack) return;
-    
-    // Clone testimonials for infinite scroll effect
-    const testimonials = testimonialsTrack.querySelectorAll('.testimonial__card');
-    testimonials.forEach(card => {
-        const clone = card.cloneNode(true);
-        testimonialsTrack.appendChild(clone);
-    });
-    
-    // Reset position when animation completes to create infinite loop
-    testimonialsTrack.addEventListener('animationiteration', () => {
-        // Reset to start position for seamless loop
-        testimonialsTrack.style.transform = 'translateX(0)';
-    });
-    
-    // Pause animation on hover for better readability
-    testimonialsTrack.addEventListener('mouseenter', () => {
-        testimonialsTrack.style.animationPlayState = 'paused';
-    });
-    
-    testimonialsTrack.addEventListener('mouseleave', () => {
-        testimonialsTrack.style.animationPlayState = 'running';
-    });
-}
+// Enhanced Testimonials Auto Scroll Functionality
+        function initTestimonialsScroll() {
+            const testimonialsTrack = document.querySelector('.testimonials__track');
+            if (!testimonialsTrack) return;
+            
+            // Clone testimonials for infinite scroll effect
+            const testimonials = testimonialsTrack.querySelectorAll('.testimonial__card');
+            testimonials.forEach(card => {
+                const clone = card.cloneNode(true);
+                testimonialsTrack.appendChild(clone);
+            });
+            
+            // Pause animation on hover
+            testimonialsTrack.addEventListener('mouseenter', () => {
+                testimonialsTrack.style.animationPlayState = 'paused';
+            });
+            
+            testimonialsTrack.addEventListener('mouseleave', () => {
+                testimonialsTrack.style.animationPlayState = 'running';
+            });
+            
+            // Handle touch events for mobile
+            let touchStartX = 0;
+            let isPausedByTouch = false;
+            
+            testimonialsTrack.addEventListener('touchstart', (e) => {
+                touchStartX = e.changedTouches[0].screenX;
+                testimonialsTrack.style.animationPlayState = 'paused';
+                isPausedByTouch = true;
+            });
+            
+            testimonialsTrack.addEventListener('touchend', (e) => {
+                const touchEndX = e.changedTouches[0].screenX;
+                const swipeThreshold = 50;
+                
+                if (Math.abs(touchEndX - touchStartX) > swipeThreshold) {
+                    // User swiped, keep animation paused
+                    isPausedByTouch = true;
+                } else {
+                    // Just a tap, resume animation after a delay
+                    isPausedByTouch = false;
+                    setTimeout(() => {
+                        if (!isPausedByTouch) {
+                            testimonialsTrack.style.animationPlayState = 'running';
+                        }
+                    }, 2000);
+                }
+            });
+            
+            // Reset animation when it completes to create seamless loop
+            testimonialsTrack.addEventListener('animationiteration', () => {
+                // This creates the infinite loop effect
+            });
+        }
+
+     
