@@ -13,8 +13,30 @@ document.addEventListener('DOMContentLoaded', function() {
     initThemeToggler();
     initCounterAnimation();
     initHeaderScrollBehavior();
-     initProjectModal()
+    initProjectModal();
+    initTestimonialsScroll();
+    checkUrlTheme(); // Check for theme in URL parameters
 });
+
+// ==========================================================================
+// URL Theme Parameter Handling
+// ==========================================================================
+function checkUrlTheme() {
+    const urlParams = new URLSearchParams(window.location.search);
+    const themeParam = urlParams.get('theme');
+    
+    if (themeParam === 'dark') {
+        // Force dark theme if URL parameter is set
+        document.documentElement.setAttribute('data-theme', 'dark');
+        const themeToggler = document.getElementById('themeToggler');
+        if (themeToggler) {
+            const themeIcon = themeToggler.querySelector('i');
+            themeIcon.classList.remove('fa-moon');
+            themeIcon.classList.add('fa-sun');
+        }
+        localStorage.setItem('theme', 'dark');
+    }
+}
 
 // ==========================================================================
 // Smooth Scrolling for Navigation Links
@@ -78,7 +100,6 @@ function initAnimations() {
     window.addEventListener('scroll', animateOnScroll);
 }
 
-
 // ==========================================================================
 // Mobile Menu Functionality
 // ==========================================================================
@@ -91,7 +112,7 @@ function initMobileMenu() {
     
     menuToggle.addEventListener('click', function() {
         navLinks.classList.toggle('nav__links--active');
-        navOverlay.classList.toggle('nav__overlay--active');
+        if (navOverlay) navOverlay.classList.toggle('nav__overlay--active');
         menuToggle.classList.toggle('mobile-menu-toggle--active');
         
         // Toggle aria-expanded for accessibility
@@ -411,8 +432,8 @@ function initThemeToggler() {
     const prefersDarkScheme = window.matchMedia('(prefers-color-scheme: dark)');
     const savedTheme = localStorage.getItem('theme');
     
-    // Set initial theme
-    if (savedTheme === 'dark' || (!savedTheme && prefersDarkScheme.matches)) {
+    // Set initial theme - default to light theme
+    if (savedTheme === 'dark') {
         document.documentElement.setAttribute('data-theme', 'dark');
         themeIcon.classList.remove('fa-moon');
         themeIcon.classList.add('fa-sun');
@@ -431,11 +452,17 @@ function initThemeToggler() {
             localStorage.setItem('theme', 'dark');
             themeIcon.classList.remove('fa-moon');
             themeIcon.classList.add('fa-sun');
+            
+            // Update URL with theme parameter
+            updateUrlWithTheme('dark');
         } else {
             document.documentElement.setAttribute('data-theme', 'light');
             localStorage.setItem('theme', 'light');
             themeIcon.classList.remove('fa-sun');
             themeIcon.classList.add('fa-moon');
+            
+            // Update URL with theme parameter
+            updateUrlWithTheme('light');
         }
     });
     
@@ -453,6 +480,13 @@ function initThemeToggler() {
             }
         }
     });
+}
+
+// Update URL with theme parameter
+function updateUrlWithTheme(theme) {
+    const url = new URL(window.location);
+    url.searchParams.set('theme', theme);
+    window.history.replaceState({}, '', url);
 }
 
 // ==========================================================================
@@ -507,6 +541,7 @@ function initHeaderScrollBehavior() {
     // Initial check
     handleScroll();
 }
+
 // ==========================================================================
 // Project Modal Functionality
 // ==========================================================================
@@ -693,5 +728,36 @@ function initProjectModal() {
         if (e.key === 'Escape' && modal.classList.contains('project-modal--active')) {
             closeModal();
         }
+    });
+}
+
+// ==========================================================================
+// Testimonials Auto-Scroll Functionality
+// ==========================================================================
+function initTestimonialsScroll() {
+    const testimonialsTrack = document.querySelector('.testimonials__track');
+    
+    if (!testimonialsTrack) return;
+    
+    // Clone testimonials for infinite scroll effect
+    const testimonials = testimonialsTrack.querySelectorAll('.testimonial__card');
+    testimonials.forEach(card => {
+        const clone = card.cloneNode(true);
+        testimonialsTrack.appendChild(clone);
+    });
+    
+    // Reset position when animation completes to create infinite loop
+    testimonialsTrack.addEventListener('animationiteration', () => {
+        // Reset to start position for seamless loop
+        testimonialsTrack.style.transform = 'translateX(0)';
+    });
+    
+    // Pause animation on hover for better readability
+    testimonialsTrack.addEventListener('mouseenter', () => {
+        testimonialsTrack.style.animationPlayState = 'paused';
+    });
+    
+    testimonialsTrack.addEventListener('mouseleave', () => {
+        testimonialsTrack.style.animationPlayState = 'running';
     });
 }
