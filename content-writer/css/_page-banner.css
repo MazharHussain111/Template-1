@@ -1,0 +1,199 @@
+/* ==========================================================================
+ Banner Section
+   ========================================================================== */
+.banner {
+    background: linear-gradient(135deg, rgba(220, 20, 60, 0.1) 0%, rgba(139, 0, 0, 0.1) 100%);
+    padding: var(--spacing-3xl) 0;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+    margin-bottom: var(--spacing-3xl);
+}
+
+.banner::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" width="100" height="100" opacity="0.05"><text x="50%" y="50%" font-size="20" text-anchor="middle" dominant-baseline="middle" font-family="monospace">PenCraft</text></svg>');
+    opacity: 0.1;
+}
+
+.banner__content {
+    position: relative;
+    z-index: 2;
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 0 var(--spacing-lg);
+}
+
+.breadcrumb {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: var(--spacing-xl);
+    font-size: var(--font-size-sm);
+    color: var(--color-text-light);
+}
+
+.breadcrumb__link {
+    color: var(--color-primary);
+    text-decoration: none;
+    transition: var(--transition-base);
+    display: flex;
+    align-items: center;
+    gap: var(--spacing-xs);
+}
+
+.breadcrumb__link:hover {
+    color: var(--color-primary-dark);
+    transform: translateY(-1px);
+}
+
+.breadcrumb__separator {
+    margin: 0 var(--spacing-sm);
+    color: var(--color-text-muted);
+}
+
+.breadcrumb__current {
+    color: var(--color-text);
+    font-weight: var(--font-weight-medium);
+}
+
+.banner__title {
+    font-size: var(--font-size-5xl);
+    color: var(--color-text);
+    margin-bottom: var(--spacing-lg);
+    font-family: var(--font-secondary);
+    position: relative;
+    display: inline-block;
+}
+
+.banner__title::after {
+    content: '';
+    position: absolute;
+    bottom: -10px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 80px;
+    height: 4px;
+    background: var(--color-primary);
+    border-radius: var(--border-radius-sm);
+}
+
+.banner__description {
+    font-size: var(--font-size-xl);
+    color: var(--color-text-light);
+    line-height: 1.6;
+    max-width: 600px;
+    margin: 0 auto;
+}
+
+/* Decorative elements */
+.banner__decoration {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    z-index: 1;
+}
+
+.banner__circle {
+    position: absolute;
+    border-radius: 50%;
+    background: rgba(220, 20, 60, 0.1);
+    animation: float 8s ease-in-out infinite;
+}
+
+.banner__circle--1 {
+    width: 120px;
+    height: 120px;
+    top: 20%;
+    left: 10%;
+    animation-delay: 0s;
+}
+
+.banner__circle--2 {
+    width: 80px;
+    height: 80px;
+    bottom: 30%;
+    right: 15%;
+    animation-delay: 2s;
+}
+
+.banner__dot {
+    position: absolute;
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    background: var(--color-primary);
+    animation: pulse 3s ease-in-out infinite alternate;
+}
+
+.banner__dot--1 {
+    top: 40%;
+    right: 20%;
+    animation-delay: 1s;
+}
+
+.banner__dot--2 {
+    bottom: 20%;
+    left: 25%;
+    animation-delay: 1.5s;
+}
+
+/* Responsive styles */
+@media (max-width: 1024px) {
+    .banner__title {
+        font-size: var(--font-size-4xl);
+    }
+    
+    .banner__description {
+        font-size: var(--font-size-lg);
+    }
+}
+
+@media (max-width: 768px) {
+    .banner {
+        padding: var(--spacing-2xl) 0;
+    }
+    
+    .banner__title {
+        font-size: var(--font-size-3xl);
+    }
+    
+    .banner__description {
+        font-size: var(--font-size-base);
+    }
+    
+    .banner__circle--1 {
+        width: 80px;
+        height: 80px;
+        left: 5%;
+    }
+    
+    .banner__circle--2 {
+        width: 60px;
+        height: 60px;
+        right: 5%;
+    }
+}
+
+@media (max-width: 480px) {
+    .banner__title {
+        font-size: var(--font-size-2xl);
+    }
+    
+    .breadcrumb {
+        font-size: var(--font-size-xs);
+    }
+    
+    .banner__circle--1,
+    .banner__circle--2 {
+        display: none;
+    }
+}
