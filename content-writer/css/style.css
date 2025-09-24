@@ -759,7 +759,6 @@ background: linear-gradient(45deg, var(--color-dark-background-dark) 93%, var(--
     }
     
     .nav__link {
-        color: var(--color-background-light);
         font-size: var(--font-size-base);
         padding: var(--spacing-sm) 0;
         display: block;
