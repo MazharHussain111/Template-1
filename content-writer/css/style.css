@@ -3553,7 +3553,7 @@ body {
 @media (max-width: 480px) {
     .banner {
         padding: calc(var(--spacing-lg) + 40px) 0 var(--spacing-lg) 0;
-        margin-top: 51px;
+        margin-top: 65px;
     }
     
     .banner__title {
