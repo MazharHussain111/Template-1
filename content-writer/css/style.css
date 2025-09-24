@@ -657,7 +657,7 @@ body {
 
     
     .nav__link {
-        color: var(--color-background-light);
+        color: var(--color-dark-text-light);
         font-size: var(--font-size-lg);
         padding: var(--spacing-md) 0;
     }
@@ -728,7 +728,7 @@ body {
         width: 100%;
         right: -100%;
         background: var(--color-primary);
-        padding: var(--spacing-2xl) var(--spacing-md) var(--spacing-md);
+        padding: var(--spacing-3xl) var(--spacing-md) var(--spacing-md);
     }
     
     .nav__links--active {
