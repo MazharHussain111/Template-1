@@ -1,465 +1,3 @@
-<!-- Header -->
-<header class="header">
-    <nav class="nav">
-        <a href="index1.html" class="logo">
-            <img src="images//profile.png" alt="PenCraft Logo" class="logo__img">
-            PenCraft<span class="logo__dot">.</span>
-        </a>
-        <div class="nav__links">
-            <a href="index1.html" class="nav__link">Home</a>
-            <a href="content-writer/about.html" class="nav__link">About</a>
-            <a href="content-writer/services.html" class="nav__link">Services</a>
-            <a href="content-writer/resume.html" class="nav__link">Resume</a>
-            <a href="content-writer/projects.html" class="nav__link">Projects</a>
-            <a href="content-writer/contact.html" class="nav__link">Contact</a>
-        </div>
-        <div class="nav__overlay"></div>
-        <div class="nav__actions">
-            <button id="themeToggler" class="theme-toggler" aria-label="Toggle dark mode">
-                <i class="fas fa-moon"></i>
-            </button>
-            <button class="mobile-menu-toggle" aria-label="Toggle mobile menu">
-                <i class="fas fa-bars"></i>
-            </button>
-        </div>
-    </nav>
-</header>,
-
-
-
-
-/* ==========================================================================
-   Enhanced Header Styles
-   ========================================================================== */
-.header {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    z-index: 1000;
-    background: transparent;
-    transition: var(--transition-base);
-    padding: var(--spacing-md) 0;
-    backdrop-filter: blur(11px);
-    -webkit-backdrop-filter: blur(11px);
-}
-
-.header.scrolled {
-    padding: var(--spacing-sm) 0;
-    background: rgba(248, 248, 248, 0.98);
-    backdrop-filter: blur(15px);
-    -webkit-backdrop-filter: blur(15px);
-}
-
-[data-theme="dark"] .header.scrolled {
-    background: rgba(0, 0, 0, 0.98);
-}
-
-.header.hidden {
-    transform: translateY(-100%);
-}
-
-.nav {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    max-width: 1200px;
-    margin: 0 auto;
-    padding: 0 var(--spacing-lg);
-    height: 71px;
-}
-
-.logo {
-    font-family: var(--font-secondary);
-    font-size: var(--font-size-3xl);
-    font-weight: var(--font-weight-bold);
-    color: var(--color-text);
-    text-decoration: none;
-    display: flex;
-    align-items: center;
-    transition: var(--transition-base);
-    z-index: 1001;
-    gap: var(--spacing-xs);
-}
-
-.logo:hover {
-    transform: scale(1.05);
-}
-
-.logo__dot {
-    color: var(--color-primary);
-    animation: pulse 2s infinite;
-}
-
-.logo__img {
-    height: 40px;
-    width: auto;
-    transition: var(--transition-base);
-    object-fit: contain;
-}
-
-.logo:hover .logo__img {
-    transform: scale(1.05);
-}
-
-.nav__links {
-    display: flex;
-    gap: var(--spacing-xl);
-    list-style: none;
-    margin: 0;
-    padding: 0;
-}
-
-.nav__link {
-    color: var(--color-text);
-    text-decoration: none;
-    font-weight: var(--font-weight-medium);
-    position: relative;
-    padding: var(--spacing-sm) 0;
-    transition: var(--transition-base);
-    font-size: var(--font-size-lg);
-}
-
-.nav__link::after {
-    content: '';
-    position: absolute;
-    bottom: 0;
-    left: 0;
-    width: 0;
-    height: 3px;
-    background: linear-gradient(to right, var(--color-primary), var(--color-primary-dark));
-    transition: width 0.3s ease;
-    border-radius: var(--border-radius-sm);
-}
-
-.nav__link:hover {
-    color: var(--color-primary);
-}
-
-.nav__link:hover::after {
-    width: 100%;
-}
-
-.nav__link--active {
-    color: var(--color-primary);
-}
-
-.nav__link--active::after {
-    width: 100%;
-}
-
-.nav__actions {
-    display: flex;
-    align-items: center;
-    gap: var(--spacing-md);
-}
-
-.theme-toggler {
-    background: none;
-    border: none;
-    color: var(--color-text);
-    font-size: var(--font-size-xl);
-    cursor: pointer;
-    padding: var(--spacing-sm);
-    border-radius: 50%;
-    transition: var(--transition-base);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    width: 45px;
-    height: 45px;
-    z-index: 1001;
-    position: relative;
-    overflow: hidden;
-}
-
-.theme-toggler::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: linear-gradient(45deg, var(--color-primary), var(--color-primary-dark));
-    opacity: 0;
-    transition: var(--transition-base);
-    border-radius: 50%;
-}
-
-.theme-toggler:hover::before {
-    opacity: 0.1;
-}
-
-.theme-toggler:hover {
-    color: var(--color-primary);
-    background: var(--color-primary-transparent);
-    transform: rotate(15deg);
-}
-
-.mobile-menu-toggle {
-    display: none;
-    background: none;
-    border: none;
-    color: var(--color-text);
-    font-size: var(--font-size-2xl);
-    cursor: pointer;
-    padding: var(--spacing-sm);
-    width: 45px;
-    height: 45px;
-    border-radius: 50%;
-    transition: var(--transition-base);
-    z-index: 1001;
-    position: relative;
-}
-
-.mobile-menu-toggle:hover {
-    background: var(--color-primary-transparent);
-    color: var(--color-primary);
-}
-
-.mobile-menu-toggle--active {
-    color: var(--color-primary);
-}
-
-.mobile-menu-toggle--active .fa-bars::before {
-    content: "\f00d";
-}
-
-@keyframes pulse {
-    0% {
-        transform: scale(1);
-        opacity: 1;
-    }
-    50% {
-        transform: scale(1.2);
-        opacity: 0.8;
-    }
-    100% {
-        transform: scale(1);
-        opacity: 1;
-    }
-}
-
-/* ==========================================================================
-   Enhanced Header Styles - Updated for 1024px and below
-   ========================================================================== */
-
-/* 1024px Breakpoint - Tablet Landscape and below */
-@media (max-width: 1024px) {
-    .header {
-        backdrop-filter: blur(11px);
-        -webkit-backdrop-filter: blur(11px);
-    }
-    
-    .header.scrolled {
-        backdrop-filter: blur(15px);
-        -webkit-backdrop-filter: blur(15px);
-    }
-    
-    .nav {
-        padding: 0 var(--spacing-md);
-        height: 65px;
-        position: relative;
-    }
-    
-    .nav__links {
-        position: fixed;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100vh;
-        background: var(--color-primary-dark);
-        backdrop-filter: blur(31px);
-        -webkit-backdrop-filter: blur(31px);
-        flex-direction: column;
-        justify-content: center;
-        align-items: center;
-        padding: var(--spacing-3xl);
-        transform: translateX(-100%);
-        transition: transform 0.4s cubic-bezier(0.23, 1, 0.32, 1);
-        z-index: 999;
-        gap: var(--spacing-2xl);
-        overflow: hidden; /* Prevent scrollbar */
-    }
-    
-    .nav__links.nav__links--active {
-        transform: translateX(0);
-        box-shadow: 0 0 0 100vmax rgba(0, 0, 0, 0.8);
-        overflow: hidden; /* Ensure no scrollbar */
-    }
-    
-    /* Hide logo when menu is active */
-    .nav__links.nav__links--active ~ .logo {
-        opacity: 0;
-        visibility: hidden;
-        transition: opacity 0.3s ease, visibility 0.3s ease;
-    }
-    
-    /* Keep only the menu toggle visible when menu is active */
-    .nav__links.nav__links--active ~ .nav__actions .mobile-menu-toggle {
-        opacity: 1;
-        visibility: visible;
-        z-index: 1002;
-        color: white;
-    }
-    
-    /* Change menu toggle to cross icon when active */
-    .mobile-menu-toggle--active .fa-bars::before {
-        content: "\f00d";
-        color: white;
-    }
-    
-    .nav__link {
-        padding: var(--spacing-md) var(--spacing-xl);
-        font-size: var(--font-size-xl);
-        font-weight: var(--font-weight-semibold);
-        transition: all 0.3s ease;
-        text-align: center;
-        width: 100%;
-        border-radius: var(--border-radius-md);
-        color: white;
-        position: relative;
-    }
-    
-    .nav__link:hover {
-        color: white;
-        transform: translateX(10px);
-        background: rgba(255, 255, 255, 0.1);
-    }
-    
-    .nav__link::after {
-        display: none;
-    }
-    
-    .nav__link--active {
-        color: white;
-        background: rgba(255, 255, 255, 0.15);
-        transform: translateX(15px);
-    }
-    
-    .mobile-menu-toggle {
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        z-index: 1002;
-        position: relative;
-    }
-    
-    .logo {
-        font-size: var(--font-size-2xl);
-        z-index: 1002;
-        transition: opacity 0.3s ease, visibility 0.3s ease;
-    }
-    
-    .logo__img {
-        height: 35px;
-    }
-    
-    .theme-toggler {
-        width: 42px;
-        height: 42px;
-        font-size: var(--font-size-lg);
-        z-index: 1002;
-        transition: opacity 0.3s ease, visibility 0.3s ease;
-    }
-    
-    /* Hide theme toggler when menu is active */
-    .nav__links.nav__links--active ~ .nav__actions .theme-toggler {
-        opacity: 0;
-        visibility: hidden;
-    }
-    
-    .mobile-menu-toggle--active {
-        color: var(--color-primary-light);
-        transform: rotate(90deg);
-    }
-}
-
-/* 768px Breakpoint - Tablet Portrait */
-@media (max-width: 768px) {
-    .nav {
-        height: 60px;
-        padding: 0 var(--spacing-md);
-    }
-    
-    .header {
-        backdrop-filter: blur(10px);
-        -webkit-backdrop-filter: blur(10px);
-    }
-    
-    .nav__links {
-        padding: var(--spacing-2xl);
-        gap: var(--spacing-xl);
-        background: var(--color-primary);
-    }
-    
-    .nav__link {
-        font-size: var(--font-size-lg);
-        padding: var(--spacing-md);
-    }
-    
-    .logo {
-        font-size: var(--font-size-xl);
-    }
-    
-    .logo__img {
-        height: 32px;
-    }
-    
-    .theme-toggler,
-    .mobile-menu-toggle {
-        width: 40px;
-        height: 40px;
-        font-size: var(--font-size-base);
-    }
-}
-
-/* 480px Breakpoint - Mobile */
-@media (max-width: 480px) {
-    .nav {
-        height: 55px;
-        padding: 0 var(--spacing-sm);
-    }
-    
-    .header {
-        backdrop-filter: blur(8px);
-        -webkit-backdrop-filter: blur(8px);
-    }
-    
-    .header.scrolled {
-        padding: var(--spacing-xs) 0;
-    }
-    
-    .nav__links {
-        padding: var(--spacing-xl);
-        gap: var(--spacing-lg);
-        background: var(--color-primary);
-    }
-    
-    .nav__link {
-        font-size: var(--font-size-base);
-        padding: var(--spacing-md);
-    }
-    
-    .logo {
-        font-size: var(--font-size-lg);
-    }
-    
-    .logo__img {
-        height: 28px;
-    }
-    
-    .theme-toggler,
-    .mobile-menu-toggle {
-        width: 36px;
-        height: 36px;
-        font-size: var(--font-size-sm);
-    }
-    
-    .nav__actions {
-        gap: var(--spacing-sm);
-    }
-}
 // ==========================================================================
 // Main Application Initialization
 // ==========================================================================
@@ -474,10 +12,13 @@ document.addEventListener('DOMContentLoaded', function() {
     initProjectLightbox();
     initThemeToggler();
     initCounterAnimation();
-    initHeaderScrollBehavior();
+       initHeaderScrollBehavior();
     initProjectModal();
     initTestimonialsScroll();
-    checkUrlTheme(); // Check for theme in URL parameters
+    checkUrlTheme(); 
+     initSkillAnimation();
+         initHeroSection();
+     
 });
 
 // ==========================================================================
@@ -565,16 +106,23 @@ function initAnimations() {
 // ==========================================================================
 // Mobile Menu Functionality
 // ==========================================================================
+// ==========================================================================
+// Mobile Menu Functionality (Updated for 480px screens)
+// ==========================================================================
 function initMobileMenu() {
     const menuToggle = document.querySelector('.mobile-menu-toggle');
     const navLinks = document.querySelector('.nav__links');
-    const navOverlay = document.querySelector('.nav__overlay');
     
     if (!menuToggle || !navLinks) return;
     
+    // Create overlay element
+    const navOverlay = document.createElement('div');
+    navOverlay.className = 'nav__overlay';
+    document.body.appendChild(navOverlay);
+    
     menuToggle.addEventListener('click', function() {
         navLinks.classList.toggle('nav__links--active');
-        if (navOverlay) navOverlay.classList.toggle('nav__overlay--active');
+        navOverlay.classList.toggle('nav__overlay--active');
         menuToggle.classList.toggle('mobile-menu-toggle--active');
         
         // Toggle aria-expanded for accessibility
@@ -586,22 +134,20 @@ function initMobileMenu() {
     });
     
     // Close menu when clicking on overlay
-    if (navOverlay) {
-        navOverlay.addEventListener('click', () => {
-            navLinks.classList.remove('nav__links--active');
-            navOverlay.classList.remove('nav__overlay--active');
-            menuToggle.classList.remove('mobile-menu-toggle--active');
-            menuToggle.setAttribute('aria-expanded', 'false');
-            document.body.style.overflow = '';
-        });
-    }
+    navOverlay.addEventListener('click', () => {
+        navLinks.classList.remove('nav__links--active');
+        navOverlay.classList.remove('nav__overlay--active');
+        menuToggle.classList.remove('mobile-menu-toggle--active');
+        menuToggle.setAttribute('aria-expanded', 'false');
+        document.body.style.overflow = '';
+    });
     
     // Close menu when clicking on a link
     const links = navLinks.querySelectorAll('a');
     links.forEach(link => {
         link.addEventListener('click', () => {
             navLinks.classList.remove('nav__links--active');
-            if (navOverlay) navOverlay.classList.remove('nav__overlay--active');
+            navOverlay.classList.remove('nav__overlay--active');
             menuToggle.classList.remove('mobile-menu-toggle--active');
             menuToggle.setAttribute('aria-expanded', 'false');
             document.body.style.overflow = '';
@@ -612,12 +158,27 @@ function initMobileMenu() {
     document.addEventListener('keydown', function(e) {
         if (e.key === 'Escape' && navLinks.classList.contains('nav__links--active')) {
             navLinks.classList.remove('nav__links--active');
-            if (navOverlay) navOverlay.classList.remove('nav__overlay--active');
+            navOverlay.classList.remove('nav__overlay--active');
             menuToggle.classList.remove('mobile-menu-toggle--active');
             menuToggle.setAttribute('aria-expanded', 'false');
             document.body.style.overflow = '';
         }
     });
+    
+    // Ensure menu is accessible on all screen sizes
+    function checkScreenSize() {
+        if (window.innerWidth > 1024) {
+            // On large screens, ensure menu is visible and not locked by mobile styles
+            navLinks.classList.remove('nav__links--active');
+            navOverlay.classList.remove('nav__overlay--active');
+            menuToggle.classList.remove('mobile-menu-toggle--active');
+            document.body.style.overflow = '';
+        }
+    }
+    
+    // Check screen size on resize and load
+    window.addEventListener('resize', checkScreenSize);
+    window.addEventListener('load', checkScreenSize);
 }
 
 // ==========================================================================
@@ -1146,8 +707,6 @@ function initProjectModal() {
             
             if (project) {
                 // Populate modal with project data
-                document.getElementById('modalImage').src = project.image;
-                document.getElementById('modalImage').alt = project.title;
                 document.getElementById('modalTitle').textContent = project.title;
                 document.getElementById('modalCategory').textContent = project.category;
                 document.getElementById('modalDescription').textContent = project.description;
@@ -1260,4 +819,253 @@ function initProjectModal() {
             });
         }
 
-     
+     // ==========================================================================
+// Header Scroll Behavior
+// ==========================================================================
+function initHeaderScrollBehavior() {
+    const header = document.querySelector('.header');
+    if (!header) return;
+    
+    let lastScrollY = window.scrollY;
+    const scrollThreshold = 100;
+    
+    function handleScroll() {
+        const currentScrollY = window.scrollY;
+        
+        // Add scrolled class for background change
+        if (currentScrollY > 50) {
+            header.classList.add('scrolled');
+        } else {
+            header.classList.remove('scrolled');
+        }
+        
+        // Hide/show header based on scroll direction
+        if (currentScrollY > scrollThreshold) {
+            if (currentScrollY > lastScrollY) {
+                // Scrolling down - hide header
+                header.classList.add('hidden');
+            } else {
+                // Scrolling up - show header
+                header.classList.remove('hidden');
+            }
+        } else {
+            // At top of page - always show header
+            header.classList.remove('hidden');
+        }
+        
+        lastScrollY = currentScrollY;
+    }
+    
+    // Throttle the scroll event for performance
+    let ticking = false;
+    window.addEventListener('scroll', () => {
+        if (!ticking) {
+            window.requestAnimationFrame(() => {
+                handleScroll();
+                ticking = false;
+            });
+            ticking = true;
+        }
+    });
+    
+    // Initial check
+    handleScroll();
+}
+
+// ==========================================================================
+// Mobile Menu Functionality
+// ==========================================================================
+function initMobileMenu() {
+    const menuToggle = document.querySelector('.mobile-menu-toggle');
+    const navLinks = document.querySelector('.nav__links');
+    const navOverlay = document.createElement('div');
+    
+    // Create overlay element
+    navOverlay.className = 'nav__overlay';
+    document.body.appendChild(navOverlay);
+    
+    if (!menuToggle || !navLinks) return;
+    
+    menuToggle.addEventListener('click', function() {
+        navLinks.classList.toggle('nav__links--active');
+        navOverlay.classList.toggle('nav__overlay--active');
+        menuToggle.classList.toggle('mobile-menu-toggle--active');
+        
+        // Toggle aria-expanded for accessibility
+        const isExpanded = menuToggle.classList.contains('mobile-menu-toggle--active');
+        menuToggle.setAttribute('aria-expanded', isExpanded);
+        
+        // Prevent body scrolling when menu is open
+        document.body.style.overflow = navLinks.classList.contains('nav__links--active') ? 'hidden' : '';
+    });
+    
+    // Close menu when clicking on overlay
+    navOverlay.addEventListener('click', () => {
+        navLinks.classList.remove('nav__links--active');
+        navOverlay.classList.remove('nav__overlay--active');
+        menuToggle.classList.remove('mobile-menu-toggle--active');
+        menuToggle.setAttribute('aria-expanded', 'false');
+        document.body.style.overflow = '';
+    });
+    
+    // Close menu when clicking on a link
+    const links = navLinks.querySelectorAll('a');
+    links.forEach(link => {
+        link.addEventListener('click', () => {
+            navLinks.classList.remove('nav__links--active');
+            navOverlay.classList.remove('nav__overlay--active');
+            menuToggle.classList.remove('mobile-menu-toggle--active');
+            menuToggle.setAttribute('aria-expanded', 'false');
+            document.body.style.overflow = '';
+        });
+    });
+    
+    // Close menu with Escape key
+    document.addEventListener('keydown', function(e) {
+        if (e.key === 'Escape' && navLinks.classList.contains('nav__links--active')) {
+            navLinks.classList.remove('nav__links--active');
+            navOverlay.classList.remove('nav__overlay--active');
+            menuToggle.classList.remove('mobile-menu-toggle--active');
+            menuToggle.setAttribute('aria-expanded', 'false');
+            document.body.style.overflow = '';
+        }
+    });
+}
+// ==========================================================================
+// Skill Progress Bar Animation
+// ==========================================================================
+function initSkillAnimation() {
+    const skillBars = document.querySelectorAll('.skill__progress-bar');
+    if (!skillBars.length) return;
+    
+    let hasAnimated = false;
+    
+    function animateSkills() {
+        if (hasAnimated) return;
+        
+        const skillsSection = document.querySelector('.resume__skills');
+        if (!skillsSection) return;
+        
+        const sectionPosition = skillsSection.getBoundingClientRect().top;
+        const screenPosition = window.innerHeight / 1.3;
+        
+        if (sectionPosition < screenPosition) {
+            hasAnimated = true;
+            
+            skillBars.forEach(bar => {
+                const percentage = bar.getAttribute('data-percentage');
+                bar.style.width = percentage + '%';
+            });
+        }
+    }
+    
+    // Run on scroll and on load
+    window.addEventListener('scroll', animateSkills);
+    window.addEventListener('load', animateSkills);
+}
+
+
+// ==========================================================================
+// Hero Section Functionality
+// ==========================================================================
+function initHeroSection() {
+    initHeroCounters();
+    initScrollIndicator();
+    initHeroParallax();
+}
+
+// Hero counter animation
+function initHeroCounters() {
+    const counterElements = document.querySelectorAll('.hero__stat-number');
+    if (!counterElements.length) return;
+    
+    let hasCounted = false;
+    
+    function animateCounters() {
+        if (hasCounted) return;
+        
+        const heroSection = document.querySelector('.hero');
+        if (!heroSection) return;
+        
+        const sectionPosition = heroSection.getBoundingClientRect().top;
+        const screenPosition = window.innerHeight / 1.5;
+        
+        if (sectionPosition < screenPosition) {
+            hasCounted = true;
+            
+            counterElements.forEach((counter, index) => {
+                const target = parseInt(counter.getAttribute('data-count'));
+                const duration = 2000;
+                const increment = target / (duration / 16);
+                let current = 0;
+                
+                setTimeout(() => {
+                    const timer = setInterval(() => {
+                        current += increment;
+                        if (current >= target) {
+                            clearInterval(timer);
+                            current = target;
+                        }
+                        counter.textContent = Math.floor(current);
+                    }, 16);
+                }, index * 300);
+            });
+        }
+    }
+    
+    window.addEventListener('scroll', animateCounters);
+    window.addEventListener('load', animateCounters);
+}
+
+// Scroll indicator functionality
+function initScrollIndicator() {
+    const scrollIndicator = document.querySelector('.hero__scroll-indicator');
+    if (!scrollIndicator) return;
+    
+    scrollIndicator.addEventListener('click', function() {
+        const aboutSection = document.querySelector('#about');
+        if (aboutSection) {
+            const navHeight = document.querySelector('.nav').offsetHeight;
+            const targetPosition = aboutSection.offsetTop - navHeight;
+            
+            window.scrollTo({
+                top: targetPosition,
+                behavior: 'smooth'
+            });
+        }
+    });
+}
+
+// Parallax effect for background elements
+function initHeroParallax() {
+    const hero = document.querySelector('.hero');
+    if (!hero) return;
+    
+    const bgShapes = document.querySelectorAll('.hero__bg-shape');
+    const bgDots = document.querySelectorAll('.hero__dot');
+    
+    function updateParallax() {
+        const scrollY = window.scrollY;
+        const heroHeight = hero.offsetHeight;
+        
+        if (scrollY < heroHeight) {
+            const progress = scrollY / heroHeight;
+            
+            bgShapes.forEach((shape, index) => {
+                const speed = 0.3 + (index * 0.1);
+                const yPos = progress * 100 * speed;
+                shape.style.transform = `translateY(${yPos}px)`;
+            });
+            
+            bgDots.forEach((dot, index) => {
+                const speed = 0.5 + (index * 0.05);
+                const yPos = progress * 50 * speed;
+                dot.style.transform = `translateY(${yPos}px)`;
+            });
+        }
+    }
+    
+    window.addEventListener('scroll', updateParallax);
+    window.addEventListener('resize', updateParallax);
+}
+

@@ -1,0 +1,1229 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Software developer">
+    <title>Ahmad - Software Developer</title>
+<!--  fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Playfair+Display:wght@400;600;700&display=swap" rel="stylesheet">
+
+<!-- Font Awesome with better loading -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" media="print" onload="this.media='all'">
+    <link rel="stylesheet" href="software-developer/css/style.css">
+</head>
+<body>
+    
+    <div class="container">
+        <!-- Bubble Preloader -->
+<div id="preloader">
+  <div class="bubble"></div>
+  <div class="bubble"></div>
+  <div class="bubble"></div>
+  <div class="bubble"></div>
+  <div class="bubble"></div>
+</div>
+
+<!--  Header -->
+<header class="header">
+    <nav class="nav">
+        <a href="index1.html" class="logo">
+            <img src="images/profile.pngu" alt="PenCraft Logo" class="logo__img">
+            PenCraft<span class="logo__dot">.</span>
+        </a>
+        <div class="nav__links">
+            <a href="index1.html" class="nav__link">Home</a>
+            <a href="content-writer/about.html" class="nav__link">About</a>
+            <a href="content-writer/services.html" class="nav__link">Services</a>
+            <a href="content-writer/resume.html" class="nav__link">Resume</a>
+            <a href="content-writer/projects.html" class="nav__link">Projects</a>
+            <a href="content-writer/contact.html" class="nav__link">Contact</a>
+        </div>
+        <div class="nav__actions">
+            <button id="themeToggler" class="nav__action" aria-label="Toggle theme">
+                <i class="fas fa-moon"></i>
+            </button>
+            <div class="mobile-menu-toggle">
+                <i class="fas fa-bars"></i>
+            </div>
+        </div>
+    </nav>
+</header>
+
+
+
+<!--Hero Section -->
+<section id="hero" class="hero">
+    <div class="hero__content">
+        <!-- Left side - Text content -->
+        <div class="hero__text animate-on-scroll" data-animation="fadeInUp">
+            <div class="hero__badge">
+                <span>Full Stack Developer</span>
+            </div>
+            <h1 class="hero__title">Building Digital Solutions That <span class="text-accent">Scale & Innovate</span></h1>
+            <p class="hero__description">I'm Ahmad, a passionate software developer with expertise in creating robust, scalable applications. I specialize in modern web technologies and enjoy solving complex problems through clean, efficient code.</p>
+            
+            <!-- Tech Stack -->
+            <div class="hero__tech-stack">
+                <h3 class="tech-stack__title">Tech Stack</h3>
+                <div class="tech-stack__items">
+                    <div class="tech-stack__item">
+                        <i class="fab fa-js-square"></i>
+                        <span>JavaScript</span>
+                    </div>
+                    <div class="tech-stack__item">
+                        <i class="fab fa-react"></i>
+                        <span>React</span>
+                    </div>
+                    <div class="tech-stack__item">
+                        <i class="fab fa-node-js"></i>
+                        <span>Node.js</span>
+                    </div>
+                    <div class="tech-stack__item">
+                        <i class="fas fa-database"></i>
+                        <span>MongoDB</span>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- CTA Buttons -->
+            <div class="hero__cta">
+                <a href="#projects" class="btn btn--primary btn--large">
+                    <i class="fas fa-code"></i> View Projects
+                </a>
+                <a href="#contact" class="btn btn--secondary btn--large">
+                    <i class="fas fa-paper-plane"></i> Get In Touch
+                </a>
+            </div>
+        </div>
+        
+        <!-- Right side - Image -->
+        <div class="hero__image animate-on-scroll" data-animation="fadeInRight">
+            <div class="hero__image-container">
+                <div class="hero__image-wrapper">
+                    <img src="images/profile-1.jpg" alt="Ahmad - Software Developer" class="hero__img">
+                    <div class="hero__image-overlay"></div>
+                </div>
+                
+                <!-- Floating elements -->
+                <div class="floating-element floating-element--1">
+                    <i class="fas fa-code"></i>
+                    <span>Clean Code</span>
+                </div>
+                <div class="floating-element floating-element--2">
+                    <i class="fas fa-mobile-alt"></i>
+                    <span>Responsive</span>
+                </div>
+                <div class="floating-element floating-element--3">
+                    <i class="fas fa-rocket"></i>
+                    <span>Fast & Scalable</span>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Scroll indicator -->
+    <div class="scroll-indicator">
+        <div class="scroll-indicator__line"></div>
+        <span>Scroll to explore</span>
+    </div>
+</section>
+<!-- About Section -->
+<section id="about" class="section about">
+    <div class="about__container">
+        <div class="about__header">
+            <h2 class="section__title animate-on-scroll" data-animation="fadeInUp">About Me</h2>
+            <p class="section__description animate-on-scroll" data-animation="fadeInUp" data-delay="0.1s">Get to know the developer behind the code</p>
+        </div>
+        
+        <div class="about__content">
+            <div class="about__intro animate-on-scroll" data-animation="fadeInUp" data-delay="0.2s">
+                <h3 class="about__subtitle">Crafting Digital Solutions That <span class="text-accent">Innovate & Transform</span></h3>
+                <p>I'm Ahmad, a passionate software developer with over 5 years of experience creating robust, scalable applications that solve real-world problems. I specialize in full-stack development and love turning complex challenges into elegant solutions.</p>
+            </div>
+            
+            <!-- Stats Section -->
+            <div class="about__stats">
+                <div class="stat__card animate-on-scroll" data-animation="zoomIn" data-delay="0.1s">
+                    <span class="stat__number" data-count="50">0</span>
+                    <span class="stat__label">Projects Completed</span>
+                </div>
+                
+                <div class="stat__card animate-on-scroll" data-animation="zoomIn" data-delay="0.2s">
+                    <span class="stat__number" data-count="95">0</span>
+                    <span class="stat__label">Client Satisfaction</span>
+                </div>
+                
+                <div class="stat__card animate-on-scroll" data-animation="zoomIn" data-delay="0.3s">
+                    <span class="stat__number" data-count="5">0</span>
+                    <span class="stat__label">Years Experience</span>
+                </div>
+            </div>
+            
+            <!-- Process Section -->
+            <div class="about__process">
+                <h3 class="process__title animate-on-scroll" data-animation="fadeInUp">My Development Process</h3>
+                <div class="process__steps">
+                    <div class="process__step animate-on-scroll" data-animation="fadeInUp" data-delay="0.1s">
+                        <span class="step__number">01</span>
+                        <h4 class="step__title">Discovery & Analysis</h4>
+                        <p class="step__description">I analyze requirements, understand user needs, and plan the technical architecture for optimal results.</p>
+                    </div>
+                    
+                    <div class="process__step animate-on-scroll" data-animation="fadeInUp" data-delay="0.2s">
+                        <span class="step__number">02</span>
+                        <h4 class="step__title">Design & Planning</h4>
+                        <p class="step__description">I design clean, maintainable code architecture and create detailed development plans.</p>
+                    </div>
+                    
+                    <div class="process__step animate-on-scroll" data-animation="fadeInUp" data-delay="0.3s">
+                        <span class="step__number">03</span>
+                        <h4 class="step__title">Development & Testing</h4>
+                        <p class="step__description">I write clean, efficient code with comprehensive testing to ensure reliability and performance.</p>
+                    </div>
+                    
+                    <div class="process__step animate-on-scroll" data-animation="fadeInUp" data-delay="0.4s">
+                        <span class="step__number">04</span>
+                        <h4 class="step__title">Deployment & Optimization</h4>
+                        <p class="step__description">I deploy solutions and continuously optimize for performance, security, and user experience.</p>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Values Section -->
+            <div class="about__values">
+                <h3 class="values__title animate-on-scroll" data-animation="fadeInUp">My Development Principles</h3>
+                <div class="values__grid">
+                    <div class="value__item animate-on-scroll" data-animation="fadeInUp" data-delay="0.1s">
+                        <div class="value__icon">
+                            <i class="fas fa-code"></i>
+                        </div>
+                        <div class="value__content">
+                            <h4>Clean Code</h4>
+                            <p>Writing maintainable, well-documented code that follows best practices and industry standards.</p>
+                        </div>
+                    </div>
+                    
+                    <div class="value__item animate-on-scroll" data-animation="fadeInUp" data-delay="0.2s">
+                        <div class="value__icon">
+                            <i class="fas fa-rocket"></i>
+                        </div>
+                        <div class="value__content">
+                            <h4>Performance</h4>
+                            <p>Optimizing applications for speed, efficiency, and seamless user experiences across all devices.</p>
+                        </div>
+                    </div>
+                    
+                    <div class="value__item animate-on-scroll" data-animation="fadeInUp" data-delay="0.3s">
+                        <div class="value__icon">
+                            <i class="fas fa-shield-alt"></i>
+                        </div>
+                        <div class="value__content">
+                            <h4>Security First</h4>
+                            <p>Implementing robust security measures to protect user data and ensure application integrity.</p>
+                        </div>
+                    </div>
+                    
+                    <div class="value__item animate-on-scroll" data-animation="fadeInUp" data-delay="0.4s">
+                        <div class="value__icon">
+                            <i class="fas fa-mobile-alt"></i>
+                        </div>
+                        <div class="value__content">
+                            <h4>Responsive Design</h4>
+                            <p>Creating applications that work flawlessly across all devices and screen sizes.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- CTA Section -->
+            <div class="about__cta animate-on-scroll" data-animation="fadeInUp" data-delay="0.5s">
+                <p>Ready to build something amazing together?</p>
+                <a href="software-developer/about.html" class="btn btn--primary">
+                    <i class="fas fa-user"></i> Learn More About Me
+                </a>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+
+
+<!-- Advanced Services Section -->
+<section id="services" class="section services">
+    <div class="section__header animate-on-scroll" data-animation="fadeInUp">
+        <h2 class="section__title">Professional Services</h2>
+        <p class="section__description">Comprehensive software development services to bring your digital vision to life</p>
+    </div>
+    
+    <div class="services__grid">
+        <!-- Service 1 - Web Development -->
+        <div class="service-card animate-on-scroll" data-animation="fadeInUp" data-delay="0.1s">
+            <div class="service-card__header">
+                <div class="service-card__icon">
+                    <i class="fas fa-code"></i>
+                </div>
+                <div class="service-card__badge">Popular</div>
+            </div>
+            <div class="service-card__content">
+                <h3 class="service-card__title">Web Application Development</h3>
+                <div class="service-card__features">
+                    <div class="feature-item">
+                        <i class="fas fa-check-circle"></i>
+                        <span>Responsive Design</span>
+                    </div>
+                    <div class="feature-item">
+                        <i class="fas fa-check-circle"></i>
+                        <span>Progressive Web Apps</span>
+                    </div>
+                    <div class="feature-item">
+                        <i class="fas fa-check-circle"></i>
+                        <span>API Integration</span>
+                    </div>
+                    <div class="feature-item">
+                        <i class="fas fa-check-circle"></i>
+                        <span>Performance Optimization</span>
+                    </div>
+                </div>
+                <div class="service-card__footer">
+                    <div class="service-card__price">
+                        <span class="price">Starting at $2,500</span>
+                        <span class="duration">/ project</span>
+                    </div>
+                    <a href="#contact" class="btn btn--primary btn--small">
+                        <i class="fas fa-rocket"></i> Get Started
+                    </a>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Service 2 - Mobile Development -->
+        <div class="service-card service-card--featured animate-on-scroll" data-animation="fadeInUp" data-delay="0.2s">
+            <div class="service-card__header">
+                <div class="service-card__icon">
+                    <i class="fas fa-mobile-alt"></i>
+                </div>
+                <div class="service-card__badge">Featured</div>
+            </div>
+            <div class="service-card__content">
+                <h3 class="service-card__title">Mobile App Development</h3>
+
+                <div class="service-card__features">
+                    <div class="feature-item">
+                        <i class="fas fa-check-circle"></i>
+                        <span>iOS & Android</span>
+                    </div>
+                    <div class="feature-item">
+                        <i class="fas fa-check-circle"></i>
+                        <span>React Native</span>
+                    </div>
+                    <div class="feature-item">
+                        <i class="fas fa-check-circle"></i>
+                        <span>Offline Capability</span>
+                    </div>
+                    <div class="feature-item">
+                        <i class="fas fa-check-circle"></i>
+                        <span>App Store Deployment</span>
+                    </div>
+                </div>
+                <div class="service-card__footer">
+                    <div class="service-card__price">
+                        <span class="price">Starting at $4,500</span>
+                        <span class="duration">/ project</span>
+                    </div>
+                    <a href="#contact" class="btn btn--primary btn--small">
+                        <i class="fas fa-rocket"></i> Get Started
+                    </a>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Service 3 - Backend Development -->
+        <div class="service-card animate-on-scroll" data-animation="fadeInUp" data-delay="0.3s">
+            <div class="service-card__header">
+                <div class="service-card__icon">
+                    <i class="fas fa-server"></i>
+                </div>
+                <div class="service-card__badge">Scalable</div>
+            </div>
+            <div class="service-card__content">
+                <h3 class="service-card__title">Backend & API Development</h3>
+            
+                <div class="service-card__features">
+                    <div class="feature-item">
+                        <i class="fas fa-check-circle"></i>
+                        <span>Node.js & Express</span>
+                    </div>
+                    <div class="feature-item">
+                        <i class="fas fa-check-circle"></i>
+                        <span>Database Design</span>
+                    </div>
+                    <div class="feature-item">
+                        <i class="fas fa-check-circle"></i>
+                        <span>Authentication Systems</span>
+                    </div>
+                    <div class="feature-item">
+                        <i class="fas fa-check-circle"></i>
+                        <span>Cloud Deployment</span>
+                    </div>
+                </div>
+                <div class="service-card__footer">
+                    <div class="service-card__price">
+                        <span class="price">Starting at $3,200</span>
+                        <span class="duration">/ project</span>
+                    </div>
+                    <a href="#contact" class="btn btn--primary btn--small">
+                        <i class="fas fa-rocket"></i> Get Started
+                    </a>
+                </div>
+            </div>
+        </div>
+        
+       
+    </div>
+    
+    <!-- Advanced CTA Section -->
+    <div class="services__cta animate-on-scroll" data-animation="fadeInUp" data-delay="0.5s">
+        <div class="cta-card">
+            <div class="cta-card__content">
+                <div class="cta-card__icon">
+                    <i class="fas fa-lightbulb"></i>
+                </div>
+                <div class="cta-card__text">
+                    <h3>Have a Custom Project in Mind?</h3>
+                    <p>Let's discuss your specific requirements and create a tailored solution that exceeds your expectations.</p>
+                </div>
+                <div class="cta-card__actions">
+                    <a href="#contact" class="btn btn--primary btn--large">
+                        <i class="fas fa-calendar-check"></i>View All Services
+                    </a>
+                    <a href="#projects" class="btn btn--outline btn--large">
+                        <i class="fas fa-eye"></i> View Portfolio
+                    </a>
+                </div>
+            </div>
+            <div class="cta-card__decoration">
+                <div class="floating-shape shape-1"></div>
+                <div class="floating-shape shape-2"></div>
+                <div class="floating-shape shape-3"></div>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+<!-- Resume Section - New Design -->
+<section id="resume" class="section resume">
+    <div class="section__header animate-on-scroll" data-animation="fadeInUp">
+        <h2 class="section__title">My Journey</h2>
+        <p class="section__description">Professional experience and educational background</p>
+        <div class="resume__download">
+            <a href="#" class="btn btn--primary"><i class="fas fa-download"></i> Download Full Resume</a>
+        </div>
+    </div>
+    
+    <div class="resume__tabs">
+        <button class="resume__tab resume__tab--active" data-tab="experience">
+            <i class="fas fa-briefcase"></i>
+            <span>Experience</span>
+        </button>
+        <button class="resume__tab" data-tab="education">
+            <i class="fas fa-graduation-cap"></i>
+            <span>Education</span>
+        </button>
+        <button class="resume__tab" data-tab="skills">
+            <i class="fas fa-tools"></i>
+            <span>Skills</span>
+        </button>
+    </div>
+    
+    <div class="resume__content">
+        <!-- Experience Tab -->
+        <div class="resume__tab-content resume__tab-content--active" id="experience-tab">
+            <div class="timeline-grid">
+                <div class="timeline-item animate-on-scroll" data-animation="fadeInUp" data-delay="0.1s">
+                    <div class="timeline-item__header">
+                        <div class="timeline-item__icon">
+                            <i class="fas fa-laptop-code"></i>
+                        </div>
+                        <div class="timeline-item__period">2020 - Present</div>
+                    </div>
+                    <div class="timeline-item__content">
+                        <h3 class="timeline-item__title">Senior Content Writer</h3>
+                        <div class="timeline-item__company">TechVision Media</div>
+                        <p class="timeline-item__description">Lead content strategy for B2B tech clients, manage a team of 5 writers, and develop comprehensive content plans that increased client engagement by 45%.</p>
+                        <div class="timeline-item__tags">
+                            <span class="tag">Content Strategy</span>
+                            <span class="tag">Team Management</span>
+                            <span class="tag">B2B Writing</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="timeline-item animate-on-scroll" data-animation="fadeInUp" data-delay="0.2s">
+                    <div class="timeline-item__header">
+                        <div class="timeline-item__icon">
+                            <i class="fas fa-pen-fancy"></i>
+                        </div>
+                        <div class="timeline-item__period">2017 - 2020</div>
+                    </div>
+                    <div class="timeline-item__content">
+                        <h3 class="timeline-item__title">Content Specialist</h3>
+                        <div class="timeline-item__company">Digital Solutions Inc.</div>
+                        <p class="timeline-item__description">Created SEO-optimized content for various digital platforms, managed content calendars, and collaborated with marketing teams to align content with business goals.</p>
+                        <div class="timeline-item__tags">
+                            <span class="tag">SEO Writing</span>
+                            <span class="tag">Content Calendar</span>
+                            <span class="tag">Marketing</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="timeline-item animate-on-scroll" data-animation="fadeInUp" data-delay="0.3s">
+                    <div class="timeline-item__header">
+                        <div class="timeline-item__icon">
+                            <i class="fas fa-edit"></i>
+                        </div>
+                        <div class="timeline-item__period">2015 - 2017</div>
+                    </div>
+                    <div class="timeline-item__content">
+                        <h3 class="timeline-item__title">Content Writer</h3>
+                        <div class="timeline-item__company">Creative Agency Co.</div>
+                        <p class="timeline-item__description">Developed engaging content for various clients across industries, maintained brand voice consistency, and contributed to content strategy development.</p>
+                        <div class="timeline-item__tags">
+                            <span class="tag">Content Creation</span>
+                            <span class="tag">Brand Voice</span>
+                            <span class="tag">Client Collaboration</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Education Tab -->
+        <div class="resume__tab-content" id="education-tab">
+            <div class="education-grid">
+                <div class="education-item animate-on-scroll" data-animation="fadeInUp" data-delay="0.1s">
+                    <div class="education-item__icon">
+                        <i class="fas fa-university"></i>
+                    </div>
+                    <div class="education-item__content">
+                        <div class="education-item__period">2013 - 2015</div>
+                        <h3 class="education-item__degree">Master of Arts in Journalism</h3>
+                        <div class="education-item__institution">Northwestern University</div>
+                        <p class="education-item__description">Specialized in digital media and storytelling techniques. Completed thesis on "The Evolution of Brand Storytelling in the Digital Age."</p>
+                        <div class="education-item__achievements">
+                            <span class="achievement">GPA: 3.8/4.0</span>
+                            <span class="achievement">Dean's List</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="education-item animate-on-scroll" data-animation="fadeInUp" data-delay="0.2s">
+                    <div class="education-item__icon">
+                        <i class="fas fa-graduation-cap"></i>
+                    </div>
+                    <div class="education-item__content">
+                        <div class="education-item__period">2009 - 2013</div>
+                        <h3 class="education-item__degree">Bachelor of Arts in English Literature</h3>
+                        <div class="education-item__institution">University of California, Berkeley</div>
+                        <p class="education-item__description">Minored in Creative Writing. Served as editor for the university's literary magazine.</p>
+                        <div class="education-item__achievements">
+                            <span class="achievement">Cum Laude</span>
+                            <span class="achievement">Creative Writing Minor</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Skills Tab -->
+        <div class="resume__tab-content" id="skills-tab">
+            <div class="skills-grid">
+                <div class="skills-category animate-on-scroll" data-animation="fadeInUp" data-delay="0.1s">
+                    <h3 class="skills-category__title">Content Writing</h3>
+                    <div class="skills-list">
+                        <div class="skill">
+                            <span class="skill__name">Blog Writing</span>
+                            <div class="skill__level">
+                                <div class="skill__progress" data-level="95"></div>
+                            </div>
+                            <span class="skill__percentage">95%</span>
+                        </div>
+                        <div class="skill">
+                            <span class="skill__name">SEO Writing</span>
+                            <div class="skill__level">
+                                <div class="skill__progress" data-level="90"></div>
+                            </div>
+                            <span class="skill__percentage">90%</span>
+                        </div>
+                        <div class="skill">
+                            <span class="skill__name">Technical Writing</span>
+                            <div class="skill__level">
+                                <div class="skill__progress" data-level="85"></div>
+                            </div>
+                            <span class="skill__percentage">85%</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="skills-category animate-on-scroll" data-animation="fadeInUp" data-delay="0.2s">
+                    <h3 class="skills-category__title">Tools & Technologies</h3>
+                    <div class="skills-list">
+                        <div class="skill">
+                            <span class="skill__name">Google Analytics</span>
+                            <div class="skill__level">
+                                <div class="skill__progress" data-level="88"></div>
+                            </div>
+                            <span class="skill__percentage">88%</span>
+                        </div>
+                        <div class="skill">
+                            <span class="skill__name">SEMrush</span>
+                            <div class="skill__level">
+                                <div class="skill__progress" data-level="82"></div>
+                            </div>
+                            <span class="skill__percentage">82%</span>
+                        </div>
+                        <div class="skill">
+                            <span class="skill__name">WordPress</span>
+                            <div class="skill__level">
+                                <div class="skill__progress" data-level="90"></div>
+                            </div>
+                            <span class="skill__percentage">90%</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="skills-category animate-on-scroll" data-animation="fadeInUp" data-delay="0.3s">
+                    <h3 class="skills-category__title">Soft Skills</h3>
+                    <div class="skills-tags">
+                        <span class="skill-tag">Content Strategy</span>
+                        <span class="skill-tag">Team Leadership</span>
+                        <span class="skill-tag">Client Communication</span>
+                        <span class="skill-tag">Project Management</span>
+                        <span class="skill-tag">Research & Analysis</span>
+                        <span class="skill-tag">Creative Thinking</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+
+
+<!-- ==========================================================================
+   Projects Section
+   ========================================================================== -->
+<section id="projects" class="section projects">
+    <div class="section__header animate-on-scroll" data-animation="fadeInUp">
+        <h2 class="section__title">My Projects</h2>
+        <p class="section__description">A showcase of my recent software development work</p>
+    </div>
+    
+    <!-- Projects Filter -->
+    <div class="projects__filter animate-on-scroll" data-animation="fadeInUp" data-delay="0.1s">
+        <button class="filter__btn filter__btn--active" data-filter="all">All Projects</button>
+        <button class="filter__btn" data-filter="web">Web Apps</button>
+        <button class="filter__btn" data-filter="mobile">Mobile Apps</button>
+        <button class="filter__btn" data-filter="api">API Development</button>
+    </div>
+    
+    <!-- Projects Grid -->
+    <div class="projects__grid">
+        <!-- Project 1 - E-commerce Platform -->
+        <div class="project-card animate-on-scroll" data-animation="fadeInUp" data-delay="0.2s" data-category="web" data-project="1">
+            <div class="project-card__image">
+                <div class="square-image-container">
+                    <img src="images/400400.png" alt="E-commerce Platform" class="project-image square-image">
+                </div>
+                <div class="project-card__overlay">
+                    <div class="project-card__preview">
+                        <i class="fas fa-eye"></i>
+                        <span>View Details</span>
+                    </div>
+                </div>
+                <div class="project-card__title-overlay">
+                    <h3>E-commerce Platform</h3>
+                    <p>Full-stack React & Node.js application</p>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Project 2 - Task Management App -->
+        <div class="project-card animate-on-scroll" data-animation="fadeInUp" data-delay="0.3s" data-category="mobile" data-project="2">
+            <div class="project-card__image">
+                <div class="square-image-container">
+                    <img src="images/400400.png" alt="Task Management App" class="project-image square-image">
+                </div>
+                <div class="project-card__overlay">
+                    <div class="project-card__preview">
+                        <i class="fas fa-eye"></i>
+                        <span>View Details</span>
+                    </div>
+                </div>
+                <div class="project-card__title-overlay">
+                    <h3>Task Management App</h3>
+                    <p>React Native cross-platform application</p>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Project 3 - Weather API -->
+        <div class="project-card animate-on-scroll" data-animation="fadeInUp" data-delay="0.4s" data-category="api" data-project="3">
+            <div class="project-card__image">
+                <div class="square-image-container">
+                    <img src="images/400400.png" alt="Weather API Service" class="project-image square-image">
+                </div>
+                <div class="project-card__overlay">
+                    <div class="project-card__preview">
+                        <i class="fas fa-eye"></i>
+                        <span>View Details</span>
+                    </div>
+                </div>
+                <div class="project-card__title-overlay">
+                    <h3>Weather API Service</h3>
+                    <p>RESTful API with real-time data</p>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Project 4 - Portfolio Website -->
+        <div class="project-card animate-on-scroll" data-animation="fadeInUp" data-delay="0.5s" data-category="web" data-project="4">
+            <div class="project-card__image">
+                <div class="square-image-container">
+                    <img src="images/400400.png" alt="Portfolio Website" class="project-image square-image">
+                </div>
+                <div class="project-card__overlay">
+                    <div class="project-card__preview">
+                        <i class="fas fa-eye"></i>
+                        <span>View Details</span>
+                    </div>
+                </div>
+                <div class="project-card__title-overlay">
+                    <h3>Portfolio Website</h3>
+                    <p>Responsive design with animations</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Project Detail Modal -->
+<div class="project-modal" id="projectModal">
+    <div class="project-modal__overlay"></div>
+    <div class="project-modal__content">
+        <button class="project-modal__close" aria-label="Close modal">
+            <i class="fas fa-times"></i>
+        </button>
+        
+
+        
+        <div class="project-modal__details">
+            <h2 class="project-modal__title" id="modalTitle"></h2>
+            <p class="project-modal__category" id="modalCategory"></p>
+            <div class="project-modal__description" id="modalDescription"></div>
+            
+            <div class="project-modal__tech-stack">
+                <h3>Tech Stack</h3>
+                <div class="tech-stack__items" id="modalTechStack"></div>
+            </div>
+            
+            <div class="project-modal__features">
+                <h3>Key Features</h3>
+                <ul id="modalFeatures"></ul>
+            </div>
+            
+            <div class="project-modal__results">
+                <h3>Results Achieved</h3>
+                <ul id="modalResults"></ul>
+            </div>
+            
+            <div class="project-modal__actions">
+                <a href="#" class="btn btn--primary" id="modalLiveLink" target="_blank">
+                    <i class="fas fa-external-link-alt"></i> Live Demo
+                </a>
+                <a href="#" class="btn btn--secondary" id="modalCodeLink" target="_blank">
+                    <i class="fab fa-github"></i> View Code
+                </a>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+
+<!-- Testimonials Section -->
+<section id="testimonials" class="section testimonials" aria-labelledby="testimonials-heading">
+    <div class="section__header">
+        <h2 class="section__title" id="testimonials-heading">Client Testimonials</h2>
+        <p class="section__description">What my clients say about my work</p>
+    </div>
+    
+    <!-- First Row - Scrolls Left to Right (Updated to match second row) -->
+    <div class="testimonials__container">
+        <div class="testimonials__track testimonials__track--primary" aria-live="polite" aria-atomic="true">
+            <!-- Testimonial 1 -->
+            <article class="testimonial__card testimonial__card--secondary" aria-label="Testimonial from Sarah Johnson">
+                <div class="testimonial__content">
+                    <div class="testimonial__rating" aria-label="5 out of 5 stars">
+                        <i class="fas fa-star" aria-hidden="true"></i>
+                        <i class="fas fa-star" aria-hidden="true"></i>
+                        <i class="fas fa-star" aria-hidden="true"></i>
+                        <i class="fas fa-star" aria-hidden="true"></i>
+                        <i class="fas fa-star" aria-hidden="true"></i>
+                    </div>
+                    <blockquote class="testimonial__text">
+                        <p>"Sophia's content strategy transformed our blog. Our engagement increased by 65% in just three months. Her ability to understand our audience and craft compelling stories is exceptional."</p>
+                    </blockquote>
+                </div>
+                <div class="testimonial__author">
+                    <img src="https://via.placeholder.com/50" alt="Portrait of Sarah Johnson" class="testimonial__avatar">
+                    <div class="testimonial__info">
+                        <h3 class="testimonial__name">Sarah Johnson</h3>
+                        <p class="testimonial__position">Marketing Director, TechVision</p>
+                    </div>
+                </div>
+            </article>
+            
+            <!-- Testimonial 2 -->
+            <article class="testimonial__card testimonial__card--secondary" aria-label="Testimonial from Michael Chen">
+                <div class="testimonial__content">
+                    <div class="testimonial__rating" aria-label="5 out of 5 stars">
+                        <i class="fas fa-star" aria-hidden="true"></i>
+                        <i class="fas fa-star" aria-hidden="true"></i>
+                        <i class="fas fa-star" aria-hidden="true"></i>
+                        <i class="fas fa-star" aria-hidden="true"></i>
+                        <i class="fas fa-star" aria-hidden="true"></i>
+                    </div>
+                    <blockquote class="testimonial__text">
+                        <p>"Working with Sophia was a game-changer for our brand. Her storytelling skills helped us connect with our customers on a deeper level, resulting in a 40% increase in customer loyalty."</p>
+                    </blockquote>
+                </div>
+                <div class="testimonial__author">
+                    <img src="https://via.placeholder.com/50" alt="Portrait of Michael Chen" class="testimonial__avatar">
+                    <div class="testimonial__info">
+                        <h3 class="testimonial__name">Michael Chen</h3>
+                        <p class="testimonial__position">CEO, GreenLife Products</p>
+                    </div>
+                </div>
+            </article>
+            
+            <!-- Testimonial 3 -->
+            <article class="testimonial__card testimonial__card--secondary" aria-label="Testimonial from Dr. Emily Rodriguez">
+                <div class="testimonial__content">
+                    <div class="testimonial__rating" aria-label="5 out of 5 stars">
+                        <i class="fas fa-star" aria-hidden="true"></i>
+                        <i class="fas fa-star" aria-hidden="true"></i>
+                        <i class="fas fa-star" aria-hidden="true"></i>
+                        <i class="fas fa-star" aria-hidden="true"></i>
+                        <i class="fas fa-star" aria-hidden="true"></i>
+                    </div>
+                    <blockquote class="testimonial__text">
+                        <p>"The technical whitepaper Sophia created for us was so well-researched and accessible. It's been downloaded over 3,000 times and has positioned us as thought leaders in our industry."</p>
+                    </blockquote>
+                </div>
+                <div class="testimonial__author">
+                    <img src="https://via.placeholder.com/50" alt="Portrait of Dr. Emily Rodriguez" class="testimonial__avatar">
+                    <div class="testimonial__info">
+                        <h3 class="testimonial__name">Dr. Emily Rodriguez</h3>
+                        <p class="testimonial__position">CTO, HealthTech Solutions</p>
+                    </div>
+                </div>
+            </article>
+            
+            <!-- Testimonial 4 -->
+            <article class="testimonial__card testimonial__card--secondary" aria-label="Testimonial from David Wilson">
+                <div class="testimonial__content">
+                    <div class="testimonial__rating" aria-label="5 out of 5 stars">
+                        <i class="fas fa-star" aria-hidden="true"></i>
+                        <i class="fas fa-star" aria-hidden="true"></i>
+                        <i class="fas fa-star" aria-hidden="true"></i>
+                        <i class="fas fa-star" aria-hidden="true"></i>
+                        <i class="fas fa-star" aria-hidden="true"></i>
+                    </div>
+                    <blockquote class="testimonial__text">
+                        <p>"Sophia's email campaign copy increased our conversion rate by 22%. She has an incredible talent for writing persuasive content that resonates with our audience and drives action."</p>
+                    </blockquote>
+                </div>
+                <div class="testimonial__author">
+                    <img src="https://via.placeholder.com/50" alt="Portrait of David Wilson" class="testimonial__avatar">
+                    <div class="testimonial__info">
+                        <h3 class="testimonial__name">David Wilson</h3>
+                        <p class="testimonial__position">Marketing Manager, SaaSForward</p>
+                    </div>
+                </div>
+            </article>
+            
+            <!-- Testimonial 5 -->
+            <article class="testimonial__card testimonial__card--secondary" aria-label="Testimonial from Lisa Thompson">
+                <div class="testimonial__content">
+                    <div class="testimonial__rating" aria-label="5 out of 5 stars">
+                        <i class="fas fa-star" aria-hidden="true"></i>
+                        <i class="fas fa-star" aria-hidden="true"></i>
+                        <i class="fas fa-star" aria-hidden="true"></i>
+                        <i class="fas fa-star" aria-hidden="true"></i>
+                        <i class="fas fa-star" aria-hidden="true"></i>
+                    </div>
+                    <blockquote class="testimonial__text">
+                        <p>"The product descriptions Sophia wrote for our e-commerce site have significantly improved our conversion rates. Her ability to highlight benefits while maintaining brand voice is impressive."</p>
+                    </blockquote>
+                </div>
+                <div class="testimonial__author">
+                    <img src="https://via.placeholder.com/50" alt="Portrait of Lisa Thompson" class="testimonial__avatar">
+                    <div class="testimonial__info">
+                        <h3 class="testimonial__name">Lisa Thompson</h3>
+                        <p class="testimonial__position">E-commerce Director, StyleHub</p>
+                    </div>
+                </div>
+            </article>
+            
+            <!-- Testimonial 6 -->
+            <article class="testimonial__card testimonial__card--secondary" aria-label="Testimonial from Alex Morgan">
+                <div class="testimonial__content">
+                    <div class="testimonial__rating" aria-label="5 out of 5 stars">
+                        <i class="fas fa-star" aria-hidden="true"></i>
+                        <i class="fas fa-star" aria-hidden="true"></i>
+                        <i class="fas fa-star" aria-hidden="true"></i>
+                        <i class="fas fa-star" aria-hidden="true"></i>
+                        <i class="fas fa-star" aria-hidden="true"></i>
+                    </div>
+                    <blockquote class="testimonial__text">
+                        <p>"Sophia's social media content strategy tripled our engagement in just two months. Her understanding of different platforms and how to tailor content for each is remarkable."</p>
+                    </blockquote>
+                </div>
+                <div class="testimonial__author">
+                    <img src="https://via.placeholder.com/50" alt="Portrait of Alex Morgan" class="testimonial__avatar">
+                    <div class="testimonial__info">
+                        <h3 class="testimonial__name">Alex Morgan</h3>
+                        <p class="testimonial__position">Social Media Lead, BuzzCreators</p>
+                    </div>
+                </div>
+            </article>
+        </div>
+    </div>
+    
+    <!-- Second Row - Scrolls Right to Left -->
+    <div class="testimonials__container testimonials__container--secondary">
+        <div class="testimonials__track testimonials__track--secondary" aria-live="polite" aria-atomic="true">
+            <!-- Testimonial 7 -->
+            <article class="testimonial__card testimonial__card--secondary" aria-label="Testimonial from Rachel Kim">
+                <div class="testimonial__content">
+                    <div class="testimonial__rating" aria-label="5 out of 5 stars">
+                        <i class="fas fa-star" aria-hidden="true"></i>
+                        <i class="fas fa-star" aria-hidden="true"></i>
+                        <i class="fas fa-star" aria-hidden="true"></i>
+                        <i class="fas fa-star" aria-hidden="true"></i>
+                        <i class="fas fa-star" aria-hidden="true"></i>
+                    </div>
+                    <blockquote class="testimonial__text">
+                        <p>"Sophia's ability to translate complex technical concepts into engaging content is unmatched. Our whitepaper became the most downloaded resource in our company's history."</p>
+                    </blockquote>
+                </div>
+                <div class="testimonial__author">
+                    <img src="https://via.placeholder.com/50" alt="Portrait of Rachel Kim" class="testimonial__avatar">
+                    <div class="testimonial__info">
+                        <h3 class="testimonial__name">Rachel Kim</h3>
+                        <p class="testimonial__position">Product Manager, TechNova</p>
+                    </div>
+                </div>
+            </article>
+            
+            <!-- Testimonial 8 -->
+            <article class="testimonial__card testimonial__card--secondary" aria-label="Testimonial from James Wilson">
+                <div class="testimonial__content">
+                    <div class="testimonial__rating" aria-label="5 out of 5 stars">
+                        <i class="fas fa-star" aria-hidden="true"></i>
+                        <i class="fas fa-star" aria-hidden="true"></i>
+                        <i class="fas fa-star" aria-hidden="true"></i>
+                        <i class="fas fa-star" aria-hidden="true"></i>
+                        <i class="fas fa-star" aria-hidden="true"></i>
+                    </div>
+                    <blockquote class="testimonial__text">
+                        <p>"The website copy Sophia wrote for our startup helped us secure our Series A funding. Investors specifically mentioned how compelling our value proposition was."</p>
+                    </blockquote>
+                </div>
+                <div class="testimonial__author">
+                    <img src="https://via.placeholder.com/50" alt="Portrait of James Wilson" class="testimonial__avatar">
+                    <div class="testimonial__info">
+                        <h3 class="testimonial__name">James Wilson</h3>
+                        <p class="testimonial__position">Founder, StartupXYZ</p>
+                    </div>
+                </div>
+            </article>
+            
+            <!-- Testimonial 9 -->
+            <article class="testimonial__card testimonial__card--secondary" aria-label="Testimonial from Maria Garcia">
+                <div class="testimonial__content">
+                    <div class="testimonial__rating" aria-label="5 out of 5 stars">
+                        <i class="fas fa-star" aria-hidden="true"></i>
+                        <i class="fas fa-star" aria-hidden="true"></i>
+                        <i class="fas fa-star" aria-hidden="true"></i>
+                        <i class="fas fa-star" aria-hidden="true"></i>
+                        <i class="fas fa-star" aria-hidden="true"></i>
+                    </div>
+                    <blockquote class="testimonial__text">
+                        <p>"Sophia's content strategy increased our organic traffic by 120% in six months. Her SEO expertise combined with engaging writing is a powerful combination."</p>
+                    </blockquote>
+                </div>
+                <div class="testimonial__author">
+                    <img src="https://via.placeholder.com/50" alt="Portrait of Maria Garcia" class="testimonial__avatar">
+                    <div class="testimonial__info">
+                        <h3 class="testimonial__name">Maria Garcia</h3>
+                        <p class="testimonial__position">SEO Manager, DigitalFirst</p>
+                    </div>
+                </div>
+            </article>
+            
+            <!-- Testimonial 10 -->
+            <article class="testimonial__card testimonial__card--secondary" aria-label="Testimonial from Thomas Lee">
+                <div class="testimonial__content">
+                    <div class="testimonial__rating" aria-label="5 out of 5 stars">
+                        <i class="fas fa-star" aria-hidden="true"></i>
+                        <i class="fas fa-star" aria-hidden="true"></i>
+                        <i class="fas fa-star" aria-hidden="true"></i>
+                        <i class="fas fa-star" aria-hidden="true"></i>
+                        <i class="fas fa-star" aria-hidden="true"></i>
+                    </div>
+                    <blockquote class="testimonial__text">
+                        <p>"Our email open rates increased by 35% after Sophia rewrote our campaign copy. She understands how to write subject lines that get noticed."</p>
+                    </blockquote>
+                </div>
+                <div class="testimonial__author">
+                    <img src="https://via.placeholder.com/50" alt="Portrait of Thomas Lee" class="testimonial__avatar">
+                    <div class="testimonial__info">
+                        <h3 class="testimonial__name">Thomas Lee</h3>
+                        <p class="testimonial__position">Marketing Director, EmailExperts</p>
+                    </div>
+                </div>
+            </article>
+            
+            <!-- Testimonial 11 -->
+            <article class="testimonial__card testimonial__card--secondary" aria-label="Testimonial from Olivia Chen">
+                <div class="testimonial__content">
+                    <div class="testimonial__rating" aria-label="5 out of 5 stars">
+                        <i class="fas fa-star" aria-hidden="true"></i>
+                        <i class="fas fa-star" aria-hidden="true"></i>
+                        <i class="fas fa-star" aria-hidden="true"></i>
+                        <i class="fas fa-star" aria-hidden="true"></i>
+                        <i class="fas fa-star" aria-hidden="true"></i>
+                    </div>
+                    <blockquote class="testimonial__text">
+                        <p>"Sophia's brand storytelling transformed how we communicate with our customers. Our brand sentiment scores have never been higher."</p>
+                    </blockquote>
+                </div>
+                <div class="testimonial__author">
+                    <img src="https://via.placeholder.com/50" alt="Portrait of Olivia Chen" class="testimonial__avatar">
+                    <div class="testimonial__info">
+                        <h3 class="testimonial__name">Olivia Chen</h3>
+                        <p class="testimonial__position">Brand Manager, LifestyleCo</p>
+                    </div>
+                </div>
+            </article>
+            
+            <!-- Testimonial 12 -->
+            <article class="testimonial__card testimonial__card--secondary" aria-label="Testimonial from Daniel Brown">
+                <div class="testimonial__content">
+                    <div class="testimonial__rating" aria-label="5 out of 5 stars">
+                        <i class="fas fa-star" aria-hidden="true"></i>
+                        <i class="fas fa-star" aria-hidden="true"></i>
+                        <i class="fas fa-star" aria-hidden="true"></i>
+                        <i class="fas fa-star" aria-hidden="true"></i>
+                        <i class="fas fa-star" aria-hidden="true"></i>
+                    </div>
+                    <blockquote class="testimonial__text">
+                        <p>"Working with Sophia was a seamless experience. She delivered high-quality content on time, every time. Our blog has never been more popular."</p>
+                    </blockquote>
+                </div>
+                <div class="testimonial__author">
+                    <img src="https://via.placeholder.com/50" alt="Portrait of Daniel Brown" class="testimonial__avatar">
+                    <div class="testimonial__info">
+                        <h3 class="testimonial__name">Daniel Brown</h3>
+                        <p class="testimonial__position">Content Director, MediaPlus</p>
+                    </div>
+                </div>
+            </article>
+        </div>
+    </div>
+</section>
+
+
+
+
+<!-- ==========================================================================
+   Enhanced Contact Section
+   ========================================================================== -->
+<section id="contact" class="section contact">
+    <div class="section__header">
+        <h2 class="section__title">Let's Connect</h2>
+        <p class="section__description">Ready to bring your project to life? Let's discuss your development needs.</p>
+    </div>
+    
+    <div class="contact__container">
+        <!-- Left Side - Contact Information -->
+        <div class="contact__info">
+            <div class="contact__info-content">
+                <div class="contact__icon-container">
+                    <i class="fas fa-code contact__main-icon"></i>
+                </div>
+                <h3 class="contact__info-title">Get In Touch</h3>
+                <p class="contact__info-text">Have a project in mind? Send me a message and I'll respond within 24 hours.</p>
+                
+                <div class="contact__details">
+                    <div class="contact__detail">
+                        <div class="contact__detail-icon">
+                            <i class="fas fa-envelope"></i>
+                        </div>
+                        <div class="contact__detail-content">
+                            <span class="contact__detail-label">Email</span>
+                            <span class="contact__detail-value">ahmad@example.com</span>
+                        </div>
+                    </div>
+                    
+                    <div class="contact__detail">
+                        <div class="contact__detail-icon">
+                            <i class="fas fa-phone"></i>
+                        </div>
+                        <div class="contact__detail-content">
+                            <span class="contact__detail-label">Phone</span>
+                            <span class="contact__detail-value">+1 (555) 123-4567</span>
+                        </div>
+                    </div>
+                    
+                    <div class="contact__detail">
+                        <div class="contact__detail-icon">
+                            <i class="fas fa-map-marker-alt"></i>
+                        </div>
+                        <div class="contact__detail-content">
+                            <span class="contact__detail-label">Location</span>
+                            <span class="contact__detail-value">San Francisco, CA</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="contact__social">
+                    <h4 class="contact__social-title">Follow Me</h4>
+                    <div class="contact__social-links">
+                        <a href="#" class="contact__social-link" aria-label="GitHub">
+                            <i class="fab fa-github"></i>
+                        </a>
+                        <a href="#" class="contact__social-link" aria-label="LinkedIn">
+                            <i class="fab fa-linkedin"></i>
+                        </a>
+                        <a href="#" class="contact__social-link" aria-label="Twitter">
+                            <i class="fab fa-twitter"></i>
+                        </a>
+                        <a href="#" class="contact__social-link" aria-label="Dribbble">
+                            <i class="fab fa-dribbble"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Right Side - Contact Form -->
+        <div class="contact__form-container">
+            <div class="form__header">
+                <h3>Send a Message</h3>
+                <p>Fill out the form below and I'll get back to you as soon as possible</p>
+            </div>
+            
+            <form class="contact__form" id="contactForm" action="https://formspree.io/f/mkgveywa" method="POST">
+                <div class="form__row">
+                    <div class="form__group">
+                        <label for="name" class="form__label">Your Name *</label>
+                        <div class="form__input-container">
+                            <i class="form__input-icon fas fa-user"></i>
+                            <input type="text" id="name" name="name" class="form__control" required>
+                        </div>
+                    </div>
+                    
+                    <div class="form__group">
+                        <label for="email" class="form__label">Email Address *</label>
+                        <div class="form__input-container">
+                            <i class="form__input-icon fas fa-envelope"></i>
+                            <input type="email" id="email" name="email" class="form__control" required>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="form__group">
+                    <label for="subject" class="form__label">Subject</label>
+                    <div class="form__input-container">
+                        <i class="form__input-icon fas fa-tag"></i>
+                        <input type="text" id="subject" name="subject" class="form__control" placeholder="Project discussion">
+                    </div>
+                </div>
+                
+                <div class="form__group">
+                    <label for="budget" class="form__label">Project Budget</label>
+                    <div class="form__select-container">
+                        <i class="form__input-icon fas fa-dollar-sign"></i>
+                        <select id="budget" name="budget" class="form__control">
+                            <option value="">Select a budget range</option>
+                            <option value="under-5k">Under $5,000</option>
+                            <option value="5k-15k">$5,000 - $15,000</option>
+                            <option value="15k-30k">$15,000 - $30,000</option>
+                            <option value="30k-plus">$30,000+</option>
+                        </select>
+                    </div>
+                </div>
+                
+                <div class="form__group">
+                    <label for="message" class="form__label">Your Message *</label>
+                    <div class="form__textarea-container">
+                        <i class="form__input-icon fas fa-comment"></i>
+                        <textarea id="message" name="message" class="form__control form__control--textarea" rows="6" placeholder="Tell me about your project..." required></textarea>
+                    </div>
+                </div>
+                
+                <div class="form__footer">
+                    <button type="submit" class="btn btn--submit">
+                        <i class="fas fa-paper-plane"></i> Send Message
+                    </button>
+                    
+                    <div class="form__status" id="formStatus"></div>
+                </div>
+            </form>
+        </div>
+    </div>
+</section>
+
+
+    </div>
+
+<!-- Footer -->
+<footer class="footer">
+    <div class="footer__content">
+        <div class="footer__logo">
+            <a href="index1.html" class="logo">
+                <img src="images/profile.png" alt="PenCraft Logo" class="logo__img">
+                PenCraft<span class="logo__dot">.</span>
+            </a>
+        </div>
+        
+        <div class="footer__nav">
+            <ul class="footer__nav-links">
+                <li><a href="index1.html" class="footer__nav-link">Home</a></li>
+                <li><a href="./content-writer/about.html" class="footer__nav-link">About</a></li>
+                <li><a href="./content-writer/services.html" class="footer__nav-link">Services</a></li>
+                <li><a href="./content-writer/resume.html" class="footer__nav-link">Resume</a></li>
+                <li><a href="./content-writer/projects.html" class="footer__nav-link">Projects</a></li>
+                <li><a href="./content-writer/contact.html" class="footer__nav-link">Contact</a></li>
+            </ul>
+        </div>
+    </div>
+    
+    <div class="footer__bottom">
+        <p class="footer__copyright">&copy; 2023 PenCraft. All rights reserved.</p>
+    </div>
+</footer>
+
+
+    <script src="software-developer/js/script.js"></script>
+</body>
+</html>

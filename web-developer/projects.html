@@ -78,7 +78,9 @@
 
    
 
-<!-- Projects Section -->
+<!-- ==========================================================================
+   Projects Section 
+   ========================================================================== -->
 <section id="projects" class="section projects">
     <div class="section__header animate-on-scroll" data-animation="fadeInUp">
         <h2 class="section__title">Featured Projects</h2>
@@ -89,7 +91,9 @@
         <!-- Project 1 -->
         <div class="project-card animate-on-scroll" data-animation="fadeInUp" data-delay="0.1s" data-project="1">
             <div class="project-card__image">
-                <img src="images/project1.jpg" alt="Tech Blog Series" class="project-image">
+                <div class="square-image-container">
+                    <img src="../images/400400.png" alt="Tech Blog Series" class="project-image square-image">
+                </div>
                 <div class="project-card__overlay">
                     <div class="project-card__preview">
                         <i class="fas fa-eye"></i>
@@ -106,7 +110,9 @@
         <!-- Project 2 -->
         <div class="project-card animate-on-scroll" data-animation="fadeInUp" data-delay="0.2s" data-project="2">
             <div class="project-card__image">
-                <img src="images/project2.jpg" alt="E-commerce Website Content" class="project-image">
+                <div class="square-image-container">
+                    <img src="../images/400400.png" alt="E-commerce Website Content" class="project-image square-image">
+                </div>
                 <div class="project-card__overlay">
                     <div class="project-card__preview">
                         <i class="fas fa-eye"></i>
@@ -123,7 +129,9 @@
         <!-- Project 3 -->
         <div class="project-card animate-on-scroll" data-animation="fadeInUp" data-delay="0.3s" data-project="3">
             <div class="project-card__image">
-                <img src="images/project3.jpg" alt="Brand Storytelling Campaign" class="project-image">
+                <div class="square-image-container">
+                    <img src="../images/400400.png" alt="Brand Storytelling Campaign" class="project-image square-image">
+                </div>
                 <div class="project-card__overlay">
                     <div class="project-card__preview">
                         <i class="fas fa-eye"></i>
@@ -140,7 +148,9 @@
         <!-- Project 4 -->
         <div class="project-card animate-on-scroll" data-animation="fadeInUp" data-delay="0.4s" data-project="4">
             <div class="project-card__image">
-                <img src="images/project4.jpg" alt="Social Media Campaign" class="project-image">
+                <div class="square-image-container">
+                    <img src="../images/400400.png" alt="Social Media Campaign" class="project-image square-image">
+                </div>
                 <div class="project-card__overlay">
                     <div class="project-card__preview">
                         <i class="fas fa-eye"></i>
@@ -157,7 +167,9 @@
         <!-- Project 5 -->
         <div class="project-card animate-on-scroll" data-animation="fadeInUp" data-delay="0.5s" data-project="5">
             <div class="project-card__image">
-                <img src="images/project5.jpg" alt="Technical Whitepaper" class="project-image">
+                <div class="square-image-container">
+                    <img src="../images/400400.png" alt="Technical Whitepaper" class="project-image square-image">
+                </div>
                 <div class="project-card__overlay">
                     <div class="project-card__preview">
                         <i class="fas fa-eye"></i>
@@ -174,7 +186,9 @@
         <!-- Project 6 -->
         <div class="project-card animate-on-scroll" data-animation="fadeInUp" data-delay="0.6s" data-project="6">
             <div class="project-card__image">
-                <img src="images/project6.jpg" alt="Email Marketing Campaign" class="project-image">
+                <div class="square-image-container">
+                    <img src="../images/400400.png" alt="Email Marketing Campaign" class="project-image square-image">
+                </div>
                 <div class="project-card__overlay">
                     <div class="project-card__preview">
                         <i class="fas fa-eye"></i>
@@ -189,12 +203,32 @@
         </div>
     </div>
     
-   <div class="projects__cta animate-on-scroll" data-animation="fadeInUp" data-delay="0.7s">
-    <a href="content-writer/projects.html" class="btn btn--primary">
-        <i class="fas fa-book-open"></i> View All Projects
-    </a>
-</div>
+   
 </section>
+
+<!-- Project Detail Modal -->
+<div class="project-modal" id="projectModal">
+    <div class="project-modal__overlay"></div>
+    <div class="project-modal__content">
+        <button class="project-modal__close" aria-label="Close modal">
+            <i class="fas fa-times"></i>
+        </button>
+        
+        <div class="project-modal__details">
+            <h2 class="project-modal__title" id="modalTitle"></h2>
+            <p class="project-modal__category" id="modalCategory"></p>
+            <div class="project-modal__description" id="modalDescription"></div>
+            <div class="project-modal__features">
+                <h3>Key Features</h3>
+                <ul id="modalFeatures"></ul>
+            </div>
+            <div class="project-modal__results">
+                <h3>Results Achieved</h3>
+                <ul id="modalResults"></ul>
+            </div>
+        </div>
+    </div>
+</div>
 
 
      
