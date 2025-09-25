@@ -80,8 +80,7 @@
     --transition-slow: all 0.5s ease;
 }
 
-/* Dark theme styles  */
-[data-theme="dark"] {
+html[data-theme="dark"] {
     --color-background: var(--color-dark-background);
     --color-background-light: var(--color-dark-background-light);
     --color-background-dark: var(--color-dark-background-dark);
@@ -90,10 +89,7 @@
     --color-text-muted: var(--color-dark-text-muted);
     --color-border: var(--color-dark-border);
     --color-shadow: var(--color-dark-shadow);
-
-      --color-background-rgb: 18, 18, 18; 
-
-     
+    --color-background-rgb: 18, 18, 18;
 }
 
 /* Reset and base styles */
@@ -392,6 +388,7 @@ body {
 }
 
 
+
 /* ==========================================================================
    Preloader Styles
    ========================================================================== */
@@ -401,17 +398,13 @@ body {
   left: 0;
   width: 100%;
   height: 100%;
-background: linear-gradient(45deg, var(--color-dark-background-dark) 93%, var(--color-primary) 7%); 
-
-
-
+  background: var(--color-background-light);
   display: flex;
   justify-content: center;
   align-items: center;
   z-index: 9999;
   transition: opacity 0.5s ease-out;
 }
-
 
 #preloader.hidden {
   opacity: 0;
@@ -476,6 +469,13 @@ background: linear-gradient(45deg, var(--color-dark-background-dark) 93%, var(--
     margin: 0 6px;
   }
 }
+
+
+
+
+
+
+
 
 
 

@@ -2,21 +2,87 @@
 // Main Application Initialization
 // ==========================================================================
 document.addEventListener('DOMContentLoaded', function() {
+    // Remove the theme-loaded class after a short delay to enable transitions
+    setTimeout(() => {
+        document.documentElement.classList.remove('theme-loaded');
+    }, 100);
+    
     // Initialize all components
+    initThemeToggler();
+    checkUrlTheme();
     initPreloader();
     initScrollAnimations();
     initMobileMenu();
     initContactForm();
-    initThemeToggler();
     initCounterAnimation();
     initHeaderScrollBehavior();
     initProjectModal();
     initTestimonialsScroll();
-    checkUrlTheme();
 });
 
 // ==========================================================================
-// URL Theme Parameter Handling
+// Theme Toggler Functionality - UPDATED
+// ==========================================================================
+function initThemeToggler() {
+    const themeToggler = document.getElementById('themeToggler');
+    if (!themeToggler) return;
+    
+    const themeIcon = themeToggler.querySelector('i');
+    const prefersDarkScheme = window.matchMedia('(prefers-color-scheme: dark)');
+    
+    function setTheme(theme) {
+        // Add class to prevent transitions during theme change
+        document.documentElement.classList.add('theme-changing');
+        
+        document.documentElement.setAttribute('data-theme', theme);
+        localStorage.setItem('theme', theme);
+        
+        if (theme === 'dark') {
+            themeIcon.classList.remove('fa-moon');
+            themeIcon.classList.add('fa-sun');
+        } else {
+            themeIcon.classList.remove('fa-sun');
+            themeIcon.classList.add('fa-moon');
+        }
+        
+        updateUrlWithTheme(theme);
+        
+        // Remove the transition prevention after a short delay
+        setTimeout(() => {
+            document.documentElement.classList.remove('theme-changing');
+        }, 50);
+    }
+    
+    // Set initial icon based on current theme
+    const currentTheme = document.documentElement.getAttribute('data-theme');
+    if (currentTheme === 'dark') {
+        themeIcon.classList.remove('fa-moon');
+        themeIcon.classList.add('fa-sun');
+    } else {
+        themeIcon.classList.remove('fa-sun');
+        themeIcon.classList.add('fa-moon');
+    }
+    
+    themeToggler.addEventListener('click', function() {
+        const currentTheme = document.documentElement.getAttribute('data-theme');
+        setTheme(currentTheme === 'light' ? 'dark' : 'light');
+    });
+    
+    prefersDarkScheme.addEventListener('change', e => {
+        if (!localStorage.getItem('theme')) {
+            setTheme(e.matches ? 'dark' : 'light');
+        }
+    });
+}
+
+function updateUrlWithTheme(theme) {
+    const url = new URL(window.location);
+    url.searchParams.set('theme', theme);
+    window.history.replaceState({}, '', url);
+}
+
+// ==========================================================================
+// URL Theme Parameter Handling - UPDATED
 // ==========================================================================
 function checkUrlTheme() {
     const urlParams = new URLSearchParams(window.location.search);
@@ -31,6 +97,15 @@ function checkUrlTheme() {
             themeIcon.classList.add('fa-sun');
         }
         localStorage.setItem('theme', 'dark');
+    } else if (themeParam === 'light') {
+        document.documentElement.setAttribute('data-theme', 'light');
+        const themeToggler = document.getElementById('themeToggler');
+        if (themeToggler) {
+            const themeIcon = themeToggler.querySelector('i');
+            themeIcon.classList.remove('fa-sun');
+            themeIcon.classList.add('fa-moon');
+        }
+        localStorage.setItem('theme', 'light');
     }
 }
 
@@ -254,83 +329,6 @@ function initCounterAnimation() {
     
     window.addEventListener('scroll', animateCounters);
     window.addEventListener('load', animateCounters);
-}
-
-// ==========================================================================
-// Preloader Functionality
-// ==========================================================================
-function initPreloader() {
-    const preloader = document.getElementById('preloader');
-    
-    if (!preloader) return;
-    
-    window.addEventListener('load', () => {
-        setTimeout(() => {
-            preloader.classList.add('hidden');
-            setTimeout(() => {
-                preloader.remove();
-            }, 500);
-        }, 1000);
-    });
-    
-    setTimeout(() => {
-        if (!preloader.classList.contains('hidden')) {
-            preloader.classList.add('hidden');
-            setTimeout(() => {
-                preloader.remove();
-            }, 500);
-        }
-    }, 3000);
-}
-
-// ==========================================================================
-// Theme Toggler Functionality
-// ==========================================================================
-function initThemeToggler() {
-    const themeToggler = document.getElementById('themeToggler');
-    if (!themeToggler) return;
-    
-    const themeIcon = themeToggler.querySelector('i');
-    const prefersDarkScheme = window.matchMedia('(prefers-color-scheme: dark)');
-    const savedTheme = localStorage.getItem('theme');
-    
-    function setTheme(theme) {
-        document.documentElement.setAttribute('data-theme', theme);
-        localStorage.setItem('theme', theme);
-        
-        if (theme === 'dark') {
-            themeIcon.classList.remove('fa-moon');
-            themeIcon.classList.add('fa-sun');
-        } else {
-            themeIcon.classList.remove('fa-sun');
-            themeIcon.classList.add('fa-moon');
-        }
-        
-        updateUrlWithTheme(theme);
-    }
-    
-    if (savedTheme === 'dark') {
-        setTheme('dark');
-    } else {
-        setTheme('light');
-    }
-    
-    themeToggler.addEventListener('click', function() {
-        const currentTheme = document.documentElement.getAttribute('data-theme');
-        setTheme(currentTheme === 'light' ? 'dark' : 'light');
-    });
-    
-    prefersDarkScheme.addEventListener('change', e => {
-        if (!localStorage.getItem('theme')) {
-            setTheme(e.matches ? 'dark' : 'light');
-        }
-    });
-}
-
-function updateUrlWithTheme(theme) {
-    const url = new URL(window.location);
-    url.searchParams.set('theme', theme);
-    window.history.replaceState({}, '', url);
 }
 
 // ==========================================================================
@@ -595,4 +593,35 @@ function initTestimonialsScroll() {
             }, 2000);
         }
     });
+}
+
+// ==========================================================================
+// Preloader Functionality
+// ==========================================================================
+function initPreloader() {
+    const preloader = document.getElementById('preloader');
+    
+    if (!preloader) return;
+    
+    // Hide preloader when page is fully loaded
+    window.addEventListener('load', () => {
+        setTimeout(() => {
+            preloader.classList.add('hidden');
+            
+            // Remove preloader from DOM after animation completes
+            setTimeout(() => {
+                preloader.remove();
+            }, 500);
+        }, 1000); // Minimum show time
+    });
+    
+    // Fallback - hide preloader after 3 seconds even if page isn't fully loaded
+    setTimeout(() => {
+        if (!preloader.classList.contains('hidden')) {
+            preloader.classList.add('hidden');
+            setTimeout(() => {
+                preloader.remove();
+            }, 500);
+        }
+    }, 3000);
 }
