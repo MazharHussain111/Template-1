@@ -146,6 +146,11 @@ function initScrollAnimations() {
                     element.style.opacity = '1';
                     element.style.transform = '';
                     element.classList.add('animated');
+                    
+                    // Trigger counter animation when about section stats become visible
+                    if (element.closest('.about__stats')) {
+                        initCounterAnimation();
+                    }
                 }, delay * 1000);
             }
         });
@@ -301,13 +306,16 @@ function initContactForm() {
 }
 
 // ==========================================================================
-// Counter Animation for Statistics
+// Counter Animation for Statistics - FIXED
 // ==========================================================================
 function initCounterAnimation() {
     'use strict';
     
     const counterElements = document.querySelectorAll('.stat__number');
     if (!counterElements.length) return;
+    
+    // Check if counters have already been animated
+    if (counterElements[0].textContent !== '0') return;
     
     let hasCounted = false;
     
@@ -318,7 +326,7 @@ function initCounterAnimation() {
         if (!aboutSection) return;
         
         const sectionPosition = aboutSection.getBoundingClientRect().top;
-        const screenPosition = window.innerHeight / 1.5;
+        const screenPosition = window.innerHeight / 1.3;
         
         if (sectionPosition < screenPosition) {
             hasCounted = true;
@@ -328,6 +336,9 @@ function initCounterAnimation() {
                 const duration = 2000;
                 const increment = target / (duration / 16);
                 let current = 0;
+                
+                // Clear any existing content
+                counter.textContent = '0';
                 
                 setTimeout(() => {
                     const timer = setInterval(() => {
@@ -351,12 +362,18 @@ function initCounterAnimation() {
                 observer.unobserve(entry.target);
             }
         });
-    }, { threshold: 0.5 });
+    }, { 
+        threshold: 0.5,
+        rootMargin: '0px 0px -100px 0px'
+    });
     
     const aboutSection = document.querySelector('.about__stats');
     if (aboutSection) {
         observer.observe(aboutSection);
     }
+    
+    // Also trigger on scroll as backup
+    window.addEventListener('scroll', animateCounters);
 }
 
 // ==========================================================================
