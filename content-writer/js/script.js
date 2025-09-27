@@ -2,14 +2,10 @@
 // Main Application Initialization
 // ==========================================================================
 document.addEventListener('DOMContentLoaded', function() {
-    // Remove the theme-loaded class after a short delay to enable transitions
-    setTimeout(() => {
-        document.documentElement.classList.remove('theme-loaded');
-    }, 100);
+    'use strict';
     
     // Initialize all components
     initThemeToggler();
-    checkUrlTheme();
     initPreloader();
     initScrollAnimations();
     initMobileMenu();
@@ -21,14 +17,28 @@ document.addEventListener('DOMContentLoaded', function() {
 });
 
 // ==========================================================================
-// Theme Toggler Functionality - UPDATED
+// Theme Toggler Functionality - UPDATED with URL parameter support
 // ==========================================================================
 function initThemeToggler() {
+    'use strict';
+    
     const themeToggler = document.getElementById('themeToggler');
     if (!themeToggler) return;
     
     const themeIcon = themeToggler.querySelector('i');
-    const prefersDarkScheme = window.matchMedia('(prefers-color-scheme: dark)');
+    
+    // Function to get theme from URL parameters
+    function getThemeFromURL() {
+        const urlParams = new URLSearchParams(window.location.search);
+        return urlParams.get('theme');
+    }
+    
+    // Function to update URL with theme parameter
+    function updateURLWithTheme(theme) {
+        const url = new URL(window.location);
+        url.searchParams.set('theme', theme);
+        window.history.replaceState({}, '', url);
+    }
     
     function setTheme(theme) {
         // Add class to prevent transitions during theme change
@@ -37,15 +47,15 @@ function initThemeToggler() {
         document.documentElement.setAttribute('data-theme', theme);
         localStorage.setItem('theme', theme);
         
-        if (theme === 'dark') {
-            themeIcon.classList.remove('fa-moon');
-            themeIcon.classList.add('fa-sun');
-        } else {
-            themeIcon.classList.remove('fa-sun');
-            themeIcon.classList.add('fa-moon');
-        }
+        // Update URL parameter
+        updateURLWithTheme(theme);
         
-        updateUrlWithTheme(theme);
+        // Update icon
+        if (theme === 'dark') {
+            themeIcon.classList.replace('fa-moon', 'fa-sun');
+        } else {
+            themeIcon.classList.replace('fa-sun', 'fa-moon');
+        }
         
         // Remove the transition prevention after a short delay
         setTimeout(() => {
@@ -53,14 +63,27 @@ function initThemeToggler() {
         }, 50);
     }
     
+    // Check for theme in URL parameters first, then localStorage, then default to light
+    const urlTheme = getThemeFromURL();
+    const savedTheme = localStorage.getItem('theme');
+    
+    let initialTheme = 'light'; // Default theme
+    
+    if (urlTheme && (urlTheme === 'light' || urlTheme === 'dark')) {
+        initialTheme = urlTheme;
+    } else if (savedTheme === 'dark') {
+        initialTheme = 'dark';
+    }
+    
+    // Set initial theme
+    setTheme(initialTheme);
+    
     // Set initial icon based on current theme
-    const currentTheme = document.documentElement.getAttribute('data-theme');
-    if (currentTheme === 'dark') {
-        themeIcon.classList.remove('fa-moon');
-        themeIcon.classList.add('fa-sun');
+    if (initialTheme === 'dark') {
+        themeIcon.classList.replace('fa-moon', 'fa-sun');
     } else {
-        themeIcon.classList.remove('fa-sun');
-        themeIcon.classList.add('fa-moon');
+        // Ensure moon icon is shown for light theme
+        themeIcon.classList.replace('fa-sun', 'fa-moon');
     }
     
     themeToggler.addEventListener('click', function() {
@@ -68,59 +91,30 @@ function initThemeToggler() {
         setTheme(currentTheme === 'light' ? 'dark' : 'light');
     });
     
-    prefersDarkScheme.addEventListener('change', e => {
-        if (!localStorage.getItem('theme')) {
-            setTheme(e.matches ? 'dark' : 'light');
+    // Listen for URL changes (for back/forward navigation)
+    window.addEventListener('popstate', function() {
+        const urlTheme = getThemeFromURL();
+        if (urlTheme && (urlTheme === 'light' || urlTheme === 'dark')) {
+            setTheme(urlTheme);
         }
     });
 }
-
-function updateUrlWithTheme(theme) {
-    const url = new URL(window.location);
-    url.searchParams.set('theme', theme);
-    window.history.replaceState({}, '', url);
-}
-
-// ==========================================================================
-// URL Theme Parameter Handling - UPDATED
-// ==========================================================================
-function checkUrlTheme() {
-    const urlParams = new URLSearchParams(window.location.search);
-    const themeParam = urlParams.get('theme');
-    
-    if (themeParam === 'dark') {
-        document.documentElement.setAttribute('data-theme', 'dark');
-        const themeToggler = document.getElementById('themeToggler');
-        if (themeToggler) {
-            const themeIcon = themeToggler.querySelector('i');
-            themeIcon.classList.remove('fa-moon');
-            themeIcon.classList.add('fa-sun');
-        }
-        localStorage.setItem('theme', 'dark');
-    } else if (themeParam === 'light') {
-        document.documentElement.setAttribute('data-theme', 'light');
-        const themeToggler = document.getElementById('themeToggler');
-        if (themeToggler) {
-            const themeIcon = themeToggler.querySelector('i');
-            themeIcon.classList.remove('fa-sun');
-            themeIcon.classList.add('fa-moon');
-        }
-        localStorage.setItem('theme', 'light');
-    }
-}
-
-
 
 // ==========================================================================
 // Scroll Animations for Elements with Data Attributes
 // ==========================================================================
 function initScrollAnimations() {
-    const animatedElements = document.querySelectorAll('.animate-on-scroll');
+    'use strict';
     
+    const animatedElements = document.querySelectorAll('.animate-on-scroll');
+    if (!animatedElements.length) return;
+    
+    // Set initial styles for animation
     animatedElements.forEach(element => {
-        element.style.opacity = '0';
-        
         const animationType = element.getAttribute('data-animation') || 'fadeInUp';
+        element.style.opacity = '0';
+        element.style.transition = 'opacity 0.8s ease, transform 0.8s ease';
+        
         switch(animationType) {
             case 'fadeInUp':
                 element.style.transform = 'translateY(50px)';
@@ -137,11 +131,7 @@ function initScrollAnimations() {
             case 'bounceIn':
                 element.style.transform = 'scale(0.3)';
                 break;
-            default:
-                element.style.transform = 'translateY(50px)';
         }
-        
-        element.style.transition = 'opacity 0.8s ease, transform 0.8s ease';
     });
     
     function animateOnScroll() {
@@ -150,7 +140,7 @@ function initScrollAnimations() {
             const screenPosition = window.innerHeight / 1.3;
             
             if (elementPosition < screenPosition) {
-                const delay = element.getAttribute('data-delay') || 0;
+                const delay = parseFloat(element.getAttribute('data-delay')) || 0;
                 
                 setTimeout(() => {
                     element.style.opacity = '1';
@@ -161,8 +151,25 @@ function initScrollAnimations() {
         });
     }
     
+    // Use requestAnimationFrame for better performance
+    let ticking = false;
+    function updateAnimations() {
+        animateOnScroll();
+        ticking = false;
+    }
+    
+    function requestTick() {
+        if (!ticking) {
+            requestAnimationFrame(updateAnimations);
+            ticking = true;
+        }
+    }
+    
     window.addEventListener('load', animateOnScroll);
-    window.addEventListener('scroll', animateOnScroll);
+    window.addEventListener('scroll', requestTick);
+    window.addEventListener('resize', requestTick);
+    
+    // Initial check
     animateOnScroll();
 }
 
@@ -170,6 +177,8 @@ function initScrollAnimations() {
 // Mobile Menu Functionality
 // ==========================================================================
 function initMobileMenu() {
+    'use strict';
+    
     const menuToggle = document.querySelector('.mobile-menu-toggle');
     const navLinks = document.querySelector('.nav__links');
     
@@ -180,13 +189,14 @@ function initMobileMenu() {
     document.body.appendChild(navOverlay);
     
     function toggleMenu() {
+        const isExpanding = !navLinks.classList.contains('nav__links--active');
+        
         navLinks.classList.toggle('nav__links--active');
         navOverlay.classList.toggle('nav__overlay--active');
         menuToggle.classList.toggle('mobile-menu-toggle--active');
         
-        const isExpanded = menuToggle.classList.contains('mobile-menu-toggle--active');
-        menuToggle.setAttribute('aria-expanded', isExpanded);
-        document.body.style.overflow = isExpanded ? 'hidden' : '';
+        menuToggle.setAttribute('aria-expanded', isExpanding.toString());
+        document.body.style.overflow = isExpanding ? 'hidden' : '';
     }
     
     function closeMenu() {
@@ -200,31 +210,35 @@ function initMobileMenu() {
     menuToggle.addEventListener('click', toggleMenu);
     navOverlay.addEventListener('click', closeMenu);
     
-    const links = navLinks.querySelectorAll('a');
-    links.forEach(link => {
+    // Close menu when clicking on links
+    const navLinksList = navLinks.querySelectorAll('a');
+    navLinksList.forEach(link => {
         link.addEventListener('click', closeMenu);
     });
     
+    // Close menu on Escape key
     document.addEventListener('keydown', function(e) {
         if (e.key === 'Escape' && navLinks.classList.contains('nav__links--active')) {
             closeMenu();
         }
     });
     
-    function checkScreenSize() {
+    // Close menu on resize if screen is large enough
+    function handleResize() {
         if (window.innerWidth > 1024) {
             closeMenu();
         }
     }
     
-    window.addEventListener('resize', checkScreenSize);
-    window.addEventListener('load', checkScreenSize);
+    window.addEventListener('resize', handleResize);
 }
 
 // ==========================================================================
 // Contact Form Handling with Formspree
 // ==========================================================================
 function initContactForm() {
+    'use strict';
+    
     const contactForm = document.getElementById('contactForm');
     if (!contactForm) return;
 
@@ -233,57 +247,65 @@ function initContactForm() {
         
         const submitBtn = contactForm.querySelector('.btn--submit');
         const originalText = submitBtn.innerHTML;
+        const statusElement = document.getElementById('formStatus');
+        
+        // Show loading state
         submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Sending...';
         submitBtn.disabled = true;
         
-        const data = new FormData(event.target);
-        
         try {
+            const formData = new FormData(event.target);
             const response = await fetch(event.target.action, {
                 method: contactForm.method,
-                body: data,
-                headers: { 'Accept': 'application/json' }
+                body: formData,
+                headers: { 
+                    'Accept': 'application/json',
+                    'X-Requested-With': 'XMLHttpRequest'
+                }
             });
             
-            const status = document.getElementById('formStatus');
-            
             if (response.ok) {
-                status.textContent = 'Thank you! Your message has been sent successfully.';
-                status.className = 'form__status success';
-                status.style.display = 'block';
+                showStatus('Thank you! Your message has been sent successfully.', 'success');
                 contactForm.reset();
             } else {
-                const errorData = await response.json();
-                status.textContent = errorData.errors ? 
+                const errorData = await response.json().catch(() => ({}));
+                const errorMessage = errorData.errors ? 
                     errorData.errors.map(error => error.message).join(', ') : 
                     'Oops! There was a problem submitting your form. Please try again.';
-                status.className = 'form__status error';
-                status.style.display = 'block';
+                showStatus(errorMessage, 'error');
             }
         } catch (error) {
-            const status = document.getElementById('formStatus');
-            status.textContent = 'Oops! There was a problem submitting your form. Please try again.';
-            status.className = 'form__status error';
-            status.style.display = 'block';
+            showStatus('Oops! There was a problem submitting your form. Please check your connection and try again.', 'error');
         } finally {
-            const submitBtn = contactForm.querySelector('.btn--submit');
+            // Reset button state
             submitBtn.innerHTML = originalText;
             submitBtn.disabled = false;
-            
-            setTimeout(() => {
-                const status = document.getElementById('formStatus');
-                if (status) status.style.display = 'none';
-            }, 5000);
         }
     }
     
-    contactForm.addEventListener("submit", handleSubmit);
+    function showStatus(message, type) {
+        const statusElement = document.getElementById('formStatus');
+        if (!statusElement) return;
+        
+        statusElement.textContent = message;
+        statusElement.className = `form__status ${type}`;
+        statusElement.style.display = 'block';
+        
+        // Hide status after 5 seconds
+        setTimeout(() => {
+            statusElement.style.display = 'none';
+        }, 5000);
+    }
+    
+    contactForm.addEventListener('submit', handleSubmit);
 }
 
 // ==========================================================================
 // Counter Animation for Statistics
 // ==========================================================================
 function initCounterAnimation() {
+    'use strict';
+    
     const counterElements = document.querySelectorAll('.stat__number');
     if (!counterElements.length) return;
     
@@ -302,16 +324,10 @@ function initCounterAnimation() {
             hasCounted = true;
             
             counterElements.forEach((counter, index) => {
-                const target = parseInt(counter.getAttribute('data-count'));
+                const target = parseInt(counter.getAttribute('data-count'), 10);
                 const duration = 2000;
                 const increment = target / (duration / 16);
                 let current = 0;
-                
-                counter.classList.add('animate');
-                const label = counter.nextElementSibling;
-                if (label && label.classList.contains('stat__label')) {
-                    label.classList.add('animate');
-                }
                 
                 setTimeout(() => {
                     const timer = setInterval(() => {
@@ -327,14 +343,28 @@ function initCounterAnimation() {
         }
     }
     
-    window.addEventListener('scroll', animateCounters);
-    window.addEventListener('load', animateCounters);
+    // Use intersection observer for better performance
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                animateCounters();
+                observer.unobserve(entry.target);
+            }
+        });
+    }, { threshold: 0.5 });
+    
+    const aboutSection = document.querySelector('.about__stats');
+    if (aboutSection) {
+        observer.observe(aboutSection);
+    }
 }
 
 // ==========================================================================
 // Header Hide/Show on Scroll Functionality
 // ==========================================================================
 function initHeaderScrollBehavior() {
+    'use strict';
+    
     const header = document.querySelector('.header');
     if (!header) return;
     
@@ -342,15 +372,17 @@ function initHeaderScrollBehavior() {
     const scrollThreshold = 100;
     let ticking = false;
     
-    function handleScroll() {
+    function updateHeader() {
         const currentScrollY = window.scrollY;
         
+        // Add scrolled class when not at top
         if (currentScrollY > 50) {
             header.classList.add('scrolled');
         } else {
             header.classList.remove('scrolled');
         }
         
+        // Hide/show header based on scroll direction
         if (currentScrollY > scrollThreshold) {
             if (currentScrollY > lastScrollY) {
                 header.classList.add('hidden');
@@ -362,25 +394,26 @@ function initHeaderScrollBehavior() {
         }
         
         lastScrollY = currentScrollY;
+        ticking = false;
     }
     
-    window.addEventListener('scroll', () => {
+    function requestTick() {
         if (!ticking) {
-            window.requestAnimationFrame(() => {
-                handleScroll();
-                ticking = false;
-            });
+            requestAnimationFrame(updateHeader);
             ticking = true;
         }
-    });
+    }
     
-    handleScroll();
+    window.addEventListener('scroll', requestTick, { passive: true });
+    updateHeader(); // Initial call
 }
 
 // ==========================================================================
 // Project Modal Functionality
 // ==========================================================================
 function initProjectModal() {
+    'use strict';
+    
     const modal = document.getElementById('projectModal');
     const closeBtn = document.querySelector('.project-modal__close');
     const projectCards = document.querySelectorAll('.project-card');
@@ -492,75 +525,120 @@ function initProjectModal() {
         }
     };
 
+    function openModal(projectId) {
+        const project = projects[projectId];
+        if (!project) return;
+        
+        document.getElementById('modalTitle').textContent = project.title;
+        document.getElementById('modalCategory').textContent = project.category;
+        document.getElementById('modalDescription').textContent = project.description;
+        
+        populateList('modalFeatures', project.features);
+        populateList('modalResults', project.results);
+        
+        modal.classList.add('project-modal--active');
+        document.body.style.overflow = 'hidden';
+        
+        // Focus trap for accessibility
+        trapFocus(modal);
+    }
+    
+    function populateList(elementId, items) {
+        const listElement = document.getElementById(elementId);
+        if (!listElement) return;
+        
+        listElement.innerHTML = '';
+        items.forEach(item => {
+            const li = document.createElement('li');
+            li.textContent = item;
+            listElement.appendChild(li);
+        });
+    }
+    
+    function closeModal() {
+        modal.classList.remove('project-modal--active');
+        document.body.style.overflow = 'auto';
+    }
+    
+    // Add click events to project cards
     projectCards.forEach(card => {
         card.addEventListener('click', function() {
             const projectId = this.getAttribute('data-project');
-            const project = projects[projectId];
-            
-            if (project) {
-                document.getElementById('modalTitle').textContent = project.title;
-                document.getElementById('modalCategory').textContent = project.category;
-                document.getElementById('modalDescription').textContent = project.description;
-                
-                const featuresList = document.getElementById('modalFeatures');
-                featuresList.innerHTML = '';
-                project.features.forEach(feature => {
-                    const li = document.createElement('li');
-                    li.textContent = feature;
-                    featuresList.appendChild(li);
-                });
-                
-                const resultsList = document.getElementById('modalResults');
-                resultsList.innerHTML = '';
-                project.results.forEach(result => {
-                    const li = document.createElement('li');
-                    li.textContent = result;
-                    resultsList.appendChild(li);
-                });
-                
-                modal.classList.add('project-modal--active');
-                document.body.style.overflow = 'hidden';
+            openModal(projectId);
+        });
+        
+        // Add keyboard support
+        card.addEventListener('keydown', function(e) {
+            if (e.key === 'Enter' || e.key === ' ') {
+                e.preventDefault();
+                const projectId = this.getAttribute('data-project');
+                openModal(projectId);
             }
         });
     });
-
-    function closeModal() {
-        modal.classList.remove('project-modal--active');
-        setTimeout(() => {
-            document.body.style.overflow = 'auto';
-        }, 300);
-    }
-
+    
+    // Close modal events
     if (closeBtn) {
         closeBtn.addEventListener('click', closeModal);
     }
-
+    
     modal.addEventListener('click', function(e) {
         if (e.target === modal || e.target.classList.contains('project-modal__overlay')) {
             closeModal();
         }
     });
-
+    
     document.addEventListener('keydown', function(e) {
         if (e.key === 'Escape' && modal.classList.contains('project-modal--active')) {
             closeModal();
         }
     });
+    
+    // Focus trap function for accessibility
+    function trapFocus(element) {
+        const focusableElements = element.querySelectorAll(
+            'button, [href], input, select, textarea, [tabindex]:not([tabindex="-1"])'
+        );
+        const firstElement = focusableElements[0];
+        const lastElement = focusableElements[focusableElements.length - 1];
+        
+        element.addEventListener('keydown', function(e) {
+            if (e.key === 'Tab') {
+                if (e.shiftKey) {
+                    if (document.activeElement === firstElement) {
+                        e.preventDefault();
+                        lastElement.focus();
+                    }
+                } else {
+                    if (document.activeElement === lastElement) {
+                        e.preventDefault();
+                        firstElement.focus();
+                    }
+                }
+            }
+        });
+        
+        firstElement.focus();
+    }
 }
 
 // ==========================================================================
 // Enhanced Testimonials Auto Scroll Functionality
 // ==========================================================================
 function initTestimonialsScroll() {
+    'use strict';
+    
     const testimonialsTrack = document.querySelector('.testimonials__track');
     if (!testimonialsTrack) return;
     
+    // Clone testimonials for seamless loop
     const testimonials = testimonialsTrack.querySelectorAll('.testimonial__card');
     testimonials.forEach(card => {
         const clone = card.cloneNode(true);
         testimonialsTrack.appendChild(clone);
     });
     
+    // Pause on hover
     testimonialsTrack.addEventListener('mouseenter', () => {
         testimonialsTrack.style.animationPlayState = 'paused';
     });
@@ -569,27 +647,22 @@ function initTestimonialsScroll() {
         testimonialsTrack.style.animationPlayState = 'running';
     });
     
+    // Touch support for mobile devices
     let touchStartX = 0;
-    let isPausedByTouch = false;
     
     testimonialsTrack.addEventListener('touchstart', (e) => {
         touchStartX = e.changedTouches[0].screenX;
         testimonialsTrack.style.animationPlayState = 'paused';
-        isPausedByTouch = true;
     });
     
     testimonialsTrack.addEventListener('touchend', (e) => {
         const touchEndX = e.changedTouches[0].screenX;
         const swipeThreshold = 50;
         
-        if (Math.abs(touchEndX - touchStartX) > swipeThreshold) {
-            isPausedByTouch = true;
-        } else {
-            isPausedByTouch = false;
+        // Only resume if not a significant swipe
+        if (Math.abs(touchEndX - touchStartX) < swipeThreshold) {
             setTimeout(() => {
-                if (!isPausedByTouch) {
-                    testimonialsTrack.style.animationPlayState = 'running';
-                }
+                testimonialsTrack.style.animationPlayState = 'running';
             }, 2000);
         }
     });
@@ -599,29 +672,31 @@ function initTestimonialsScroll() {
 // Preloader Functionality
 // ==========================================================================
 function initPreloader() {
-    const preloader = document.getElementById('preloader');
+    'use strict';
     
+    const preloader = document.getElementById('preloader');
     if (!preloader) return;
     
-    // Hide preloader when page is fully loaded
-    window.addEventListener('load', () => {
+    function hidePreloader() {
+        preloader.classList.add('hidden');
+        
+        // Remove preloader from DOM after animation completes
         setTimeout(() => {
-            preloader.classList.add('hidden');
-            
-            // Remove preloader from DOM after animation completes
-            setTimeout(() => {
+            if (preloader.parentNode) {
                 preloader.remove();
-            }, 500);
-        }, 1000); // Minimum show time
+            }
+        }, 500);
+    }
+    
+    // Hide when page is fully loaded
+    window.addEventListener('load', () => {
+        setTimeout(hidePreloader, 1000); // Minimum show time
     });
     
-    // Fallback - hide preloader after 3 seconds even if page isn't fully loaded
+    // Fallback - hide after 3 seconds
     setTimeout(() => {
-        if (!preloader.classList.contains('hidden')) {
-            preloader.classList.add('hidden');
-            setTimeout(() => {
-                preloader.remove();
-            }, 500);
+        if (document.readyState === 'loading') {
+            hidePreloader();
         }
     }, 3000);
 }
