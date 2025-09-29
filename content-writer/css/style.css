@@ -479,6 +479,7 @@ body {
 
 
 
+
 /* ==========================================================================
    Header Styles 
    ========================================================================== */
@@ -522,7 +523,6 @@ body {
     align-items: center;
     font-family: var(--font-secondary);
     transition: var(--transition-base);
-    z-index: 1001;
     gap: var(--spacing-sm);
 }
 
@@ -550,10 +550,11 @@ body {
     list-style: none;
     margin: 0;
     padding: 0;
+    z-index: 3001;
 }
 
 .nav__link {
-    color: var(--color-dark-background-light);
+    color: var(--color-text);
     text-decoration: none;
     font-weight: var(--font-weight-medium);
     font-size: var(--font-size-base);
@@ -620,7 +621,7 @@ body {
     width: 35px;
     height: 35px;
     cursor: pointer;
-    z-index: 1001;
+    z-index: 3001; 
 }
 
 .mobile-menu-toggle i {
@@ -634,13 +635,14 @@ body {
 }
 
 /* ==========================================================================
-   Responsive Styles
+   Responsive Styles - OPTIMIZED
    ========================================================================== */
 
 /* 1024px Breakpoint - Tablet Landscape */
 @media (max-width: 1024px) {
+
     .nav__links {
-        position:absolute;
+        position: fixed;
         top: 0;
         right: -100%;
         width: 280px;
@@ -649,8 +651,10 @@ body {
         flex-direction: column;
         padding: var(--spacing-3xl) var(--spacing-xl) var(--spacing-xl);
         transition: right 0.4s ease;
-        z-index: 1000;
+        z-index: 3002;
+       
     }
+
     
     .nav__links--active {
         right: 0;
@@ -658,9 +662,9 @@ body {
     
     .mobile-menu-toggle {
         display: flex;
+        z-index: 3002;
     }
 
-    
     .nav__link {
         color: var(--color-dark-text-light);
         font-size: var(--font-size-lg);
@@ -684,7 +688,6 @@ body {
     
     .logo {
         font-size: var(--font-size-xl);
-        
     }
     
     .logo__img {
@@ -747,8 +750,8 @@ body {
         left: 0;
         width: 100%;
         height: 100%;
-        background: rgba(0, 0, 0, 0.5);
-        z-index: 999;
+
+
         opacity: 0;
         visibility: hidden;
         transition: var(--transition-base);
@@ -773,15 +776,11 @@ body {
     
     .mobile-menu-toggle {
         display: flex;
-        z-index: 1001;
-    }
-    
-    .logo {
-        font-size: var(--font-size-lg);
-        z-index: 100;
-        position: relative;
+      
     }
 }
+
+
 /* ==========================================================================
    Hero Section 
    ========================================================================== */
