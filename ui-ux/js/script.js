@@ -10,7 +10,7 @@ document.addEventListener('DOMContentLoaded', function() {
     initScrollAnimations();
     initMobileMenu();
     initContactForm();
-    initCounterAnimation();
+    initCounterAnimation(); // Initialize counter animation
     initHeaderScrollBehavior();
     initProjectModal();
     initTestimonialsScroll();
@@ -148,7 +148,7 @@ function initScrollAnimations() {
                     element.classList.add('animated');
                     
                     // Trigger counter animation when about section stats become visible
-                    if (element.closest('.about__stats')) {
+                    if (element.closest('.about__stats-grid')) {
                         initCounterAnimation();
                     }
                 }, delay * 1000);
@@ -306,23 +306,20 @@ function initContactForm() {
 }
 
 // ==========================================================================
-// Counter Animation for Statistics - FIXED
+// Counter Animation for Statistics - FIXED VERSION
 // ==========================================================================
 function initCounterAnimation() {
     'use strict';
     
-    const counterElements = document.querySelectorAll('.stat__number');
+    const counterElements = document.querySelectorAll('.stat-number');
     if (!counterElements.length) return;
-    
-    // Check if counters have already been animated
-    if (counterElements[0].textContent !== '0') return;
     
     let hasCounted = false;
     
     function animateCounters() {
         if (hasCounted) return;
         
-        const aboutSection = document.querySelector('.about__stats');
+        const aboutSection = document.querySelector('.about__stats-grid');
         if (!aboutSection) return;
         
         const sectionPosition = aboutSection.getBoundingClientRect().top;
@@ -337,9 +334,10 @@ function initCounterAnimation() {
                 const increment = target / (duration / 16);
                 let current = 0;
                 
-                // Clear any existing content
+                // Clear any existing content and set to 0
                 counter.textContent = '0';
                 
+                // Start counting after delay based on index
                 setTimeout(() => {
                     const timer = setInterval(() => {
                         current += increment;
@@ -349,7 +347,7 @@ function initCounterAnimation() {
                         }
                         counter.textContent = Math.floor(current);
                     }, 16);
-                }, index * 300);
+                }, index * 300); // Stagger the animations
             });
         }
     }
@@ -363,17 +361,20 @@ function initCounterAnimation() {
             }
         });
     }, { 
-        threshold: 0.5,
+        threshold: 0.3,
         rootMargin: '0px 0px -100px 0px'
     });
     
-    const aboutSection = document.querySelector('.about__stats');
+    const aboutSection = document.querySelector('.about__stats-grid');
     if (aboutSection) {
         observer.observe(aboutSection);
     }
     
     // Also trigger on scroll as backup
     window.addEventListener('scroll', animateCounters);
+    
+    // Initial check in case the section is already visible
+    setTimeout(animateCounters, 100);
 }
 
 // ==========================================================================
@@ -425,9 +426,8 @@ function initHeaderScrollBehavior() {
     updateHeader(); // Initial call
 }
 
-
 // ==========================================================================
-// Project Modal Functionality - ENHANCED
+// Project Modal Functionality
 // ==========================================================================
 function initProjectModal() {
     'use strict';

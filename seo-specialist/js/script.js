@@ -13,7 +13,11 @@ document.addEventListener('DOMContentLoaded', function() {
     initCounterAnimation();
     initHeaderScrollBehavior();
     initProjectModal();
-    initTestimonialsScroll();
+    initTestimonials(); 
+    initServicesModal();
+
+
+
 });
 
 // ==========================================================================
@@ -425,9 +429,8 @@ function initHeaderScrollBehavior() {
     updateHeader(); // Initial call
 }
 
-
 // ==========================================================================
-// Project Modal Functionality - ENHANCED
+// Project Modal Functionality
 // ==========================================================================
 function initProjectModal() {
     'use strict';
@@ -640,51 +643,8 @@ function initProjectModal() {
     }
 }
 
-// ==========================================================================
-// Enhanced Testimonials Auto Scroll Functionality
-// ==========================================================================
-function initTestimonialsScroll() {
-    'use strict';
-    
-    const testimonialsTrack = document.querySelector('.testimonials__track');
-    if (!testimonialsTrack) return;
-    
-    // Clone testimonials for seamless loop
-    const testimonials = testimonialsTrack.querySelectorAll('.testimonial__card');
-    testimonials.forEach(card => {
-        const clone = card.cloneNode(true);
-        testimonialsTrack.appendChild(clone);
-    });
-    
-    // Pause on hover
-    testimonialsTrack.addEventListener('mouseenter', () => {
-        testimonialsTrack.style.animationPlayState = 'paused';
-    });
-    
-    testimonialsTrack.addEventListener('mouseleave', () => {
-        testimonialsTrack.style.animationPlayState = 'running';
-    });
-    
-    // Touch support for mobile devices
-    let touchStartX = 0;
-    
-    testimonialsTrack.addEventListener('touchstart', (e) => {
-        touchStartX = e.changedTouches[0].screenX;
-        testimonialsTrack.style.animationPlayState = 'paused';
-    });
-    
-    testimonialsTrack.addEventListener('touchend', (e) => {
-        const touchEndX = e.changedTouches[0].screenX;
-        const swipeThreshold = 50;
-        
-        // Only resume if not a significant swipe
-        if (Math.abs(touchEndX - touchStartX) < swipeThreshold) {
-            setTimeout(() => {
-                testimonialsTrack.style.animationPlayState = 'running';
-            }, 2000);
-        }
-    });
-}
+
+
 
 // ==========================================================================
 // Preloader Functionality
@@ -718,3 +678,482 @@ function initPreloader() {
         }
     }, 3000);
 }
+
+
+
+
+// ==========================================================================
+// Testimonials Functionality - UPDATED with animated counters
+// ==========================================================================
+function initTestimonials() {
+    'use strict';
+    
+    // Counter animation for testimonial stats
+    const statNumbers = document.querySelectorAll('.trust-item__number');
+    if (!statNumbers.length) return;
+    
+    let statsAnimated = false;
+    
+    function animateStats() {
+        if (statsAnimated) return;
+        
+        const testimonialsSection = document.getElementById('testimonials');
+        if (!testimonialsSection) return;
+        
+        const sectionPosition = testimonialsSection.getBoundingClientRect().top;
+        const screenPosition = window.innerHeight / 1.3;
+        
+        if (sectionPosition < screenPosition) {
+            statsAnimated = true;
+            
+            statNumbers.forEach((stat, index) => {
+                const target = parseInt(stat.getAttribute('data-count'), 10);
+                const duration = 2000;
+                const increment = target / (duration / 16);
+                let current = 0;
+                
+                // Clear any existing content
+                stat.textContent = '0';
+                
+                setTimeout(() => {
+                    const timer = setInterval(() => {
+                        current += increment;
+                        if (current >= target) {
+                            clearInterval(timer);
+                            current = target;
+                        }
+                        
+                        // Format number based on whether it's integer or decimal
+                        if (Number.isInteger(target)) {
+                            stat.textContent = Math.floor(current);
+                        } else {
+                            stat.textContent = current.toFixed(1);
+                        }
+                    }, 16);
+                }, index * 300);
+            });
+        }
+    }
+    
+    // Use intersection observer for better performance
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                animateStats();
+                observer.unobserve(entry.target);
+            }
+        });
+    }, { 
+        threshold: 0.5,
+        rootMargin: '0px 0px -100px 0px'
+    });
+    
+    const testimonialsSection = document.getElementById('testimonials');
+    if (testimonialsSection) {
+        observer.observe(testimonialsSection);
+    }
+    
+    // Also trigger on scroll as backup
+    window.addEventListener('scroll', animateStats);
+}
+
+
+
+// ==========================================================================
+// Services Modal Functionality - UPDATED
+// ==========================================================================
+function initServicesModal() {
+    'use strict';
+    
+    const modal = document.getElementById('serviceModal');
+    const closeBtn = document.querySelector('.service-modal__close');
+    const closeBtnFooter = document.querySelector('.service-modal__close-btn');
+    const serviceCards = document.querySelectorAll('.service-card');
+    
+    if (!modal) return;
+    
+    const services = {
+        1: {
+            title: "Technical SEO",
+            price: "From $499",
+            icon: "fas fa-code",
+            description: "Comprehensive website audits and technical optimizations to improve search engine crawling and indexing. I ensure your website meets all technical requirements for optimal search engine performance.",
+            features: [
+                "Complete website technical audit",
+                "Crawlability and indexability optimization",
+                "Site architecture and internal linking",
+                "Page speed and performance optimization",
+                "Mobile-friendliness assessment",
+                "Structured data and schema markup",
+                "XML sitemap optimization",
+                "Robots.txt configuration"
+            ],
+            benefits: [
+                {title: "Better Crawling", desc: "Improved search engine crawling efficiency"},
+                {title: "Faster Indexing", desc: "Quick content discovery and indexing"},
+                {title: "Enhanced UX", desc: "Better user experience and engagement"},
+                {title: "Higher Rankings", desc: "Improved technical foundation for rankings"}
+            ],
+            process: [
+                "Initial comprehensive website audit",
+                "Technical issue identification and prioritization",
+                "Implementation of optimization recommendations",
+                "Continuous monitoring and adjustment"
+            ],
+            results: [
+                {value: "150%", label: "Crawl Efficiency"},
+                {value: "2.5x", label: "Indexing Speed"},
+                {value: "60%", label: "Page Speed"},
+                {value: "40%", label: "Organic Growth"}
+            ]
+        },
+        2: {
+            title: "Content SEO",
+            price: "From $399",
+            icon: "fas fa-edit",
+            description: "Strategic content optimization to improve rankings and drive targeted organic traffic. I create and optimize content that both users and search engines love.",
+            features: [
+                "Comprehensive keyword research and analysis",
+                "Content gap identification and strategy",
+                "On-page optimization and meta tags",
+                "Content creation and optimization",
+                "SEO-friendly content structure",
+                "Content performance tracking",
+                "Regular content updates",
+                "Competitor content analysis"
+            ],
+            benefits: [
+                {title: "Higher Rankings", desc: "Improved positions for target keywords"},
+                {title: "More Traffic", desc: "Increased qualified organic traffic"},
+                {title: "Better Engagement", desc: "Higher user engagement metrics"},
+                {title: "Increased Conversions", desc: "More leads and sales from content"}
+            ],
+            process: [
+                "Keyword research and content planning",
+                "Content creation and optimization",
+                "Implementation and publishing",
+                "Performance tracking and optimization"
+            ],
+            results: [
+                {value: "200%", label: "Organic Traffic"},
+                {value: "15+", label: "Top Rankings"},
+                {value: "50%", label: "Engagement Rate"},
+                {value: "35%", label: "Conversion Lift"}
+            ]
+        },
+        3: {
+            title: "Link Building",
+            price: "From $599",
+            icon: "fas fa-link",
+            description: "Strategic link acquisition to build domain authority and improve search rankings through quality backlinks from authoritative websites.",
+            features: [
+                "Competitor backlink analysis and research",
+                "Strategic outreach campaign development",
+                "Guest posting opportunities and placement",
+                "Content promotion and link acquisition",
+                "Link quality assessment and monitoring",
+                "Relationship building with publishers",
+                "Broken link building strategy",
+                "Link reclamation and recovery"
+            ],
+            benefits: [
+                {title: "Higher Authority", desc: "Increased domain authority and trust"},
+                {title: "Better Rankings", desc: "Improved search engine rankings"},
+                {title: "More Referrals", desc: "Increased referral traffic from quality sites"},
+                {title: "Brand Exposure", desc: "Enhanced online visibility and reputation"}
+            ],
+            process: [
+                "Competitor analysis and opportunity identification",
+                "Outreach strategy and relationship building",
+                "Content creation and placement",
+                "Link monitoring and performance tracking"
+            ],
+            results: [
+                {value: "45%", label: "Domain Authority"},
+                {value: "80+", label: "Quality Links"},
+                {value: "120%", label: "Referral Traffic"},
+                {value: "25%", label: "Ranking Improvement"}
+            ]
+        },
+        4: {
+            title: "Local SEO",
+            price: "From $349",
+            icon: "fas fa-map-marker-alt",
+            description: "Optimize your local presence to attract customers in your geographic area and dominate local search results.",
+            features: [
+                "Google My Business optimization and management",
+                "Local citation building and consistency audit",
+                "NAP (Name, Address, Phone) consistency",
+                "Local review management and generation",
+                "Local keyword research and optimization",
+                "Map pack optimization strategy",
+                "Local directory submissions",
+                "Local content creation and optimization"
+            ],
+            benefits: [
+                {title: "Local Visibility", desc: "Higher visibility in local search results"},
+                {title: "More Customers", desc: "Increased foot traffic and local customers"},
+                {title: "Phone Calls", desc: "More business inquiries and calls"},
+                {title: "Trust Building", desc: "Enhanced local reputation and trust"}
+            ],
+            process: [
+                "Local audit and citation cleanup",
+                "Google My Business optimization",
+                "Local content and review strategy",
+                "Ongoing local presence management"
+            ],
+            results: [
+                {value: "300%", label: "Map Views"},
+                {value: "95%", label: "Citation Accuracy"},
+                {value: "4.8★", label: "Average Rating"},
+                {value: "65%", label: "Local Traffic"}
+            ]
+        },
+        5: {
+            title: "E-commerce SEO",
+            price: "From $699",
+            icon: "fas fa-shopping-cart",
+            description: "Specialized SEO strategies for online stores to increase product visibility, drive sales, and maximize revenue from organic search.",
+            features: [
+                "E-commerce site architecture optimization",
+                "Product page SEO and optimization",
+                "Category page strategy and optimization",
+                "Product schema markup implementation",
+                "E-commerce analytics and tracking setup",
+                "Shopping feed optimization",
+                "Conversion rate optimization for SEO",
+                "Seasonal SEO strategy development"
+            ],
+            benefits: [
+                {title: "Product Visibility", desc: "Higher visibility for products in search"},
+                {title: "Increased Sales", desc: "More organic sales and revenue"},
+                {title: "Better UX", desc: "Improved shopping experience"},
+                {title: "Competitive Edge", desc: "Advantage over competitors in search"}
+            ],
+            process: [
+                "E-commerce site audit and analysis",
+                "Product and category optimization",
+                "Technical implementation and testing",
+                "Performance monitoring and optimization"
+            ],
+            results: [
+                {value: "250%", label: "Product Views"},
+                {value: "40%", label: "Organic Sales"},
+                {value: "3.2x", label: "ROI"},
+                {value: "50%", label: "Conversion Rate"}
+            ]
+        },
+        6: {
+            title: "SEO Analytics",
+            price: "From $299",
+            icon: "fas fa-chart-bar",
+            description: "Comprehensive tracking, reporting, and analysis to measure SEO performance, ROI, and identify optimization opportunities.",
+            features: [
+                "Google Analytics and Search Console setup",
+                "Custom dashboard creation and configuration",
+                "ROI tracking and performance measurement",
+                "Regular performance reporting and analysis",
+                "Competitor analysis and benchmarking",
+                "Keyword ranking tracking and analysis",
+                "Conversion tracking and attribution",
+                "Custom metric development and tracking"
+            ],
+            benefits: [
+                {title: "Clear Insights", desc: "Understand what's working and why"},
+                {title: "Measurable ROI", desc: "Track and demonstrate SEO value"},
+                {title: "Data-Driven Decisions", desc: "Make informed optimization choices"},
+                {title: "Continuous Improvement", desc: "Identify new opportunities regularly"}
+            ],
+            process: [
+                "Analytics audit and setup",
+                "Custom reporting configuration",
+                "Regular performance analysis",
+                "Strategic recommendations based on data"
+            ],
+            results: [
+                {value: "100%", label: "Tracking Accuracy"},
+                {value: "Clear", label: "ROI Measurement"},
+                {value: "Data-Driven", label: "Decisions"},
+                {value: "Continuous", label: "Optimization"}
+            ]
+        }
+    };
+
+    function openModal(serviceId) {
+        const service = services[serviceId];
+        if (!service) return;
+        
+        // Set modal content
+        document.getElementById('serviceModalTitle').textContent = service.title;
+        document.getElementById('serviceModalPrice').textContent = service.price;
+        document.getElementById('serviceModalIcon').innerHTML = `<i class="${service.icon}"></i>`;
+        document.getElementById('serviceModalDescription').textContent = service.description;
+        
+        // Populate features
+        populateList('serviceModalFeatures', service.features);
+        
+        // Populate benefits
+        populateBenefits(service.benefits);
+        
+        // Populate process
+        populateProcess(service.process);
+        
+        // Populate results
+        populateResults(service.results);
+        
+        modal.classList.add('service-modal--active');
+        document.body.style.overflow = 'hidden';
+        
+        // Focus trap for accessibility
+        trapFocus(modal);
+    }
+    
+    function populateList(elementId, items) {
+        const listElement = document.getElementById(elementId);
+        if (!listElement) return;
+        
+        listElement.innerHTML = '';
+        items.forEach(item => {
+            const li = document.createElement('li');
+            li.textContent = item;
+            listElement.appendChild(li);
+        });
+    }
+    
+    function populateBenefits(benefits) {
+        const container = document.getElementById('serviceModalBenefits');
+        if (!container) return;
+        
+        container.innerHTML = '';
+        benefits.forEach(benefit => {
+            const div = document.createElement('div');
+            div.className = 'benefit-item';
+            div.innerHTML = `<strong>${benefit.title}</strong><span>${benefit.desc}</span>`;
+            container.appendChild(div);
+        });
+    }
+    
+    function populateProcess(steps) {
+        const container = document.getElementById('serviceModalProcess');
+        if (!container) return;
+        
+        container.innerHTML = '';
+        steps.forEach((step, index) => {
+            const div = document.createElement('div');
+            div.className = 'process-step';
+            div.innerHTML = `
+                <div class="process-step__number">${index + 1}</div>
+                <div class="process-step__text">${step}</div>
+            `;
+            container.appendChild(div);
+        });
+    }
+    
+    function populateResults(results) {
+        const container = document.getElementById('serviceModalResults');
+        if (!container) return;
+        
+        container.innerHTML = '';
+        results.forEach(result => {
+            const div = document.createElement('div');
+            div.className = 'result-item';
+            div.innerHTML = `
+                <span class="result-item__value">${result.value}</span>
+                <span class="result-item__label">${result.label}</span>
+            `;
+            container.appendChild(div);
+        });
+    }
+    
+    function closeModal() {
+        modal.classList.remove('service-modal--active');
+        document.body.style.overflow = 'auto';
+    }
+    
+    // Add click events to service cards
+    serviceCards.forEach(card => {
+        const ctaButton = card.querySelector('.service-card__cta');
+        
+        // Click on card
+        card.addEventListener('click', function(e) {
+            // Don't trigger if clicking the CTA button (it has its own handler)
+            if (e.target !== ctaButton && !ctaButton.contains(e.target)) {
+                const serviceId = this.getAttribute('data-service');
+                openModal(serviceId);
+            }
+        });
+        
+        // Click on CTA button
+        ctaButton.addEventListener('click', function(e) {
+            e.stopPropagation(); // Prevent card click event
+            const serviceId = card.getAttribute('data-service');
+            openModal(serviceId);
+        });
+        
+        // Keyboard support
+        card.addEventListener('keydown', function(e) {
+            if (e.key === 'Enter' || e.key === ' ') {
+                e.preventDefault();
+                const serviceId = this.getAttribute('data-service');
+                openModal(serviceId);
+            }
+        });
+        
+        ctaButton.addEventListener('keydown', function(e) {
+            if (e.key === 'Enter' || e.key === ' ') {
+                e.preventDefault();
+                const serviceId = card.getAttribute('data-service');
+                openModal(serviceId);
+            }
+        });
+    });
+    
+    // Close modal events
+    if (closeBtn) {
+        closeBtn.addEventListener('click', closeModal);
+    }
+    
+    if (closeBtnFooter) {
+        closeBtnFooter.addEventListener('click', closeModal);
+    }
+    
+    modal.addEventListener('click', function(e) {
+        if (e.target === modal || e.target.classList.contains('service-modal__overlay')) {
+            closeModal();
+        }
+    });
+    
+    document.addEventListener('keydown', function(e) {
+        if (e.key === 'Escape' && modal.classList.contains('service-modal--active')) {
+            closeModal();
+        }
+    });
+    
+    // Focus trap function for accessibility
+    function trapFocus(element) {
+        const focusableElements = element.querySelectorAll(
+            'button, [href], input, select, textarea, [tabindex]:not([tabindex="-1"])'
+        );
+        const firstElement = focusableElements[0];
+        const lastElement = focusableElements[focusableElements.length - 1];
+        
+        element.addEventListener('keydown', function(e) {
+            if (e.key === 'Tab') {
+                if (e.shiftKey) {
+                    if (document.activeElement === firstElement) {
+                        e.preventDefault();
+                        lastElement.focus();
+                    }
+                } else {
+                    if (document.activeElement === lastElement) {
+                        e.preventDefault();
+                        firstElement.focus();
+                    }
+                }
+            }
+        });
+        
+        firstElement.focus();
+    }
+}
+

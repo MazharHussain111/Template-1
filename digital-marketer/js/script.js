@@ -14,6 +14,7 @@ document.addEventListener('DOMContentLoaded', function() {
     initHeaderScrollBehavior();
     initProjectModal();
     initTestimonialsScroll();
+    initServicesFAQ()
 });
 
 // ==========================================================================
@@ -425,9 +426,8 @@ function initHeaderScrollBehavior() {
     updateHeader(); // Initial call
 }
 
-
 // ==========================================================================
-// Project Modal Functionality - ENHANCED
+// Project Modal Functionality
 // ==========================================================================
 function initProjectModal() {
     'use strict';
@@ -717,4 +717,51 @@ function initPreloader() {
             hidePreloader();
         }
     }, 3000);
+}
+
+//  services functionality
+function initServicesFAQ() {
+    'use strict';
+    
+    const serviceFAQs = document.querySelectorAll('.service-faq');
+    if (!serviceFAQs.length) return;
+    
+    serviceFAQs.forEach(faq => {
+        const header = faq.querySelector('.service-faq__header');
+        const content = faq.querySelector('.service-faq__content');
+        
+        header.addEventListener('click', function() {
+            const isActive = faq.classList.contains('active');
+            
+            // Close all other FAQs
+            serviceFAQs.forEach(otherFaq => {
+                if (otherFaq !== faq) {
+                    otherFaq.classList.remove('active');
+                }
+            });
+            
+            // Toggle current FAQ
+            faq.classList.toggle('active', !isActive);
+            
+            // Update ARIA attributes for accessibility
+            const toggle = header.querySelector('.service-faq__toggle');
+            if (faq.classList.contains('active')) {
+                header.setAttribute('aria-expanded', 'true');
+                toggle.setAttribute('aria-label', 'Collapse service details');
+            } else {
+                header.setAttribute('aria-expanded', 'false');
+                toggle.setAttribute('aria-label', 'Expand service details');
+            }
+        });
+        
+        // Keyboard navigation
+        header.addEventListener('keydown', function(e) {
+            if (e.key === 'Enter' || e.key === ' ') {
+                e.preventDefault();
+                header.click();
+            }
+        });
+    });
+    
+  
 }
