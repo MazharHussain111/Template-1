@@ -3,19 +3,22 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Software developer">
-    <title>Ahmad - Software Developer</title>
+    <meta name="description" content="Professional content writer">
+    <title>Ahmad - Content Writer Portfolio</title>
+
 <!--  fonts -->
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Playfair+Display:wght@400;600;700&display=swap" rel="stylesheet">
 
 <!-- Font Awesome with better loading -->
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" media="print" onload="this.media='all'">
-    <link rel="stylesheet" href="software-developer/css/style.css">
+
+<script src="software-engineer/js/theme-flicker.js"></script>
+    <link rel="stylesheet" href="software-engineer/css/style.css">
 </head>
 <body>
     
     <div class="container">
-        <!-- Bubble Preloader -->
+                <!-- Bubble Preloader -->
 <div id="preloader">
   <div class="bubble"></div>
   <div class="bubble"></div>
@@ -24,11 +27,13 @@
   <div class="bubble"></div>
 </div>
 
+
+
 <!--  Header -->
 <header class="header">
     <nav class="nav">
         <a href="index1.html" class="logo">
-            <img src="images/profile.pngu" alt="PenCraft Logo" class="logo__img">
+            <img src="images/profile1.png" alt="PenCraft Logo" class="logo__img">
             PenCraft<span class="logo__dot">.</span>
         </a>
         <div class="nav__links">
@@ -51,83 +56,125 @@
 </header>
 
 
-
-<!--Hero Section -->
+<!-- Hero Section -->
 <section id="hero" class="hero">
-    <div class="hero__content">
-        <!-- Left side - Text content -->
-        <div class="hero__text animate-on-scroll" data-animation="fadeInUp">
-            <div class="hero__badge">
-                <span>Full Stack Developer</span>
-            </div>
-            <h1 class="hero__title">Building Digital Solutions That <span class="text-accent">Scale & Innovate</span></h1>
-            <p class="hero__description">I'm Ahmad, a passionate software developer with expertise in creating robust, scalable applications. I specialize in modern web technologies and enjoy solving complex problems through clean, efficient code.</p>
-            
-            <!-- Tech Stack -->
-            <div class="hero__tech-stack">
-                <h3 class="tech-stack__title">Tech Stack</h3>
-                <div class="tech-stack__items">
-                    <div class="tech-stack__item">
-                        <i class="fab fa-js-square"></i>
-                        <span>JavaScript</span>
-                    </div>
-                    <div class="tech-stack__item">
-                        <i class="fab fa-react"></i>
-                        <span>React</span>
-                    </div>
-                    <div class="tech-stack__item">
-                        <i class="fab fa-node-js"></i>
-                        <span>Node.js</span>
-                    </div>
-                    <div class="tech-stack__item">
-                        <i class="fas fa-database"></i>
-                        <span>MongoDB</span>
-                    </div>
-                </div>
-            </div>
-            
-            <!-- CTA Buttons -->
-            <div class="hero__cta">
-                <a href="#projects" class="btn btn--primary btn--large">
-                    <i class="fas fa-code"></i> View Projects
-                </a>
-                <a href="#contact" class="btn btn--secondary btn--large">
-                    <i class="fas fa-paper-plane"></i> Get In Touch
-                </a>
-            </div>
+    <div class="hero__grid-background"></div>
+    <div class="hero__blob-background"></div>
+    
+    <!-- Floating Software Developer Skills -->
+    <div class="hero__floating-skills">
+        <div class="floating-skill floating-skill--1" data-skill="JavaScript">
+            <i class="fab fa-js-square"></i>
         </div>
-        
-        <!-- Right side - Image -->
-        <div class="hero__image animate-on-scroll" data-animation="fadeInRight">
-            <div class="hero__image-container">
-                <div class="hero__image-wrapper">
-                    <img src="images/profile-1.jpg" alt="Ahmad - Software Developer" class="hero__img">
-                    <div class="hero__image-overlay"></div>
-                </div>
-                
-                <!-- Floating elements -->
-                <div class="floating-element floating-element--1">
-                    <i class="fas fa-code"></i>
-                    <span>Clean Code</span>
-                </div>
-                <div class="floating-element floating-element--2">
-                    <i class="fas fa-mobile-alt"></i>
-                    <span>Responsive</span>
-                </div>
-                <div class="floating-element floating-element--3">
-                    <i class="fas fa-rocket"></i>
-                    <span>Fast & Scalable</span>
-                </div>
-            </div>
+        <div class="floating-skill floating-skill--2" data-skill="React">
+            <i class="fab fa-react"></i>
+        </div>
+        <div class="floating-skill floating-skill--3" data-skill="Python">
+            <i class="fab fa-python"></i>
+        </div>
+        <div class="floating-skill floating-skill--4" data-skill="Node.js">
+            <i class="fab fa-node-js"></i>
+        </div>
+        <div class="floating-skill floating-skill--5" data-skill="Database">
+            <i class="fas fa-database"></i>
+        </div>
+        <div class="floating-skill floating-skill--6" data-skill="Git">
+            <i class="fab fa-git-alt"></i>
+        </div>
+        <div class="floating-skill floating-skill--7" data-skill="HTML5">
+            <i class="fab fa-html5"></i>
+        </div>
+        <div class="floating-skill floating-skill--8" data-skill="CSS3">
+            <i class="fab fa-css3-alt"></i>
+        </div>
+        <div class="floating-skill floating-skill--9" data-skill="Cloud">
+            <i class="fas fa-cloud"></i>
+        </div>
+        <div class="floating-skill floating-skill--10" data-skill="Mobile">
+            <i class="fas fa-mobile-alt"></i>
         </div>
     </div>
     
-    <!-- Scroll indicator -->
-    <div class="scroll-indicator">
-        <div class="scroll-indicator__line"></div>
-        <span>Scroll to explore</span>
+    <div class="container">
+        <div class="hero__content">
+            <!-- Circular Image with Blob Background -->
+            <div class="hero__image-container">
+                <div class="hero__image-wrapper animate-on-scroll" data-animation="zoomIn" data-delay="0.3s">
+                    <div class="hero__image-blob-container">
+                        <div class="hero__image-blob"></div>
+                        <div class="hero__image-frame">
+                            <div class="hero__image-inner">
+                                <img src="images/profile1.png" alt="Ahmad - Professional Software Developer" class="hero__profile-image">
+                                <div class="hero__image-overlay">
+                                    <div class="hero__image-badge">
+                                        <i class="fas fa-code"></i>
+                                        <span>Full Stack Developer</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="hero__image-shine"></div>
+                    </div>
+                    
+                    <!-- Social Icons Below Image -->
+                    <div class="hero__social-links">
+                        <a href="#" class="social-link" aria-label="GitHub">
+                            <i class="fab fa-github"></i>
+                        </a>
+                        <a href="#" class="social-link" aria-label="LinkedIn">
+                            <i class="fab fa-linkedin-in"></i>
+                        </a>
+                        <a href="#" class="social-link" aria-label="Twitter">
+                            <i class="fab fa-twitter"></i>
+                        </a>
+                        <a href="#" class="social-link" aria-label="Stack Overflow">
+                            <i class="fab fa-stack-overflow"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Content Below Image -->
+            <div class="hero__text">
+                <h1 class="hero__title animate-on-scroll" data-animation="fadeInUp">
+                    Crafting <span class="text-accent">Digital Solutions</span> That Scale
+                </h1>
+                <p class="hero__description animate-on-scroll" data-animation="fadeInUp" data-delay="0.1s">
+                    Full Stack Developer specializing in modern web technologies, cloud architecture, 
+                    and scalable applications that drive business growth and user engagement.
+                </p>
+                <div class="hero__buttons animate-on-scroll" data-animation="fadeInUp" data-delay="0.2s">
+                    <a href="content-writer/projects.html" class="btn btn--primary">
+                        <i class="fas fa-laptop-code"></i> View Projects
+                    </a>
+                    <a href="content-writer/contact.html" class="btn btn--secondary">
+                        <i class="fas fa-paper-plane"></i> Get In Touch
+                    </a>
+                </div>
+                
+                <!-- Quick Stats -->
+                <div class="hero__stats animate-on-scroll" data-animation="fadeInUp" data-delay="0.3s">
+                    <div class="hero__stat">
+                        <div class="hero__stat-number" data-count="50">0</div>
+                        <div class="hero__stat-label">Projects</div>
+                    </div>
+                    <div class="hero__stat">
+                        <div class="hero__stat-number" data-count="5">0</div>
+                        <div class="hero__stat-label">Years Experience</div>
+                    </div>
+                    <div class="hero__stat">
+                        <div class="hero__stat-number" data-count="100">0</div>
+                        <div class="hero__stat-label">Client Satisfaction</div>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
 </section>
+
+
+
+
 <!-- About Section -->
 <section id="about" class="section about">
     <div class="about__container">
@@ -142,24 +189,7 @@
                 <p>I'm Ahmad, a passionate software developer with over 5 years of experience creating robust, scalable applications that solve real-world problems. I specialize in full-stack development and love turning complex challenges into elegant solutions.</p>
             </div>
             
-            <!-- Stats Section -->
-            <div class="about__stats">
-                <div class="stat__card animate-on-scroll" data-animation="zoomIn" data-delay="0.1s">
-                    <span class="stat__number" data-count="50">0</span>
-                    <span class="stat__label">Projects Completed</span>
-                </div>
-                
-                <div class="stat__card animate-on-scroll" data-animation="zoomIn" data-delay="0.2s">
-                    <span class="stat__number" data-count="95">0</span>
-                    <span class="stat__label">Client Satisfaction</span>
-                </div>
-                
-                <div class="stat__card animate-on-scroll" data-animation="zoomIn" data-delay="0.3s">
-                    <span class="stat__number" data-count="5">0</span>
-                    <span class="stat__label">Years Experience</span>
-                </div>
-            </div>
-            
+         
             <!-- Process Section -->
             <div class="about__process">
                 <h3 class="process__title animate-on-scroll" data-animation="fadeInUp">My Development Process</h3>
@@ -247,171 +277,54 @@
     </div>
 </section>
 
-
-
-
-<!-- Advanced Services Section -->
-<section id="services" class="section services">
-    <div class="section__header animate-on-scroll" data-animation="fadeInUp">
-        <h2 class="section__title">Professional Services</h2>
-        <p class="section__description">Comprehensive software development services to bring your digital vision to life</p>
-    </div>
-    
-    <div class="services__grid">
-        <!-- Service 1 - Web Development -->
-        <div class="service-card animate-on-scroll" data-animation="fadeInUp" data-delay="0.1s">
-            <div class="service-card__header">
-                <div class="service-card__icon">
-                    <i class="fas fa-code"></i>
-                </div>
-                <div class="service-card__badge">Popular</div>
+        <!-- Services Section -->
+        <section id="services" class="section services">
+            <div class="section__header animate-on-scroll" data-animation="fadeInUp">
+                <h2 class="section__title">My Services</h2>
+                <p class="section__description">Comprehensive content solutions tailored to your brand's needs</p>
             </div>
-            <div class="service-card__content">
-                <h3 class="service-card__title">Web Application Development</h3>
-                <div class="service-card__features">
-                    <div class="feature-item">
-                        <i class="fas fa-check-circle"></i>
-                        <span>Responsive Design</span>
-                    </div>
-                    <div class="feature-item">
-                        <i class="fas fa-check-circle"></i>
-                        <span>Progressive Web Apps</span>
-                    </div>
-                    <div class="feature-item">
-                        <i class="fas fa-check-circle"></i>
-                        <span>API Integration</span>
-                    </div>
-                    <div class="feature-item">
-                        <i class="fas fa-check-circle"></i>
-                        <span>Performance Optimization</span>
-                    </div>
-                </div>
-                <div class="service-card__footer">
-                    <div class="service-card__price">
-                        <span class="price">Starting at $2,500</span>
-                        <span class="duration">/ project</span>
-                    </div>
-                    <a href="#contact" class="btn btn--primary btn--small">
-                        <i class="fas fa-rocket"></i> Get Started
-                    </a>
-                </div>
-            </div>
-        </div>
-        
-        <!-- Service 2 - Mobile Development -->
-        <div class="service-card service-card--featured animate-on-scroll" data-animation="fadeInUp" data-delay="0.2s">
-            <div class="service-card__header">
-                <div class="service-card__icon">
-                    <i class="fas fa-mobile-alt"></i>
-                </div>
-                <div class="service-card__badge">Featured</div>
-            </div>
-            <div class="service-card__content">
-                <h3 class="service-card__title">Mobile App Development</h3>
-
-                <div class="service-card__features">
-                    <div class="feature-item">
-                        <i class="fas fa-check-circle"></i>
-                        <span>iOS & Android</span>
-                    </div>
-                    <div class="feature-item">
-                        <i class="fas fa-check-circle"></i>
-                        <span>React Native</span>
-                    </div>
-                    <div class="feature-item">
-                        <i class="fas fa-check-circle"></i>
-                        <span>Offline Capability</span>
-                    </div>
-                    <div class="feature-item">
-                        <i class="fas fa-check-circle"></i>
-                        <span>App Store Deployment</span>
-                    </div>
-                </div>
-                <div class="service-card__footer">
-                    <div class="service-card__price">
-                        <span class="price">Starting at $4,500</span>
-                        <span class="duration">/ project</span>
-                    </div>
-                    <a href="#contact" class="btn btn--primary btn--small">
-                        <i class="fas fa-rocket"></i> Get Started
-                    </a>
-                </div>
-            </div>
-        </div>
-        
-        <!-- Service 3 - Backend Development -->
-        <div class="service-card animate-on-scroll" data-animation="fadeInUp" data-delay="0.3s">
-            <div class="service-card__header">
-                <div class="service-card__icon">
-                    <i class="fas fa-server"></i>
-                </div>
-                <div class="service-card__badge">Scalable</div>
-            </div>
-            <div class="service-card__content">
-                <h3 class="service-card__title">Backend & API Development</h3>
             
-                <div class="service-card__features">
-                    <div class="feature-item">
-                        <i class="fas fa-check-circle"></i>
-                        <span>Node.js & Express</span>
+            <div class="services__grid">
+                <!-- Blog Writing Card -->
+                <div class="service-card animate-on-scroll" data-animation="fadeInUp" data-delay="0.1s">
+                    <div class="service-card__icon">
+                        <i class="fas fa-blog"></i>
                     </div>
-                    <div class="feature-item">
-                        <i class="fas fa-check-circle"></i>
-                        <span>Database Design</span>
-                    </div>
-                    <div class="feature-item">
-                        <i class="fas fa-check-circle"></i>
-                        <span>Authentication Systems</span>
-                    </div>
-                    <div class="feature-item">
-                        <i class="fas fa-check-circle"></i>
-                        <span>Cloud Deployment</span>
-                    </div>
+                    <h3 class="service-card__title">Blog Writing</h3>
+                    <ul class="service-card__features">
+                        <li class="service-card__feature"><i class="fas fa-check"></i> Keyword research & optimization</li>
+                        <li class="service-card__feature"><i class="fas fa-check"></i> Topic ideation & strategy</li>
+                        <li class="service-card__feature"><i class="fas fa-check"></i> Content formatting for readability</li>
+                    </ul>
                 </div>
-                <div class="service-card__footer">
-                    <div class="service-card__price">
-                        <span class="price">Starting at $3,200</span>
-                        <span class="duration">/ project</span>
+                
+                <!-- Web Content Card -->
+                <div class="service-card animate-on-scroll" data-animation="fadeInUp" data-delay="0.2s">
+                    <div class="service-card__icon">
+                        <i class="fas fa-file-alt"></i>
                     </div>
-                    <a href="#contact" class="btn btn--primary btn--small">
-                        <i class="fas fa-rocket"></i> Get Started
-                    </a>
+                    <h3 class="service-card__title">Web Content</h3>
+                    <ul class="service-card__features">
+                        <li class="service-card__feature"><i class="fas fa-check"></i> Homepage & landing pages</li>
+                        <li class="service-card__feature"><i class="fas fa-check"></i> About us & service pages</li>
+                        <li class="service-card__feature"><i class="fas fa-check"></i> Product descriptions</li>
+                    </ul>
                 </div>
-            </div>
-        </div>
-        
-       
-    </div>
-    
-    <!-- Advanced CTA Section -->
-    <div class="services__cta animate-on-scroll" data-animation="fadeInUp" data-delay="0.5s">
-        <div class="cta-card">
-            <div class="cta-card__content">
-                <div class="cta-card__icon">
-                    <i class="fas fa-lightbulb"></i>
-                </div>
-                <div class="cta-card__text">
-                    <h3>Have a Custom Project in Mind?</h3>
-                    <p>Let's discuss your specific requirements and create a tailored solution that exceeds your expectations.</p>
-                </div>
-                <div class="cta-card__actions">
-                    <a href="#contact" class="btn btn--primary btn--large">
-                        <i class="fas fa-calendar-check"></i>View All Services
-                    </a>
-                    <a href="#projects" class="btn btn--outline btn--large">
-                        <i class="fas fa-eye"></i> View Portfolio
-                    </a>
+                
+                <!-- Brand Storytelling Card -->
+                <div class="service-card service-card--special animate-on-scroll" data-animation="zoomIn" data-delay="0.3s">
+                    <div class="service-card__icon">
+                        <i class="fas fa-book-open"></i>
+                    </div>
+                    <h3 class="service-card__title">Brand Storytelling</h3>
+                    <ul class="service-card__features">
+                        <li class="service-card__feature"><i class="fas fa-check"></i> Brand voice development</li>
+                        <li class="service-card__feature"><i class="fas fa-check"></i> Company story crafting</li>
+                        <li class="service-card__feature"><i class="fas fa-check"></i> Case studies & testimonials</li>
+                    </ul>
                 </div>
             </div>
-            <div class="cta-card__decoration">
-                <div class="floating-shape shape-1"></div>
-                <div class="floating-shape shape-2"></div>
-                <div class="floating-shape shape-3"></div>
-            </div>
-        </div>
-    </div>
-</section>
-
+        </section>
 
 <!-- Resume Section - New Design -->
 <section id="resume" class="section resume">
@@ -614,100 +527,77 @@
 
 
 
-<!-- ==========================================================================
-   Projects Section
-   ========================================================================== -->
+
+
+
+<!-- Projects Section -->
 <section id="projects" class="section projects">
     <div class="section__header animate-on-scroll" data-animation="fadeInUp">
-        <h2 class="section__title">My Projects</h2>
-        <p class="section__description">A showcase of my recent software development work</p>
+        <h2 class="section__title">Featured Projects</h2>
+        <p class="section__description">A selection of my recent work across various industries</p>
     </div>
     
-    <!-- Projects Filter -->
-    <div class="projects__filter animate-on-scroll" data-animation="fadeInUp" data-delay="0.1s">
-        <button class="filter__btn filter__btn--active" data-filter="all">All Projects</button>
-        <button class="filter__btn" data-filter="web">Web Apps</button>
-        <button class="filter__btn" data-filter="mobile">Mobile Apps</button>
-        <button class="filter__btn" data-filter="api">API Development</button>
-    </div>
-    
-    <!-- Projects Grid -->
     <div class="projects__grid">
-        <!-- Project 1 - E-commerce Platform -->
-        <div class="project-card animate-on-scroll" data-animation="fadeInUp" data-delay="0.2s" data-category="web" data-project="1">
+        <!-- Project 1 -->
+        <div class="project-card animate-on-scroll" data-animation="fadeInUp" data-delay="0.1s" data-project="1">
             <div class="project-card__image">
-                <div class="square-image-container">
-                    <img src="images/400400.png" alt="E-commerce Platform" class="project-image square-image">
-                </div>
+                <img src="images/project1.png" alt="Tech Blog Series" class="project-image">
                 <div class="project-card__overlay">
                     <div class="project-card__preview">
                         <i class="fas fa-eye"></i>
                         <span>View Details</span>
                     </div>
-                </div>
-                <div class="project-card__title-overlay">
-                    <h3>E-commerce Platform</h3>
-                    <p>Full-stack React & Node.js application</p>
                 </div>
             </div>
         </div>
         
-        <!-- Project 2 - Task Management App -->
-        <div class="project-card animate-on-scroll" data-animation="fadeInUp" data-delay="0.3s" data-category="mobile" data-project="2">
+        <!-- Project 2 -->
+        <div class="project-card animate-on-scroll" data-animation="fadeInUp" data-delay="0.2s" data-project="2">
             <div class="project-card__image">
-                <div class="square-image-container">
-                    <img src="images/400400.png" alt="Task Management App" class="project-image square-image">
-                </div>
+                <img src="images/project2.png" alt="E-commerce Website Content" class="project-image">
                 <div class="project-card__overlay">
                     <div class="project-card__preview">
                         <i class="fas fa-eye"></i>
                         <span>View Details</span>
                     </div>
-                </div>
-                <div class="project-card__title-overlay">
-                    <h3>Task Management App</h3>
-                    <p>React Native cross-platform application</p>
                 </div>
             </div>
         </div>
         
-        <!-- Project 3 - Weather API -->
-        <div class="project-card animate-on-scroll" data-animation="fadeInUp" data-delay="0.4s" data-category="api" data-project="3">
+        <!-- Project 3 -->
+        <div class="project-card animate-on-scroll" data-animation="fadeInUp" data-delay="0.3s" data-project="3">
             <div class="project-card__image">
-                <div class="square-image-container">
-                    <img src="images/400400.png" alt="Weather API Service" class="project-image square-image">
-                </div>
+                <img src="images/project1.png" alt="Brand Storytelling Campaign" class="project-image">
                 <div class="project-card__overlay">
                     <div class="project-card__preview">
                         <i class="fas fa-eye"></i>
                         <span>View Details</span>
                     </div>
-                </div>
-                <div class="project-card__title-overlay">
-                    <h3>Weather API Service</h3>
-                    <p>RESTful API with real-time data</p>
                 </div>
             </div>
         </div>
         
-        <!-- Project 4 - Portfolio Website -->
-        <div class="project-card animate-on-scroll" data-animation="fadeInUp" data-delay="0.5s" data-category="web" data-project="4">
+        <!-- Project 4 -->
+        <div class="project-card animate-on-scroll" data-animation="fadeInUp" data-delay="0.4s" data-project="4">
             <div class="project-card__image">
-                <div class="square-image-container">
-                    <img src="images/400400.png" alt="Portfolio Website" class="project-image square-image">
-                </div>
+                <img src="images/project2.png" alt="Social Media Campaign" class="project-image">
                 <div class="project-card__overlay">
                     <div class="project-card__preview">
                         <i class="fas fa-eye"></i>
                         <span>View Details</span>
                     </div>
                 </div>
-                <div class="project-card__title-overlay">
-                    <h3>Portfolio Website</h3>
-                    <p>Responsive design with animations</p>
-                </div>
             </div>
         </div>
+        
+
+
+    </div>
+    
+    <div class="projects__cta animate-on-scroll" data-animation="fadeInUp" data-delay="0.7s">
+        <a href="content-writer/projects.html" class="btn btn--primary">
+            <i class="fas fa-book-open"></i> View All Projects
+        </a>
     </div>
 </section>
 
@@ -719,41 +609,22 @@
             <i class="fas fa-times"></i>
         </button>
         
-
-        
         <div class="project-modal__details">
             <h2 class="project-modal__title" id="modalTitle"></h2>
             <p class="project-modal__category" id="modalCategory"></p>
             <div class="project-modal__description" id="modalDescription"></div>
-            
-            <div class="project-modal__tech-stack">
-                <h3>Tech Stack</h3>
-                <div class="tech-stack__items" id="modalTechStack"></div>
-            </div>
-            
             <div class="project-modal__features">
                 <h3>Key Features</h3>
                 <ul id="modalFeatures"></ul>
             </div>
-            
             <div class="project-modal__results">
                 <h3>Results Achieved</h3>
                 <ul id="modalResults"></ul>
             </div>
-            
-            <div class="project-modal__actions">
-                <a href="#" class="btn btn--primary" id="modalLiveLink" target="_blank">
-                    <i class="fas fa-external-link-alt"></i> Live Demo
-                </a>
-                <a href="#" class="btn btn--secondary" id="modalCodeLink" target="_blank">
-                    <i class="fab fa-github"></i> View Code
-                </a>
-            </div>
         </div>
     </div>
 </div>
-
-
+ 
 
 
 
@@ -1055,6 +926,9 @@
 
 
 
+
+
+
 <!-- ==========================================================================
 Contact Section
    ========================================================================== -->
@@ -1183,7 +1057,7 @@ Contact Section
                 </div>
                 
                 <div class="form__footer">
-                    <button type="submit" class="btn btn--submit">
+                    <button type="submit" class="btn btn--primary">
                         <i class="fas fa-paper-plane"></i> Send Message
                     </button>
                     
@@ -1202,7 +1076,7 @@ Contact Section
     <div class="footer__content">
         <div class="footer__logo">
             <a href="index1.html" class="logo">
-                <img src="images/profile.png" alt="PenCraft Logo" class="logo__img">
+                <img src="images/profile2.png" alt="PenCraft Logo" class="logo__img">
                 PenCraft<span class="logo__dot">.</span>
             </a>
         </div>
@@ -1225,6 +1099,6 @@ Contact Section
 </footer>
 
 
-    <script src="software-developer/js/script.js"></script>
+    <script src="software-engineer/js/script.js"></script>
 </body>
 </html>

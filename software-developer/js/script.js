@@ -69,6 +69,7 @@ function initSmoothScrolling() {
     });
 }
 
+
 // ==========================================================================
 // General Animations for Elements
 // ==========================================================================
@@ -763,6 +764,7 @@ function initProjectModal() {
         }
     });
 }
+
 
 // Enhanced Testimonials Auto Scroll Functionality
 function initTestimonialsScroll() {

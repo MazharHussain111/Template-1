@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta name="description" content="Professional content writer">
+    <title>Content Writer Portfolio</title>
+<!--  fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Playfair+Display:wght@400;600;700&display=swap" rel="stylesheet">
+
+<!-- Font Awesome with better loading -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" media="print" onload="this.media='all'">
+<script src="js/theme-flicker.js"></script>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+                    <!-- Bubble Preloader -->
+<div id="preloader">
+  <div class="bubble"></div>
+  <div class="bubble"></div>
+  <div class="bubble"></div>
+  <div class="bubble"></div>
+  <div class="bubble"></div>
+</div>
+
+   
+    
+    <div class="container">
+<!--  Header -->
+<header class="header">
+    <nav class="nav">
+        <a href="index1.html" class="logo">
+            <img src="../images/profile.png" alt="PenCraft Logo" class="logo__img">
+            PenCraft<span class="logo__dot">.</span>
+        </a>
+        <div class="nav__links">
+            <a href="../index1.html" class="nav__link">Home</a>
+            <a href="../content-writer/about.html" class="nav__link">About</a>
+            <a href="../content-writer/services.html" class="nav__link">Services</a>
+            <a href="../content-writer/resume.html" class="nav__link">Resume</a>
+            <a href="../content-writer/projects.html" class="nav__link">Projects</a>
+            <a href="../content-writer/contact.html" class="nav__link">Contact</a>
+        </div>
+        <div class="nav__actions">
+            <button id="themeToggler" class="nav__action" aria-label="Toggle theme">
+                <i class="fas fa-moon"></i>
+            </button>
+            <div class="mobile-menu-toggle">
+                <i class="fas fa-bars"></i>
+            </div>
+        </div>
+    </nav>
+</header>
+<!--  Banner Section -->
+<section class="banner">
+    <div class="banner__decoration">
+        <div class="banner__circle banner__circle--1"></div>
+        <div class="banner__circle banner__circle--2"></div>
+        <div class="banner__dot banner__dot--1"></div>
+        <div class="banner__dot banner__dot--2"></div>
+    </div>
+    
+    <div class="banner__content">
+        <div class="breadcrumb animate-on-scroll" data-animation="fadeInUp">
+            <a href="../index1.html" class="breadcrumb__link">
+                <i class="fas fa-home"></i> Home
+            </a>
+            <span class="breadcrumb__separator">/</span>
+            <span class="breadcrumb__current">Contact</span>
+        </div>
+        
+        <h1 class="banner__title animate-on-scroll" data-animation="fadeInUp" data-delay="0.1s">Contact</h1>
+        <p class="banner__description animate-on-scroll" data-animation="fadeInUp" data-delay="0.2s">You can discuess any project or other </p>
+    </div>
+</section>
+
+
+
+
+   
+
+<!-- Contact Section -->
+<section id="contact" class="section contact">
+    <div class="section__header animate-on-scroll" data-animation="fadeInUp">
+        <h2 class="section__title">Let's Connect</h2>
+        <p class="section__description">Ready to bring your content vision to life? Let's discuss your project.</p>
+    </div>
+    
+    <div class="contact__container">
+        <!-- Contact Information -->
+        <div class="contact__info">
+            <div class="contact__item animate-on-scroll" data-animation="fadeInRight" data-delay="0.1s">
+                <div class="contact__icon">
+                    <i class="fas fa-envelope"></i>
+                </div>
+                <div class="contact__details">
+                    <h4>Email Me</h4>
+                    <p>sophia@pen-craft.com</p>
+                </div>
+            </div>
+            
+            <div class="contact__item animate-on-scroll" data-animation="fadeInRight" data-delay="0.2s">
+                <div class="contact__icon">
+                    <i class="fas fa-phone"></i>
+                </div>
+                <div class="contact__details">
+                    <h4>Call Me</h4>
+                    <p>+1 (555) 123-4567</p>
+                </div>
+            </div>
+            
+            <div class="contact__item animate-on-scroll" data-animation="fadeInRight" data-delay="0.3s">
+                <div class="contact__icon">
+                    <i class="fas fa-map-marker-alt"></i>
+                </div>
+                <div class="contact__details">
+                    <h4>Location</h4>
+                    <p>San Francisco, CA</p>
+                </div>
+            </div>
+            
+            <div class="contact__social animate-on-scroll" data-animation="fadeInRight" data-delay="0.4s">
+                <a href="#" class="contact__social-link"><i class="fab fa-medium"></i></a>
+                <a href="#" class="contact__social-link"><i class="fab fa-linkedin-in"></i></a>
+                <a href="#" class="contact__social-link"><i class="fab fa-twitter"></i></a>
+                <a href="#" class="contact__social-link"><i class="fab fa-instagram"></i></a>
+            </div>
+        </div>
+        
+        <!-- Contact Form -->
+        <div class="contact__form-container animate-on-scroll" data-animation="fadeInLeft" data-delay="0.2s">
+            <form class="contact__form" id="contactForm" action="https://formspree.io/f/mkgveywa" method="POST">
+                <div class="form__group">
+                    <label for="name" class="form__label">Your Name</label>
+                    <input type="text" id="name" name="name" class="form__control" required>
+                </div>
+                
+                <div class="form__group">
+                    <label for="email" class="form__label">Email Address</label>
+                    <input type="email" id="email" name="email" class="form__control" required>
+                </div>
+                
+                <div class="form__group">
+                    <label for="subject" class="form__label">Subject</label>
+                    <input type="text" id="subject" name="subject" class="form__control" required>
+                </div>
+                
+                <div class="form__group">
+                    <label for="message" class="form__label">Your Message</label>
+                    <textarea id="message" name="message" class="form__control form__control--textarea" rows="5" required></textarea>
+                </div>
+                
+                <button type="submit" class="btn btn--primary btn--submit">
+                    <i class="fas fa-paper-plane"></i> Send Message
+                </button>
+                
+                <div class="form__status" id="formStatus"></div>
+            </form>
+        </div>
+    </div>
+</section>
+
+     
+
+
+
+
+
+        
+
+ 
+    </div>
+
+
+
+
+<!-- Footer -->
+<footer class="footer">
+    <div class="footer__content">
+        <div class="footer__logo">
+            <a href="../index1.html" class="logo">
+                <img src="../images/profile.png" alt="PenCraft Logo" class="logo__img">
+                PenCraft<span class="logo__dot">.</span>
+            </a>
+        </div>
+        
+        <div class="footer__nav">
+            <ul class="footer__nav-links">
+                <li><a href="../index1.html" class="footer__nav-link">Home</a></li>
+                <li><a href="./about.html" class="footer__nav-link">About</a></li>
+                <li><a href="./services.html" class="footer__nav-link">Services</a></li>
+                <li><a href="./resume.html" class="footer__nav-link">Resume</a></li>
+                <li><a href="./projects.html" class="footer__nav-link">Projects</a></li>
+                <li><a href="./contact.html" class="footer__nav-link">Contact</a></li>
+            </ul>
+        </div>
+    </div>
+    
+    <div class="footer__bottom">
+        <p class="footer__copyright">&copy; 2023 PenCraft. All rights reserved.</p>
+    </div>
+</footer>
+
+
+
+
+
+    <script src="js/script.js"></script>
+</body>
+</html>
