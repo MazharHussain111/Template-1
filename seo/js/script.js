@@ -12,6 +12,8 @@ document.addEventListener('DOMContentLoaded', function() {
     initContactForm();
     initCounterAnimation();
     initHeaderScrollBehavior();
+    initProjectModal();
+    initTestimonialsScroll();
 });
 
 // ==========================================================================
@@ -144,6 +146,11 @@ function initScrollAnimations() {
                     element.style.opacity = '1';
                     element.style.transform = '';
                     element.classList.add('animated');
+                    
+                    // Trigger counter animation when about section stats become visible
+                    if (element.closest('.about__stats')) {
+                        initCounterAnimation();
+                    }
                 }, delay * 1000);
             }
         });
@@ -232,89 +239,79 @@ function initMobileMenu() {
 }
 
 // ==========================================================================
-// Contact Form Handling with Formspree - UPDATED
+// Contact Form Handling with Formspree
 // ==========================================================================
 function initContactForm() {
+    'use strict';
+    
     const contactForm = document.getElementById('contactForm');
     if (!contactForm) return;
 
-    // Handle form submission
     async function handleSubmit(event) {
         event.preventDefault();
         
-        // Show loading state
-        const submitBtn = contactForm.querySelector('.btn--primary');
+        const submitBtn = contactForm.querySelector('.btn--submit');
         const originalText = submitBtn.innerHTML;
+        const statusElement = document.getElementById('formStatus');
+        
+        // Show loading state
         submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Sending...';
         submitBtn.disabled = true;
         
-        // Collect form data
-        const data = new FormData(event.target);
-        
         try {
+            const formData = new FormData(event.target);
             const response = await fetch(event.target.action, {
                 method: contactForm.method,
-                body: data,
-                headers: {
-                    'Accept': 'application/json'
+                body: formData,
+                headers: { 
+                    'Accept': 'application/json',
+                    'X-Requested-With': 'XMLHttpRequest'
                 }
             });
             
-            const status = document.getElementById('formStatus');
-            
             if (response.ok) {
-                // Show success message
-                status.textContent = 'Thank you! Your message has been sent successfully.';
-                status.className = 'form__status success';
-                status.style.display = 'block';
-                
-                // Clear form
+                showStatus('Thank you! Your message has been sent successfully.', 'success');
                 contactForm.reset();
             } else {
-                // Show error message
-                const errorData = await response.json();
-                if (errorData.errors) {
-                    status.textContent = errorData.errors.map(error => error.message).join(', ');
-                } else {
-                    status.textContent = 'Oops! There was a problem submitting your form. Please try again.';
-                }
-                status.className = 'form__status error';
-                status.style.display = 'block';
+                const errorData = await response.json().catch(() => ({}));
+                const errorMessage = errorData.errors ? 
+                    errorData.errors.map(error => error.message).join(', ') : 
+                    'Oops! There was a problem submitting your form. Please try again.';
+                showStatus(errorMessage, 'error');
             }
         } catch (error) {
-            // Show error message
-            const status = document.getElementById('formStatus');
-            status.textContent = 'Oops! There was a problem submitting your form. Please try again.';
-            status.className = 'form__status error';
-            status.style.display = 'block';
+            showStatus('Oops! There was a problem submitting your form. Please check your connection and try again.', 'error');
         } finally {
             // Reset button state
-            const submitBtn = contactForm.querySelector('.btn--primary');
             submitBtn.innerHTML = originalText;
             submitBtn.disabled = false;
-            
-            // Hide message after 5 seconds
-            setTimeout(() => {
-                const status = document.getElementById('formStatus');
-                if (status) {
-                    status.style.display = 'none';
-                }
-            }, 5000);
         }
     }
     
-    // Add event listener
-    contactForm.addEventListener("submit", handleSubmit);
+    function showStatus(message, type) {
+        const statusElement = document.getElementById('formStatus');
+        if (!statusElement) return;
+        
+        statusElement.textContent = message;
+        statusElement.className = `form__status ${type}`;
+        statusElement.style.display = 'block';
+        
+        // Hide status after 5 seconds
+        setTimeout(() => {
+            statusElement.style.display = 'none';
+        }, 5000);
+    }
+    
+    contactForm.addEventListener('submit', handleSubmit);
 }
 
 // ==========================================================================
-// Counter Animation 
+// Counter Animation for Statistics - FIXED
 // ==========================================================================
 function initCounterAnimation() {
     'use strict';
     
-    // Target hero stat numbers specifically
-    const counterElements = document.querySelectorAll('.hero__stat-number');
+    const counterElements = document.querySelectorAll('.stat__number');
     if (!counterElements.length) return;
     
     // Check if counters have already been animated
@@ -325,10 +322,10 @@ function initCounterAnimation() {
     function animateCounters() {
         if (hasCounted) return;
         
-        const heroSection = document.querySelector('.hero__stats');
-        if (!heroSection) return;
+        const aboutSection = document.querySelector('.about__stats');
+        if (!aboutSection) return;
         
-        const sectionPosition = heroSection.getBoundingClientRect().top;
+        const sectionPosition = aboutSection.getBoundingClientRect().top;
         const screenPosition = window.innerHeight / 1.3;
         
         if (sectionPosition < screenPosition) {
@@ -336,7 +333,7 @@ function initCounterAnimation() {
             
             counterElements.forEach((counter, index) => {
                 const target = parseInt(counter.getAttribute('data-count'), 10);
-                const duration = 3000;
+                const duration = 2000;
                 const increment = target / (duration / 16);
                 let current = 0;
                 
@@ -349,10 +346,8 @@ function initCounterAnimation() {
                         if (current >= target) {
                             clearInterval(timer);
                             current = target;
-                            counter.textContent = target;
-                        } else {
-                            counter.textContent = Math.floor(current);
                         }
+                        counter.textContent = Math.floor(current);
                     }, 16);
                 }, index * 300);
             });
@@ -372,16 +367,13 @@ function initCounterAnimation() {
         rootMargin: '0px 0px -100px 0px'
     });
     
-    const heroStats = document.querySelector('.hero__stats');
-    if (heroStats) {
-        observer.observe(heroStats);
+    const aboutSection = document.querySelector('.about__stats');
+    if (aboutSection) {
+        observer.observe(aboutSection);
     }
     
     // Also trigger on scroll as backup
     window.addEventListener('scroll', animateCounters);
-    
-    // Initial check
-    setTimeout(animateCounters, 100);
 }
 
 // ==========================================================================
@@ -431,6 +423,267 @@ function initHeaderScrollBehavior() {
     
     window.addEventListener('scroll', requestTick, { passive: true });
     updateHeader(); // Initial call
+}
+
+
+// ==========================================================================
+// Project Modal Functionality - ENHANCED
+// ==========================================================================
+function initProjectModal() {
+    'use strict';
+    
+    const modal = document.getElementById('projectModal');
+    const closeBtn = document.querySelector('.project-modal__close');
+    const projectCards = document.querySelectorAll('.project-card');
+    
+    if (!modal) return;
+    
+    const projects = {
+        1: {
+            title: "Tech Blog Series",
+            category: "Blog Writing • SEO",
+            description: "Developed a comprehensive blog series for a leading tech company, focusing on emerging technologies and industry trends.",
+            features: [
+                "15+ in-depth articles on emerging technologies",
+                "SEO optimization with targeted keywords",
+                "Engaging visuals and infographics",
+                "Social media promotion strategy"
+            ],
+            results: [
+                "45% increase in organic traffic",
+                "28% higher engagement rate",
+                "Generated 120+ qualified leads",
+                "Improved domain authority by 15 points"
+            ]
+        },
+        2: {
+            title: "E-commerce Website Content",
+            category: "Web Content • Product Descriptions",
+            description: "Created compelling product descriptions and website copy for an e-commerce platform specializing in sustainable products.",
+            features: [
+                "200+ product descriptions optimized for conversions",
+                "Brand storytelling throughout the website",
+                "SEO-optimized category pages",
+                "Consistent brand voice across all content"
+            ],
+            results: [
+                "32% increase in conversion rate",
+                "Reduced bounce rate by 25%",
+                "Improved average time on site by 40%",
+                "25% growth in returning customers"
+            ]
+        },
+        3: {
+            title: "Brand Storytelling Campaign",
+            category: "Brand Strategy • Content",
+            description: "Developed a comprehensive brand storytelling campaign for a startup, creating narratives that connected with their target audience.",
+            features: [
+                "Company origin story and mission articulation",
+                "Customer success case studies",
+                "Employee spotlight features",
+                "Multi-channel content distribution"
+            ],
+            results: [
+                "68% increase in brand awareness",
+                "40% higher engagement on social media",
+                "Generated media coverage in 3 industry publications",
+                "Improved customer loyalty metrics by 35%"
+            ]
+        },
+        4: {
+            title: "Social Media Campaign",
+            category: "Social Media • Engagement",
+            description: "Designed and executed a social media content strategy that increased engagement and built community around a lifestyle brand.",
+            features: [
+                "Daily content calendar across 4 platforms",
+                "User-generated content campaigns",
+                "Interactive stories and polls",
+                "Influencer collaboration content"
+            ],
+            results: [
+                "Tripled follower growth in 3 months",
+                "Engagement rate increased from 2% to 6.5%",
+                "Generated 500+ user-generated content submissions",
+                "Drove 25% of total website traffic from social media"
+            ]
+        },
+        5: {
+            title: "Technical Whitepaper",
+            category: "Technical Writing • Research",
+            description: "Researched and wrote a comprehensive technical whitepaper on AI implementation in healthcare.",
+            features: [
+                "30-page in-depth research document",
+                "Case studies and data analysis",
+                "Executive summary for quick consumption",
+                "Technical appendix for specialists"
+            ],
+            results: [
+                "Downloaded 2,500+ times in first month",
+                "Cited in 3 industry publications",
+                "Generated 350+ qualified leads",
+                "Used as sales enablement material by client's team"
+            ]
+        },
+        6: {
+            title: "Email Marketing Campaign",
+            category: "Email Marketing • Copywriting",
+            description: "Developed a multi-email nurture sequence for a SaaS company, guiding prospects through the customer journey.",
+            features: [
+                "7-email automated sequence",
+                "Personalized content based on user behavior",
+                "A/B tested subject lines and CTAs",
+                "Mobile-optimized templates"
+            ],
+            results: [
+                "22% open rate (industry average: 18%)",
+                "8% click-through rate (industry average: 3%)",
+                "15% conversion rate from lead to customer",
+                "Generated $125K in revenue in first quarter"
+            ]
+        }
+    };
+
+    function openModal(projectId) {
+        const project = projects[projectId];
+        if (!project) return;
+        
+        document.getElementById('modalTitle').textContent = project.title;
+        document.getElementById('modalCategory').textContent = project.category;
+        document.getElementById('modalDescription').textContent = project.description;
+        
+        populateList('modalFeatures', project.features);
+        populateList('modalResults', project.results);
+        
+        modal.classList.add('project-modal--active');
+        document.body.style.overflow = 'hidden';
+        
+        // Focus trap for accessibility
+        trapFocus(modal);
+    }
+    
+    function populateList(elementId, items) {
+        const listElement = document.getElementById(elementId);
+        if (!listElement) return;
+        
+        listElement.innerHTML = '';
+        items.forEach(item => {
+            const li = document.createElement('li');
+            li.textContent = item;
+            listElement.appendChild(li);
+        });
+    }
+    
+    function closeModal() {
+        modal.classList.remove('project-modal--active');
+        document.body.style.overflow = 'auto';
+    }
+    
+    // Add click events to project cards
+    projectCards.forEach(card => {
+        card.addEventListener('click', function() {
+            const projectId = this.getAttribute('data-project');
+            openModal(projectId);
+        });
+        
+        // Add keyboard support
+        card.addEventListener('keydown', function(e) {
+            if (e.key === 'Enter' || e.key === ' ') {
+                e.preventDefault();
+                const projectId = this.getAttribute('data-project');
+                openModal(projectId);
+            }
+        });
+    });
+    
+    // Close modal events
+    if (closeBtn) {
+        closeBtn.addEventListener('click', closeModal);
+    }
+    
+    modal.addEventListener('click', function(e) {
+        if (e.target === modal || e.target.classList.contains('project-modal__overlay')) {
+            closeModal();
+        }
+    });
+    
+    document.addEventListener('keydown', function(e) {
+        if (e.key === 'Escape' && modal.classList.contains('project-modal--active')) {
+            closeModal();
+        }
+    });
+    
+    // Focus trap function for accessibility
+    function trapFocus(element) {
+        const focusableElements = element.querySelectorAll(
+            'button, [href], input, select, textarea, [tabindex]:not([tabindex="-1"])'
+        );
+        const firstElement = focusableElements[0];
+        const lastElement = focusableElements[focusableElements.length - 1];
+        
+        element.addEventListener('keydown', function(e) {
+            if (e.key === 'Tab') {
+                if (e.shiftKey) {
+                    if (document.activeElement === firstElement) {
+                        e.preventDefault();
+                        lastElement.focus();
+                    }
+                } else {
+                    if (document.activeElement === lastElement) {
+                        e.preventDefault();
+                        firstElement.focus();
+                    }
+                }
+            }
+        });
+        
+        firstElement.focus();
+    }
+}
+
+// ==========================================================================
+// Enhanced Testimonials Auto Scroll Functionality
+// ==========================================================================
+function initTestimonialsScroll() {
+    'use strict';
+    
+    const testimonialsTrack = document.querySelector('.testimonials__track');
+    if (!testimonialsTrack) return;
+    
+    // Clone testimonials for seamless loop
+    const testimonials = testimonialsTrack.querySelectorAll('.testimonial__card');
+    testimonials.forEach(card => {
+        const clone = card.cloneNode(true);
+        testimonialsTrack.appendChild(clone);
+    });
+    
+    // Pause on hover
+    testimonialsTrack.addEventListener('mouseenter', () => {
+        testimonialsTrack.style.animationPlayState = 'paused';
+    });
+    
+    testimonialsTrack.addEventListener('mouseleave', () => {
+        testimonialsTrack.style.animationPlayState = 'running';
+    });
+    
+    // Touch support for mobile devices
+    let touchStartX = 0;
+    
+    testimonialsTrack.addEventListener('touchstart', (e) => {
+        touchStartX = e.changedTouches[0].screenX;
+        testimonialsTrack.style.animationPlayState = 'paused';
+    });
+    
+    testimonialsTrack.addEventListener('touchend', (e) => {
+        const touchEndX = e.changedTouches[0].screenX;
+        const swipeThreshold = 50;
+        
+        // Only resume if not a significant swipe
+        if (Math.abs(touchEndX - touchStartX) < swipeThreshold) {
+            setTimeout(() => {
+                testimonialsTrack.style.animationPlayState = 'running';
+            }, 2000);
+        }
+    });
 }
 
 // ==========================================================================
